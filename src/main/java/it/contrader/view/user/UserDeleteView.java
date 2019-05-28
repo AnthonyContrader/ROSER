@@ -13,6 +13,7 @@ import it.contrader.view.View;
 
 public class UserDeleteView implements View {
 
+	
 	private UserController userController;
 	private Request request;
 
