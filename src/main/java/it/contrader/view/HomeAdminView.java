@@ -14,14 +14,14 @@ public class HomeAdminView implements View {
     private String choice;
 
     public void showResults(Request request) {
-    	System.out.println("Benvenuto in WMES "+request.get("nomeUtente").toString());
+    	System.out.println("Benvenuto in ROSER "+request.get("nomeUtente").toString());
     }
 
 
     public void showOptions() {
         System.out.println("-------MENU-------\n");
         System.out.println("Seleziona cosa vuoi gestire:");
-        System.out.println("[U]tenti [E]sci");
+        System.out.println("[U]tenti - [D]ispositivi - [E]sci");
         this.choice = this.getInput();
     }
 
