@@ -9,12 +9,22 @@ private int planId;
 private String planDescription;
 private Date planStart;
 private Date planEnd;
+private int userId;
 
-public TreatmentPlan(int planId , String planDescription , Date planStart , Date planEnd) {
+public TreatmentPlan(int planId , String planDescription , Date planStart , Date planEnd, int userId) {
 	this.planId = planId;
 	this.planDescription = planDescription ;
 	this.planStart = planStart;
 	this.planEnd = planEnd;
+	this.userId = userId;
+}
+
+public int getUserId() {
+	return userId;
+}
+
+public void setUserId(int userId) {
+	this.userId = userId;
 }
 
 public int getPlanId() {
