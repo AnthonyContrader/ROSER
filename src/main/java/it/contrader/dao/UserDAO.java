@@ -12,7 +12,7 @@ import it.contrader.model.User;
 public class UserDAO {
 
 	private final String QUERY_ALL = "select * from users";
-	private final String QUERY_INSERT = "insert into users (user_id, user_name, user_surname, user_user, user_pass, user_type, user_state) values (?,?,?,?,?,?,?)";
+	private final String QUERY_INSERT = "insert into users (user_name, user_surname, user_user, user_pass, user_type, user_state) values (?,?,?,?,?,?)";
 	private final String QUERY_READ = "select * from users where user_id=?";
     private final String QUERY_UPDATE = "UPDATE users SET user_name=? , user_surname=?, user_user=? , user_password=?, user_type=?, user_state=?  WHERE user_id=?";
 	private final String QUERY_DELETE = "delete from user where user_id=?";
@@ -34,7 +34,7 @@ public class UserDAO {
 				String usertype = resultSet.getString("user_type");
 				String name = resultSet.getString("user_name");
 				String surname = resultSet.getString("user_surname");
-				String password = resultSet.getString("password");
+				String password = resultSet.getString("user_pass");
 				boolean state = resultSet.getBoolean("user_state");
 				if(!state) {
 					user = new User(userId,username,usertype, name, surname, password, false);
@@ -54,13 +54,12 @@ public class UserDAO {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
 			//user_id, user_name, user_surname, user_user, user_pass, user_type, user_state
-			preparedStatement.setInt(1, user.getUserId());
-			preparedStatement.setString(2, user.getName());
-			preparedStatement.setString(3, user.getSurname());
-			preparedStatement.setString(4, user.getUsername());
-			preparedStatement.setString(5, user.getPassword());
-			preparedStatement.setString(6, user.getUsertype());
-			preparedStatement.setBoolean(7, user.isUserState());
+			preparedStatement.setString(1, user.getName());
+			preparedStatement.setString(2, user.getSurname());
+			preparedStatement.setString(3, user.getUsername());
+			preparedStatement.setString(4, user.getPassword());
+			preparedStatement.setString(5, user.getUsertype());
+			preparedStatement.setBoolean(6, user.isUserState());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -82,17 +81,15 @@ public class UserDAO {
 			String usertype = resultSet.getString("user_type");
 			String name = resultSet.getString("user_name");
 			String surname = resultSet.getString("user_surname");
-			String password = resultSet.getString("password");
+			String password = resultSet.getString("user_pass");
 			boolean state = resultSet.getBoolean("user_state");
 
 			User user = new User(userId, username, usertype, name, surname, password, state);
-
 			return user;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
 			return null;
 		}
-
 	}
 
 	public boolean updateUser(User userToUpdate) {
@@ -124,11 +121,13 @@ public class UserDAO {
 				preparedStatement.setString(5, userToUpdate.getUsertype());
 				preparedStatement.setBoolean(6, userToUpdate.isUserState());
 				int a = preparedStatement.executeUpdate();
-				if (a > 0)
+				if (a > 0) {
 					return true;
-				else
+				}
+				else {
+					connection.close();
 					return false;
-
+				}
 			} catch (SQLException e) {
 				return false;
 			}
@@ -144,9 +143,11 @@ public class UserDAO {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
 			preparedStatement.setInt(1, id);
 			int n = preparedStatement.executeUpdate();
-			if (n > 0)
+			if (n > 0) {
 				return true;
+			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return false;
 	}
