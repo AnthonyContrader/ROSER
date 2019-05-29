@@ -30,7 +30,7 @@ CREATE TABLE `users` (
   `user_surname` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `user_user` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `user_pass` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `user_type` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
+  `user_type` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `user_state` bool COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Insert all users';
@@ -41,11 +41,11 @@ CREATE TABLE `users` (
 --
 
 /*
-LOCK TABLES `users` WRITE;*/
+LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*INSERT INTO `users` VALUES (1,'admin','admin','admin');*/
+INSERT INTO `users` VALUES (1,'admin','admin','admin','admin','admin',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
-/*UNLOCK TABLES;*/
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 
@@ -86,10 +86,10 @@ CREATE TABLE `treatment_plan` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2019-03-19 11:25:37
-INSERT INTO USERS VALUES(NULL,"Michele","Verdi","michele01","ciao123","u",1);
-INSERT INTO USERS VALUES(NULL,"Roberto","Rossi","roberto02","ciao123","m",1);
-INSERT INTO USERS VALUES(NULL,"Giovanna","Bianchi","giovanna03","ciao123","m",1);
-INSERT INTO USERS VALUES(NULL,"Luigi","Neri","luigi04","ciao123","u",1);
+INSERT INTO USERS VALUES(NULL,"Michele","Verdi","michele01","ciao123","user",1);
+INSERT INTO USERS VALUES(NULL,"Roberto","Rossi","roberto02","ciao123","doctor",1);
+INSERT INTO USERS VALUES(NULL,"Giovanna","Bianchi","giovanna03","ciao123","doctor",1);
+INSERT INTO USERS VALUES(NULL,"Luigi","Neri","luigi04","ciao123","user",1);
 INSERT INTO DEVICES VALUES(NULL, "SAFX2",1);
 INSERT INTO DEVICES VALUES(NULL, "3DFBT",4);
 INSERT INTO TREATMENT_PLAN VALUES(NULL,"Piano terapeutico 01",'2019-05-29 09:00','2019-06-29 09:00',1);
