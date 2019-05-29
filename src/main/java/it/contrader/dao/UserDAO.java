@@ -15,7 +15,7 @@ public class UserDAO {
 	private final String QUERY_INSERT = "insert into users (user_name, user_surname, user_user, user_pass, user_type, user_state) values (?,?,?,?,?,?)";
 	private final String QUERY_READ = "select * from users where user_id=?";
     private final String QUERY_UPDATE = "UPDATE users SET user_name=? , user_surname=?, user_user=? , user_password=?, user_type=?, user_state=?  WHERE user_id=?";
-	private final String QUERY_DELETE = "delete from user where user_id=?";
+	private final String QUERY_DELETE = "delete from users where user_id=?";
 
 	public UserDAO() {
 
@@ -137,7 +137,7 @@ public class UserDAO {
 		
 	}
 
-	public boolean deleteUser(Integer id) {
+	public boolean deleteUser(int id) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);

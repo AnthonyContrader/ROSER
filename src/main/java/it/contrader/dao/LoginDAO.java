@@ -31,6 +31,7 @@ public class LoginDAO {
             	rs = statement.executeQuery();
             	rs.next();
             	userType = rs.getString("user_type");
+            	//System.out.println("tipo utente: "+ userType);
             }
             
             return userType;
