@@ -12,10 +12,9 @@ import it.contrader.model.User;
 public class UserDAO {
 
 	private final String QUERY_ALL = "select * from users";
-	private final String QUERY_INSERT = "insert into users (user_user, user_type) values (?,?)";
+	private final String QUERY_INSERT = "insert into users (user_id, user_name, user_surname, user_user, user_pass, user_type, user_state) values (?,?,?,?,?,?,?)";
 	private final String QUERY_READ = "select * from users where user_id=?";
-
-	private final String QUERY_UPDATE = "UPDATE users SET user_user=?, user_type=? WHERE user_id=?";
+    private final String QUERY_UPDATE = "UPDATE users SET user_name=? , user_surname=?, user_user=? , user_password=?, user_type=?, user_state=?  WHERE user_id=?";
 	private final String QUERY_DELETE = "delete from user where user_id=?";
 
 	public UserDAO() {
@@ -33,8 +32,15 @@ public class UserDAO {
 				int userId = resultSet.getInt("user_id");
 				String username = resultSet.getString("user_user");
 				String usertype = resultSet.getString("user_type");
-				user = new User(username, usertype);
-				user.setUserId(userId);
+				String name = resultSet.getString("user_name");
+				String surname = resultSet.getString("user_surname");
+				String password = resultSet.getString("password");
+				boolean state = resultSet.getBoolean("user_state");
+				if(!state) {
+					user = new User(userId,username,usertype, name, surname, password, false);
+				}else {
+					user = new User(userId,username,usertype, name, surname, password, true);
+				}
 				usersList.add(user);
 			}
 		} catch (SQLException e) {
@@ -47,8 +53,14 @@ public class UserDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setString(1, user.getUsername());
-			preparedStatement.setString(3, user.getUsertype());
+			//user_id, user_name, user_surname, user_user, user_pass, user_type, user_state
+			preparedStatement.setInt(1, user.getUserId());
+			preparedStatement.setString(2, user.getName());
+			preparedStatement.setString(3, user.getSurname());
+			preparedStatement.setString(4, user.getUsername());
+			preparedStatement.setString(5, user.getPassword());
+			preparedStatement.setString(6, user.getUsertype());
+			preparedStatement.setBoolean(7, user.isUserState());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -65,12 +77,15 @@ public class UserDAO {
 			preparedStatement.setInt(1, userId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
-			String username, password, usertype;
+			
+			String username = resultSet.getString("user_user");
+			String usertype = resultSet.getString("user_type");
+			String name = resultSet.getString("user_name");
+			String surname = resultSet.getString("user_surname");
+			String password = resultSet.getString("password");
+			boolean state = resultSet.getBoolean("user_state");
 
-			username = resultSet.getString("user_user");
-			usertype = resultSet.getString("user_type");
-			User user = new User(username, usertype);
-			user.setUserId(resultSet.getInt("user_id"));
+			User user = new User(userId, username, usertype, name, surname, password, state);
 
 			return user;
 		} catch (SQLException e) {
@@ -91,20 +106,23 @@ public class UserDAO {
 		if (!userRead.equals(userToUpdate)) {
 			try {
 				// Fill the userToUpdate object
-				if (userToUpdate.getUsername() == null || userToUpdate.getUsername().equals("")) {
+				/*if (userToUpdate.getUsername() == null || userToUpdate.getUsername().equals("")) {
 					userToUpdate.setUsername(userRead.getUsername());
 				}
 				
 				
 				if (userToUpdate.getUsertype() == null || userToUpdate.getUsertype().equals("")) {
 					userToUpdate.setUsertype(userRead.getUsertype());
-				}
+				}*/
 				
 				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-				preparedStatement.setString(1, userToUpdate.getUsername());
-				preparedStatement.setString(3, userToUpdate.getUsertype());
-				preparedStatement.setInt(4, userToUpdate.getUserId());
+				preparedStatement.setString(1, userToUpdate.getName());
+				preparedStatement.setString(2, userToUpdate.getSurname());
+				preparedStatement.setString(3, userToUpdate.getUsername());
+				preparedStatement.setString(4, userToUpdate.getPassword());
+				preparedStatement.setString(5, userToUpdate.getUsertype());
+				preparedStatement.setBoolean(6, userToUpdate.isUserState());
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
 					return true;
@@ -126,7 +144,7 @@ public class UserDAO {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
 			preparedStatement.setInt(1, id);
 			int n = preparedStatement.executeUpdate();
-			if (n != 0)
+			if (n > 0)
 				return true;
 		} catch (SQLException e) {
 		}
