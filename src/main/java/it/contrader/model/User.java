@@ -53,6 +53,11 @@ public class User {
 		this.userId = userId;
 	}
 
+	public User(String username, String usertype)
+	{
+		this.username = username;
+		this.usertype = usertype;
+	}
 	public int getUserId() {
 		return userId;
 	}
