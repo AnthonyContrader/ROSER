@@ -12,9 +12,17 @@ public class ConverterUser {
 		UserDTO userDTO = null;
 		if (user != null) {
 			userDTO = new UserDTO();
+			//userDTO.setUserId(user.getUserId());
+			//userDTO.setUsername(user.getUsername());
+			//userDTO.setUsertype(user.getUsertype());
+			
+			userDTO.setName(user.getName());
+			userDTO.setSurname(user.getSurname());
 			userDTO.setUserId(user.getUserId());
 			userDTO.setUsername(user.getUsername());
 			userDTO.setUsertype(user.getUsertype());
+			userDTO.setPassword(user.getPassword());
+			userDTO.setUserState(user.isUserState());
 		}
 		return userDTO;
 	}
@@ -23,9 +31,13 @@ public class ConverterUser {
 		User user = null;
 		if (userDTO != null) {
 			user = new User();
+			user.setName(userDTO.getName());
+			user.setSurname(userDTO.getSurname());
 			user.setUserId(userDTO.getUserId());
 			user.setUsername(userDTO.getUsername());
 			user.setUsertype(userDTO.getUsertype());
+			user.setPassword(userDTO.getPassword());
+			user.setUserState(userDTO.isUserState());
 		}
 		return user;
 	}
