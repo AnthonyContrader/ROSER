@@ -3,12 +3,12 @@ package it.contrader.model;
 public class Devices {
 	private int devId;
 	private String model;
-	private String owner;
+	private int owner;
 
 
 
 
-public Devices (int devId , String model , String owner) {
+public Devices (int devId , String model , int owner) {
 	this.model = model;
 	this.owner = owner;
 	this.devId = devId;
@@ -45,14 +45,14 @@ public void setModel(String model) {
 
 
 
-public String getOwner() {
+public int getOwner() {
 	return owner;
 }
 
 
 
 
-public void setOwner(String owner) {
+public void setOwner(int owner) {
 	this.owner = owner;
 }
 

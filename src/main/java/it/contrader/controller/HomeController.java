@@ -25,7 +25,7 @@ public class HomeController implements Controller {
                 MainDispatcher.getInstance().callView("HomeAdmin", request);
             
             if (userType.equals("user"))
-            	MainDispatcher.getInstance().callView("HomeBO", request);
+            	MainDispatcher.getInstance().callView("User", request);
            
         }
         else MainDispatcher.getInstance().callView("Login", null);
