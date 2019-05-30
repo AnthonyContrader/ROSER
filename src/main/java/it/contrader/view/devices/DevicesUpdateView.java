@@ -3,10 +3,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import it.contrader.controller.Request;
+import it.contrader.dao.UserDAO;
 import it.contrader.controller.DevicesController;
 import it.contrader.dto.DevicesDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.model.Devices;
+import it.contrader.model.User;
 import it.contrader.view.View;
 
 public class DevicesUpdateView  implements View {
@@ -44,7 +46,7 @@ public class DevicesUpdateView  implements View {
 					System.out.println(" 2) Owner");
 					System.out.println(" 3) Exit");
 					
-					String scelta =	getInput();
+					String scelta =	getInput().trim();
 					
 					
 					switch(scelta)
@@ -64,9 +66,12 @@ public class DevicesUpdateView  implements View {
 							break;
 							
 						case "3": 
+							System.out.println("Sei uscito");
 							break;
 							
-						default: System.out.println("");
+						default:
+							System.out.println("");
+							break;
 					}
 					
 					devicesController.updateDevices(deviceDTO);
@@ -74,6 +79,7 @@ public class DevicesUpdateView  implements View {
 				}
 			} catch (Exception e) {
 				System.out.println("Hai inserito un valore errato");
+				e.printStackTrace();
 			}
 
 		}
