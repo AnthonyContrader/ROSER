@@ -24,11 +24,11 @@ public class UserView implements View {
 
 	@Override
 	public void showOptions() {
-		
+	
 		System.out.println("\n------ Gestione utenti -------\n");
-		
-		System.out.println("ID\tUsername\tTipoUtente");
-		System.out.print("------------------------------------------------------");
+		//System.out.format("%32s", , int1, string2);
+		System.out.println("ID\tNome\tCognome\tUsername\tPassword\tTipoUtente\tStato");
+		System.out.print("-------------------------------------------------------------------------------");
 		List<User> users = usersController.getAllUser();
 		System.out.println();
 		users.forEach(user -> System.out.println(user.toString()));

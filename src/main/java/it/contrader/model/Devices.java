@@ -14,6 +14,7 @@ public Devices (int devId , String model , User user) {
 	this.devId = devId;
 }
 
+public Devices() {}
 
 
 
@@ -45,10 +46,14 @@ public void setModel(String model) {
 
 
 
-public User getUser() {
-	return user;
+public String getUsername() {
+	return user.getUsername();
 }
 
+public User getUser()
+{
+	return this.user;
+}
 
 
 
@@ -58,6 +63,6 @@ public void setUser(User user) {
 
 @Override
 public String toString() {
-	return this.getDevId() + "\t" + this.getModel() + "\t" + this.getUser();
+	return this.getDevId() + "\t" + this.getModel() + "\t" + this.getUsername();
 }
 }

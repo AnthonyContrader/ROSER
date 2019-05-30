@@ -14,7 +14,7 @@ public class UserDAO {
 	private final String QUERY_ALL = "select * from users";
 	private final String QUERY_INSERT = "insert into users (user_name, user_surname, user_user, user_pass, user_type, user_state) values (?,?,?,?,?,?)";
 	private final String QUERY_READ = "select * from users where user_id=?";
-    private final String QUERY_UPDATE = "UPDATE users SET user_name=? , user_surname=?, user_user=? , user_password=?, user_type=?, user_state=? WHERE user_id=?";
+    private final String QUERY_UPDATE = "UPDATE users SET user_name=? , user_surname=?, user_user=? , user_pass=?, user_type=?, user_state=? WHERE user_id=?";
 	private final String QUERY_DELETE = "delete from users where user_id=?";
 
 	public UserDAO() {
@@ -36,11 +36,11 @@ public class UserDAO {
 				String surname = resultSet.getString("user_surname");
 				String password = resultSet.getString("user_pass");
 				boolean state = resultSet.getBoolean("user_state");
-				if(!state) {
-					user = new User(userId,username,usertype, name, surname, password, false);
-				}else {
-					user = new User(userId,username,usertype, name, surname, password, true);
-				}
+				//if(!state) {
+					user = new User(userId,username,usertype, name, surname, password, state);
+				//}else {
+					//user = new User(userId,username,usertype, name, surname, password, true);
+			//	}
 				usersList.add(user);
 			}
 		} catch (SQLException e) {
@@ -115,12 +115,11 @@ public class UserDAO {
 				if (userToUpdate.getPassword() == null || userToUpdate.getPassword().equals("")) 
 					userToUpdate.setPassword(userRead.getPassword());
 				
-			
 				if (userToUpdate.getUsertype() == null || userToUpdate.getUsertype().equals("")) 
 					userToUpdate.setUsertype(userRead.getUsertype());
 				
-				if (userToUpdate.isUserState() == false) 
-					userToUpdate.setUserState(userRead.isUserState());
+				//if (userToUpdate.isUserState() == false) 
+					//userToUpdate.setUserState(userRead.isUserState());
 						
 					
 				// Update the user
@@ -138,6 +137,7 @@ public class UserDAO {
 				System.out.println(preparedStatement);
 				
 				int a = preparedStatement.executeUpdate();
+				
 				if (a > 0) {
 					return true;
 				}

@@ -44,7 +44,7 @@ public class DevicesController implements Controller{
 		String choice = (String) request.get("choice");
 
 		if (mode == "menu") {
-			MainDispatcher.getInstance().callView("User", null);
+			MainDispatcher.getInstance().callView("Devices", null);
 		} else {
 			switch (choice.toUpperCase()) {
 			case "I":

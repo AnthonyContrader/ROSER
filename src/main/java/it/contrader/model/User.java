@@ -52,6 +52,7 @@ public class User {
 		this.surname = surname;
 		this.password = password;
 		this.userId = userId;
+		this.userState = userState;
 	}
 
 	public User(String username, String usertype)
@@ -89,7 +90,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return this.getUserId() + "\t" + this.getName()+ "\t" + this.getSurname()+"\t"+ this.getUsername() + "\t" +this.getPassword()+"\t"+ this.getUsertype();
+		return this.getUserId() + "\t" + this.getName()+ "\t" + this.getSurname()+"\t"+ this.getUsername() + "\t" +this.getPassword()+"\t"+ this.getUsertype()+"\t"+this.isUserState();
 	}
 
 	public boolean equals(User userCompare) {
