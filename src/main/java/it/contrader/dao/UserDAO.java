@@ -14,7 +14,7 @@ public class UserDAO {
 	private final String QUERY_ALL = "select * from users";
 	private final String QUERY_INSERT = "insert into users (user_name, user_surname, user_user, user_pass, user_type, user_state) values (?,?,?,?,?,?)";
 	private final String QUERY_READ = "select * from users where user_id=?";
-    private final String QUERY_UPDATE = "UPDATE users SET user_name=? , user_surname=?, user_user=? , user_password=?, user_type=?, user_state=?  WHERE user_id=?";
+    private final String QUERY_UPDATE = "UPDATE users SET user_name=? , user_surname=?, user_user=? , user_password=?, user_type=?, user_state=? WHERE user_id=?";
 	private final String QUERY_DELETE = "delete from users where user_id=?";
 
 	public UserDAO() {
@@ -103,23 +103,40 @@ public class UserDAO {
 		if (!userRead.equals(userToUpdate)) {
 			try {
 				// Fill the userToUpdate object
-				/*if (userToUpdate.getUsername() == null || userToUpdate.getUsername().equals("")) {
+				if (userToUpdate.getName() == null || userToUpdate.getName().equals("")) 
+					userToUpdate.setName(userRead.getName());
+				
+				if (userToUpdate.getSurname() == null || userToUpdate.getSurname().equals("")) 
+					userToUpdate.setSurname(userRead.getSurname());
+				
+				if (userToUpdate.getUsername() == null || userToUpdate.getUsername().equals("")) 
 					userToUpdate.setUsername(userRead.getUsername());
-				}
 				
+				if (userToUpdate.getPassword() == null || userToUpdate.getPassword().equals("")) 
+					userToUpdate.setPassword(userRead.getPassword());
 				
-				if (userToUpdate.getUsertype() == null || userToUpdate.getUsertype().equals("")) {
+			
+				if (userToUpdate.getUsertype() == null || userToUpdate.getUsertype().equals("")) 
 					userToUpdate.setUsertype(userRead.getUsertype());
-				}*/
 				
+				if (userToUpdate.isUserState() == false) 
+					userToUpdate.setUserState(userRead.isUserState());
+						
+					
 				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
+		
+					
 				preparedStatement.setString(1, userToUpdate.getName());
 				preparedStatement.setString(2, userToUpdate.getSurname());
 				preparedStatement.setString(3, userToUpdate.getUsername());
 				preparedStatement.setString(4, userToUpdate.getPassword());
 				preparedStatement.setString(5, userToUpdate.getUsertype());
 				preparedStatement.setBoolean(6, userToUpdate.isUserState());
+				preparedStatement.setInt(7, userToUpdate.getUserId());
+				
+				System.out.println(preparedStatement);
+				
 				int a = preparedStatement.executeUpdate();
 				if (a > 0) {
 					return true;

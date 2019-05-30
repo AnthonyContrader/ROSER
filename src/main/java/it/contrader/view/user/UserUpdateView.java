@@ -37,7 +37,7 @@ public class UserUpdateView implements View {
 		// System.out.println();
 		UserDTO userDTO = new UserDTO();
 
-		System.out.println("Digita l'Id dell'utente da modificare:");
+		System.out.print("Digita l'Id dell'utente da modificare:");
 		try {
 			userIdToUpdate = Integer.parseInt(getInput());
 			if (userIdToUpdate != 0) {
@@ -48,8 +48,8 @@ public class UserUpdateView implements View {
 				System.out.println(" 2) Cognome");
 				System.out.println(" 3) Username");
 				System.out.println(" 4) Password");
-				System.out.println(" 5) Tipo");
-				System.out.println(" 6) Stato");
+				System.out.println(" 5) Tipo di utente");
+				System.out.println(" 6) Stato Account");
 				System.out.println(" 7) Esci");
 				
 				String scelta =	getInput();
@@ -58,42 +58,42 @@ public class UserUpdateView implements View {
 				switch(scelta)
 				{
 					case "1": 
-						System.out.println("Digita nome: ");
+						System.out.print("Digita nome: ");
 						name= getInput();
 						if (!name.equals(""))
 							userDTO.setName(name);
 						break;
 						
 					case "2": 
-						System.out.println("Digita cognome: ");
+						System.out.print("Digita cognome: ");
 						surname= getInput();
 						if (!surname.equals(""))
 							userDTO.setUsername(surname);
 						break;
 						
 					case "3": 
-						System.out.println("Digita username: ");
+						System.out.print("Digita username: ");
 						username= getInput();
 						if (!username.equals(""))
 							userDTO.setUsername(username);
 						break;
 					
 					case "4":
-						System.out.println("Digita password: ");
+						System.out.print("Digita password: ");
 						password = getInput();
 						if (!password.equals(""))
 							userDTO.setUsername(password);
 						break;
 						
 					case "5":
-						System.out.println("Digita tipo di utente: ");
+						System.out.print("Digita tipo di utente: ");
 						usertype = getInput();
 						if (!usertype.equals(""))
 							userDTO.setUsername(usertype);
 						break;
 						
 					case "6": 
-						System.out.println("Digita stato utente ");
+						System.out.print("Digita stato utente ");
 						state = getInput();
 						if (!state.equals(""))
 							userDTO.setUsername(state);

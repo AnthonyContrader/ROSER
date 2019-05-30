@@ -5,6 +5,10 @@ public class User {
 	private String username;
 	private String usertype;
 	private String name;
+	private String surname;
+	private String password;
+	private boolean userState;
+	
 	public String getName() {
 		return name;
 	}
@@ -37,9 +41,6 @@ public class User {
 		this.userState = userState;
 	}
 
-	private String surname;
-	private String password;
-	private boolean userState;
 
 	public User() {
 	}
@@ -88,7 +89,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return this.getUserId() + "\t" + this.getUsername() + "\t" + this.getUsertype();
+		return this.getUserId() + "\t" + this.getName()+ "\t" + this.getSurname()+"\t"+ this.getUsername() + "\t" +this.getPassword()+"\t"+ this.getUsertype();
 	}
 
 	public boolean equals(User userCompare) {
