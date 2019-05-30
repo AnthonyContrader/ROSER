@@ -15,10 +15,10 @@ import it.contrader.model.User;
 
 public class DevicesDAO {
 	private final String QUERY_ALL = "select * from devices";
-	private final String QUERY_INSERT = "insert into users (model, owner_id) values (?,?)";
-	private final String QUERY_READ = "select * from users where dev_id=?";
-    private final String QUERY_UPDATE = "UPDATE users SET dev_id=? , model=?, owner_id=? WHERE dev_id=?";
-	private final String QUERY_DELETE = "delete from user where dev_id=?";
+	private final String QUERY_INSERT = "insert into devices (model, owner_id) values (?,?)";
+	private final String QUERY_READ = "select * from devices where dev_id=?";
+    private final String QUERY_UPDATE = "UPDATE devices SET dev_id=? , model=?, owner_id=? WHERE dev_id=?";
+	private final String QUERY_DELETE = "delete from devices where dev_id=?";
 	
 	public List<Devices> getAllDevices() {
 		List<Devices> devicesList = new ArrayList<>();
@@ -48,7 +48,7 @@ public class DevicesDAO {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
 			preparedStatement.setString(1, devices.getModel());
-			preparedStatement.setInt(2, devices.getOwner().getUserId());
+			preparedStatement.setInt(2, devices.getUser().getUserId());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -107,7 +107,7 @@ public class DevicesDAO {
 				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
 				preparedStatement.setString(1, devicesToUpdate.getModel());
-				preparedStatement.setInt(2, devicesToUpdate.getOwner().getUserId());
+				preparedStatement.setInt(2, devicesToUpdate.getUser().getUserId());
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
 					return true;
@@ -123,7 +123,7 @@ public class DevicesDAO {
 		
 	}
 	
-	public boolean deleteDevices(Integer id) {
+	public boolean deleteDevices(int id) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
