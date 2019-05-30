@@ -84,9 +84,10 @@ public class UserDTO {
 		this.usertype = usertype;
 	}
 	
-	public void ShowAttributes()
+	@Override
+	public String toString()
 	{
-		System.out.println("nome:" + this.name + " " +"Cognome: "+ this.surname +" "+ "username: "+ this.username + " "+"password: "+this.password+ " " );
+		return this.getName() + "\t" + this.getSurname() + "\t" + this.getUsername() + "\t" + this.getPassword();
 	}
 
 }
