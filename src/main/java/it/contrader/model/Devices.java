@@ -45,19 +45,19 @@ public void setModel(String model) {
 
 
 
-public User getOwner() {
+public User getUser() {
 	return user;
 }
 
 
 
 
-public void setOwner(User user) {
+public void setUser(User user) {
 	this.user = user;
 }
 
 @Override
 public String toString() {
-	return this.getDevId() + "\t" + this.getModel() + "\t" + this.getOwner();
+	return this.getDevId() + "\t" + this.getModel() + "\t" + this.getUser();
 }
 }
