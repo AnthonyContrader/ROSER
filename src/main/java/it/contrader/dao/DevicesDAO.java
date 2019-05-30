@@ -17,7 +17,7 @@ public class DevicesDAO {
 	private final String QUERY_ALL = "select * from devices";
 	private final String QUERY_INSERT = "insert into devices (model, owner_id) values (?,?)";
 	private final String QUERY_READ = "select * from devices where dev_id=?";
-    private final String QUERY_UPDATE = "UPDATE devices SET dev_id=? , model=?, owner_id=? WHERE dev_id=?";
+    private final String QUERY_UPDATE = "UPDATE devices SET model=?, owner_id=? WHERE dev_id=?";
 	private final String QUERY_DELETE = "delete from devices where dev_id=?";
 	
 	public List<Devices> getAllDevices() {
@@ -107,7 +107,9 @@ public class DevicesDAO {
 				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
 				preparedStatement.setString(1, devicesToUpdate.getModel());
-				preparedStatement.setInt(2, devicesToUpdate.getUser().getUserId());
+				DevicesDAO dev = new DevicesDAO();
+				preparedStatement.setInt(2, dev.readDevices(devicesRead.getDevId()).getUser().getUserId());
+				preparedStatement.setInt(3, devicesToUpdate.getDevId());
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
 					return true;
