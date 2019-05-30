@@ -89,7 +89,7 @@ public class DevicesUpdateView  implements View {
 			request = new Request();
 			request.put("mode", "menu");
 			request.put("choice", "");
-			MainDispatcher.getInstance().callAction("Device", "doControl", request);
+			MainDispatcher.getInstance().callAction("Devices", "doControl", request);
 		}
 		
 	/*	public int accountStateUsers(int id)
