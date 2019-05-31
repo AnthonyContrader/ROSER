@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.contrader.controller.GestoreEccezioni;
+import it.contrader.dto.UserDTO;
 import it.contrader.main.ConnectionSingleton;
 import it.contrader.model.Devices;
 import it.contrader.model.Doctor;
@@ -92,7 +93,7 @@ public class DoctorDAO {
 			String password = resultSet.getString("user_pass");
 			boolean state = resultSet.getBoolean("user_state");
 
-			User user = new User(userId, username, usertype, name, surname, password, state);
+			User user = new User(userId, username, usertype , name,  surname, password, state);
 			return user;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);

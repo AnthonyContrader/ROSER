@@ -29,7 +29,7 @@ public class HomeDoctorView implements View{
 		System.out.println("-------DOCTOR MENU-------\n");
 		System.out.println("ID\tNome\tCognome\tUsername\tPassword\tTipoUtente\tStato");
 		System.out.print("-------------------------------------------------------------------------------");
-		List<User> users = doctorController.getAllPatient();
+		List<User> users = doctorController.getAllUser();
 		System.out.println();
 		users.forEach(user -> System.out.println(user.toString()));
 		System.out.println();

@@ -3,67 +3,69 @@ package it.contrader.converter;
 import java.util.ArrayList;
 import java.util.List;
 import it.contrader.dto.DoctorDTO;
+import it.contrader.dto.UserDTO;
 import it.contrader.model.Doctor;
+import it.contrader.model.User;
 
 public class ConverterDoctor 
 {
-	public static DoctorDTO toDTO(Doctor doctor)
+	public static UserDTO toDTO(User user)
 	{
-		DoctorDTO doctorDTO = null;
-		if(doctor != null)
+		UserDTO userDTO = null;
+		if(user != null)
 		{
-			doctorDTO = new DoctorDTO();
-			doctorDTO.setName(doctor.getName());
-			doctorDTO.setSurname(doctor.getSurname());
-			doctorDTO.setUserId(doctor.getUserId());
-			doctorDTO.setUsername(doctor.getUsername());
-			doctorDTO.setPassword(doctor.getPassword());
-			doctorDTO.setUserState(doctor.isUserState());
+			userDTO = new UserDTO();
+			userDTO.setName(user.getName());
+			userDTO.setSurname(user.getSurname());
+			userDTO.setUserId(user.getUserId());
+			userDTO.setUsername(user.getUsername());
+			userDTO.setPassword(user.getPassword());
+			userDTO.setUserState(user.isUserState());
 			
 		}
 		
-		return doctorDTO;
+		return userDTO;
 	}
 	
 	
-	public static Doctor toEntity(DoctorDTO doctorDTO)
+	public static User toEntity(UserDTO userDTO)
 	{
-		Doctor doctor = null;
-		if(doctorDTO != null)
+		User user = null;
+		if(userDTO != null)
 		{
-			doctor = new Doctor();
-			doctor.setName(doctorDTO.getName());
-			doctor.setSurname(doctorDTO.getSurname());
-			doctor.setUserId(doctorDTO.getUserId());
-			doctor.setUsername(doctorDTO.getUsername());
-			doctor.setPassword(doctorDTO.getPassword());
-			doctor.setUserState(doctorDTO.isUserState());
+			user = new User();
+			user.setName(userDTO.getName());
+			user.setSurname(userDTO.getSurname());
+			user.setUserId(userDTO.getUserId());
+			user.setUsername(userDTO.getUsername());
+			user.setPassword(userDTO.getPassword());
+			user.setUserState(userDTO.isUserState());
 			
 		}
 		
-		return doctor;
+		return user;
 	}
 	
-	public static List<DoctorDTO> toListDTO(List<Doctor> list)
+	public static List<UserDTO> toListDTO(List<User> list)
 	{
-		List<DoctorDTO> listDoctorDTO = new ArrayList<>();
+		List<UserDTO> listUserDTO = new ArrayList<>();
 		if(!list.isEmpty())
 		{
-			for(Doctor doctor : list)
+			for(User user : list)
 			{
-				listDoctorDTO.add(ConverterDoctor.toDTO(doctor));
+				listUserDTO.add(ConverterDoctor.toDTO(user));
 			}
 		}
 		
-		return listDoctorDTO;
+		return listUserDTO;
 	}
 	
-	public static List<Doctor> toListEntity(List<DoctorDTO> listDoctorDTO)
+	public static List<User> toListEntity(List<UserDTO> listUserDTO)
 	{
-		List<Doctor> list = new ArrayList<>();
-		if (!listDoctorDTO.isEmpty()) {
-			for (DoctorDTO doctorDTO : listDoctorDTO) {
-				list.add(ConverterDoctor.toEntity(doctorDTO));
+		List<User> list = new ArrayList<>();
+		if (!listUserDTO.isEmpty()) {
+			for (UserDTO userDTO : listUserDTO) {
+				list.add(ConverterDoctor.toEntity(userDTO));
 			}
 		}
 		return list;

@@ -10,17 +10,19 @@ import java.util.List;
 
 import it.contrader.dto.UserDTO;
 import it.contrader.main.MainDispatcher;
+import it.contrader.model.Devices;
 import it.contrader.model.User;
+import it.contrader.service.DoctorService;
 import it.contrader.service.UserService;
 
 public class DoctorController implements Controller {
 
 	private static String sub_package = "doctor.";
-	private UserService doctorService;
+	private DoctorService doctorService;
 	private Request request;
 
 	public DoctorController() {
-		this.doctorService = new UserService();
+		this.doctorService = new DoctorService();
 	}
 
 	public List<User> getAllUser() {
@@ -41,6 +43,14 @@ public class DoctorController implements Controller {
 
 	public boolean deleteUser(Integer usersId) {
 		return this.doctorService.deleteUser(usersId);
+	}
+	
+	public boolean matchDevices(User user, Devices device) {
+		return this.doctorService.matchDevices(user,device);
+	}
+	
+	public boolean dismatchDevices(User user, Devices device) {
+		return this.doctorService.dismatchDevices(user,device);
 	}
 
 	@Override

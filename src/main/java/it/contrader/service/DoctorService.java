@@ -7,6 +7,7 @@ import it.contrader.converter.ConverterUser;
 import it.contrader.dao.DoctorDAO;
 import it.contrader.dao.UserDAO;
 import it.contrader.dto.UserDTO;
+import it.contrader.model.Devices;
 import it.contrader.model.User;
 
 public class DoctorService {
@@ -35,5 +36,13 @@ public class DoctorService {
 	
 	public boolean deleteUser(int userId) {
 		return this.doctorDAO.deleteUser(userId);
+	}
+	
+	public boolean matchDevices(User user, Devices device) {
+		return this.doctorDAO.matchDevices(user,device);
+	}
+	
+	public boolean dismatchDevices(User user, Devices device) {
+		return this.doctorDAO.matchDevices(user,device);
 	}
 }
