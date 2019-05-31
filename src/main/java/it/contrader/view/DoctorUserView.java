@@ -1,5 +1,3 @@
-
-
 package it.contrader.view;
 
 import java.util.List;
@@ -11,22 +9,24 @@ import it.contrader.controller.UserController;
 import it.contrader.main.MainDispatcher;
 import it.contrader.model.User;
 
-public class HomeDoctorView implements View{
-	
-	private String choice;
+public class DoctorUserView implements View {
+
 	private DoctorController doctorController;
 	private Request request;
+	private String choice;
 	
-	public HomeDoctorView() {
+	public DoctorUserView() {
 		this.doctorController = new DoctorController();
 	}
+
+	@Override
 	public void showResults(Request request) {
-		System.out.println("Welcome in ROSER " + request.get("nomeUtente").toString());
 	}
-	
-	
+
+	@Override
 	public void showOptions() {
-		/*System.out.println("-------DOCTOR MENU-------\n");
+	
+		System.out.println("-------DOCTOR MENU-------\n");
 		System.out.println("ID\tNome\tCognome\tUsername\tPassword\tTipoUtente\tStato");
 		System.out.print("-------------------------------------------------------------------------------");
 		List<User> users = doctorController.getAllUser();
@@ -38,10 +38,9 @@ public class HomeDoctorView implements View{
 		this.choice = this.getInput();
 		request = new Request();
 		request.put("choice",choice);
-		request.put("mode", "");*/
-		
+		request.put("mode", "");
 	}
-	
+
 	@Override
 	public String getInput() {
 		Scanner scanner = new Scanner(System.in);
@@ -50,7 +49,8 @@ public class HomeDoctorView implements View{
 
 	@Override
 	public void submit() {
-		MainDispatcher.getInstance().callView("DoctorUser", null);
-		
+		    MainDispatcher.getInstance().callAction("Doctor", "doControl", this.request);
 	}
+
 }
+

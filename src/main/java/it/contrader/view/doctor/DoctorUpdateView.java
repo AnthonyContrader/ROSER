@@ -83,14 +83,8 @@ public class DoctorUpdateView implements View {
 							userDTO.setPassword(password);
 						break;
 						
+					
 					case "5":
-						System.out.print("Insert User Type: ");
-						usertype = getInput();
-						if (!usertype.equals(""))
-							userDTO.setUsertype(usertype);
-						break;
-						
-					case "6":
 						break;
 						
 					default: System.out.println("");
@@ -117,7 +111,7 @@ public class DoctorUpdateView implements View {
 		request = new Request();
 		request.put("mode", "menu");
 		request.put("choice", "");
-		MainDispatcher.getInstance().callAction("User", "doControl", request);
+		MainDispatcher.getInstance().callAction("Doctor", "doControl", request);
 	}
 	
 

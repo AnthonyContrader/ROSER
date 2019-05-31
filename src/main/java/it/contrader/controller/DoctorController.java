@@ -59,7 +59,7 @@ public class DoctorController implements Controller {
 		String choice = (String) request.get("choice");
 
 		if (mode == "menu") {
-			MainDispatcher.getInstance().callView("Doctor", null);
+			MainDispatcher.getInstance().callView("DoctorUser", null);
 		} else {
 			switch (choice.toUpperCase()) {
 			case "L":
@@ -71,7 +71,7 @@ public class DoctorController implements Controller {
 			case "M":
 				MainDispatcher.getInstance().callView(sub_package + "DoctorUpdate", null);
 				break;
-			case "C":
+			case "D":
 				MainDispatcher.getInstance().callView(sub_package + "DoctorDelete", null);
 				break;
 			/*case "B":

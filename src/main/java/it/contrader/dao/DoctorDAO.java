@@ -19,8 +19,8 @@ public class DoctorDAO {
 	
 	private final String QUERY_ALL = "select * from users WHERE  user_type='user'";
 	private final String QUERY_INSERT = "insert into users (user_name, user_surname, user_user, user_pass, user_type, user_state) values (?,?,?,?,?,?)";
-	private final String QUERY_READ = "select * from users where user_name=?";
-    private final String QUERY_UPDATE = "UPDATE users SET user_name=? , user_surname=?, user_user=? WHERE user_id=?";
+	private final String QUERY_READ = "select * from users where user_id=?";
+    private final String QUERY_UPDATE = "UPDATE users SET user_name=? , user_surname=?, user_user=?, user_pass=? WHERE user_id=?";
 	private final String QUERY_DELETE = "delete from users where user_id=?";
 	private final String QUERY_MATCH = " UPDATE devices SET owner_id=? WHERE user_name=?";
 	private final String QUERY_DISMATCH = " UPDATE devices SET owner_id=? WHERE dev_id=? ";
@@ -103,7 +103,7 @@ public class DoctorDAO {
 	
 	public boolean updateUser(User userToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
-
+		//"UPDATE users SET user_name=? , user_surname=?, user_user=? WHERE user_id=?"
 		// Check if id is present
 		if (userToUpdate.getUserId() == 0)
 			return false;
@@ -133,15 +133,14 @@ public class DoctorDAO {
 					
 				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-		
+		//"UPDATE users SET user_name=? , user_surname=?, user_user=? WHERE user_id=?"
 					
 				preparedStatement.setString(1, userToUpdate.getName());
 				preparedStatement.setString(2, userToUpdate.getSurname());
 				preparedStatement.setString(3, userToUpdate.getUsername());
 				preparedStatement.setString(4, userToUpdate.getPassword());
-				preparedStatement.setString(5, userToUpdate.getUsertype());
-				preparedStatement.setBoolean(6, userToUpdate.isUserState());
-				preparedStatement.setInt(7, userToUpdate.getUserId());
+				
+				preparedStatement.setInt(5, userToUpdate.getUserId());
 				
 				System.out.println(preparedStatement);
 				

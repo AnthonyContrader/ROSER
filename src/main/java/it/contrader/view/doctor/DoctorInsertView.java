@@ -61,10 +61,11 @@ public class DoctorInsertView implements View {
 
 	@Override
 	public void submit() {
+		
 		request = new Request();
 		request.put("mode", "menu");
 		request.put("choice", "");
-		MainDispatcher.getInstance().callAction("HomeDoctor", "doControl", request);
+		MainDispatcher.getInstance().callAction("Doctor", "doControl", request);
 	}
 
 }
