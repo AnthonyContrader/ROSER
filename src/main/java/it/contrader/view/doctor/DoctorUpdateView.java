@@ -1,9 +1,8 @@
-package it.contrader.view.user;
+package it.contrader.view.doctor;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
+import it.contrader.controller.DoctorController;
 import it.contrader.controller.Request;
 import it.contrader.controller.UserController;
 import it.contrader.dto.UserDTO;
@@ -11,30 +10,31 @@ import it.contrader.main.MainDispatcher;
 import it.contrader.model.User;
 import it.contrader.view.View;
 
-public class UserUpdateView implements View {
-
-	private UserController usersController;
+public class DoctorUpdateView implements View {
+	
+	private DoctorController doctorController;
 	private Request request;
-
-	public UserUpdateView() {
-		this.usersController = new UserController();
+	
+	public DoctorUpdateView() {
+		this.doctorController = new DoctorController();
 	}
-
+	
 	@Override
 	public void showResults(Request request) {
 	}
-
+	
 	@Override
 	public void showOptions() {
-		int userIdToUpdate;
 		String username, usertype, name, surname, password, userState;
+		int userIdToUpdate;
+		User user;
+		
 		
 		//System.out.println("\n----- Seleziona l'utente da modificate  -----\n");
 		// System.out.println();
 		// users.forEach(us_type -> System.out.println(us_type.toString()));
 		// System.out.println();
 		UserDTO userDTO = new UserDTO();
-		
 
 		System.out.print("Digita l'Id dell'utente da modificare:");
 		try {
@@ -48,8 +48,7 @@ public class UserUpdateView implements View {
 				System.out.println(" 3) Username");
 				System.out.println(" 4) Password");
 				System.out.println(" 5) Tipo di utente");
-				System.out.println(" 6) Enable/Disable User Account");
-				System.out.println(" 7) Esci");
+				System.out.println(" 6) Esci");
 				
 				String scelta =	getInput();
 				
@@ -91,39 +90,13 @@ public class UserUpdateView implements View {
 							userDTO.setUsertype(usertype);
 						break;
 						
-					case "6": 
-						//System.out.print("Digita stato utente ");
-						//userState = getInput();
-						//if (!userState.equals(""))
-							//userDTO.setUserState(userState);
-					
-					//	if (!userState.equals(""))
-						//{
-							
-							int userReturnValue = accountStateUsers(userIdToUpdate);
-							if(userReturnValue == 1)
-							{
-								userDTO.setUserState(false);
-								getInput();
-							}
-							else if(userReturnValue == 2)
-							{
-								userDTO.setUserState(true);
-								getInput();
-							}
-								
-						//}
-						//userDTO.setUserState();
-						
-						break;
-						
-					case "7":
+					case "6":
 						break;
 						
 					default: System.out.println("");
 				}
 				
-				usersController.updateUser(userDTO);
+				doctorController.updateUser(userDTO);
 
 			}
 		} catch (Exception e) {
@@ -131,12 +104,13 @@ public class UserUpdateView implements View {
 		}
 
 	}
-
+	
 	@Override
 	public String getInput() {
 		Scanner scanner = new Scanner(System.in);
 		return scanner.nextLine().trim();
 	}
+	
 
 	@Override
 	public void submit() {
@@ -146,38 +120,6 @@ public class UserUpdateView implements View {
 		MainDispatcher.getInstance().callAction("User", "doControl", request);
 	}
 	
-	public int accountStateUsers(int id)
-	{
-		
-		 List<User> users = usersController.getAllUser();
-		 
-		for (User gen : users) 
-		{
-			if (gen.getUserId() == id)
-			{
-				System.out.println("Valore :"+gen.isUserState());
-				
-				if(gen.isUserState())
-				{
-					System.out.println("Account user is Disabled!");
-					gen.setUserState(false);
-					return 1;
-							
-				}
-				
-				if(!gen.isUserState())
-				{
-					System.out.println("Account user is Enabled!");
-					gen.setUserState(true);
-				return 2;
-				}
-				
-			}	
-				
-		}
-		
-		return 3;
-		
-	}
+
 
 }

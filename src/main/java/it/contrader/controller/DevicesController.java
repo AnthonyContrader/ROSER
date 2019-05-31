@@ -12,7 +12,6 @@ public class DevicesController implements Controller{
 	
 	private static String sub_package = "devices."; 
 	private DevicesService devicesService;
-	private Request request;
 	
 	public DevicesController() {
 		this.devicesService = new DevicesService();

@@ -67,7 +67,6 @@ public class DevicesDAO {
 			resultSet.next();
 			
 			String model = resultSet.getString("model");
-			int owner = resultSet.getInt("owner_id");
 
 			int userId = resultSet.getInt("owner_id");
 			User user = null;
@@ -86,12 +85,12 @@ public class DevicesDAO {
 	
 	public boolean updateDevices(Devices devicesToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
-
 		// Check if id is present
 		if (devicesToUpdate.getDevId() == 0)
 			return false;
 
 		Devices devicesRead = readDevices(devicesToUpdate.getDevId());
+		UserDAO readUser = new UserDAO();
 		if (!devicesRead.equals(devicesToUpdate)) {
 			try {
 				// Fill the userToUpdate object
@@ -104,11 +103,19 @@ public class DevicesDAO {
 					userToUpdate.setUsertype(userRead.getUsertype());
 				}*/
 				
+				if(devicesToUpdate.getModel() == null || devicesToUpdate.getModel().equals("")) {
+					devicesToUpdate.setModel(devicesRead.getModel());
+				}
+				
+				if(devicesToUpdate.getUser() == null) {
+					User user = readUser.readUser(devicesRead.getUser().getUserId());
+					devicesToUpdate.setUser(user);
+				}
+				
 				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
 				preparedStatement.setString(1, devicesToUpdate.getModel());
-				DevicesDAO dev = new DevicesDAO();
-				preparedStatement.setInt(2, dev.readDevices(devicesRead.getDevId()).getUser().getUserId());
+				preparedStatement.setInt(2, devicesToUpdate.getUser().getUserId());
 				preparedStatement.setInt(3, devicesToUpdate.getDevId());
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
@@ -117,7 +124,9 @@ public class DevicesDAO {
 					return false;
 
 			} catch (SQLException e) {
+				e.printStackTrace();
 				return false;
+				
 			}
 		}
 

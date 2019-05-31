@@ -39,7 +39,7 @@ public class DevicesInsertView implements View {
 		User userRead = userDAO.readUser(user);
 	
 		if (!model.equals("") && !userRead.equals("")) {
-			System.out.println("Sono qui");
+			//System.out.println("Sono qui");
 			
 			DevicesDTO newDevicesDto = new DevicesDTO(model,userRead);
 			

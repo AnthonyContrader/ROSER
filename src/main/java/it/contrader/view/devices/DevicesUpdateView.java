@@ -27,7 +27,7 @@ public class DevicesUpdateView  implements View {
 		@Override
 		public void showOptions() {
 			int deviceIdToUpdate;
-			String  owner, modelName;
+			String  userId, modelName;
 			
 			//System.out.println("\n----- Seleziona l'utente da modificate  -----\n");
 			// System.out.println();
@@ -57,17 +57,19 @@ public class DevicesUpdateView  implements View {
 							if (!modelName.equals(""))
 								deviceDTO.setModel(modelName);
 							break;
-							
+						
 						case "2": 
 							System.out.print("Insert Owner: ");
-							owner= getInput();
-							if (!owner.equals(""))
-								//deviceDTO.(owner);
+							userId = getInput();
+							UserDAO readUser = new UserDAO();
+							User oldUser = readUser.readUser(Integer.parseInt(userId));
+							deviceDTO.setUser(oldUser);
 							break;
 							
 						case "3": 
 							System.out.println("Sei uscito");
 							break;
+							
 							
 						default:
 							System.out.println("");

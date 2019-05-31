@@ -1,20 +1,20 @@
-package it.contrader.view.user;
+package it.contrader.view.doctor;
 
 import java.util.Scanner;
 
+import it.contrader.controller.DoctorController;
 import it.contrader.controller.Request;
-import it.contrader.controller.UserController;
 import it.contrader.dto.UserDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.View;
 
-public class UserInsertView implements View {
+public class DoctorInsertView implements View {
 
-	private UserController usersController;
+	private DoctorController doctorController;
 	private Request request;
 
-	public UserInsertView() {
-		this.usersController = new UserController();
+	public DoctorInsertView() {
+		this.doctorController = new DoctorController();
 	}
 
 	@Override
@@ -26,8 +26,8 @@ public class UserInsertView implements View {
 		String username, usertype, name, surname, password;
 		boolean userState = false;
 
-		System.out.println("Inserisci i campi dell'utente:");
-		System.out.print("Insert nome: ");
+		System.out.println("Insert dati Paziente:");
+		System.out.print("Insert name: ");
 		name = getInput();
 		
 		System.out.print("Insert cognome: ");
@@ -39,11 +39,7 @@ public class UserInsertView implements View {
 		System.out.print("Insert password: ");
 		password = getInput();
 		
-	//	System.out.println("Inserisci la tipologia utente");
-		usertype="doctor";
-		
-		//System.out.println("Inserisci stato utente: ");
-		//userState = getInput();
+		usertype="user";
 		
 		if (!username.equals("") && !usertype.equals("")) {
 		//	System.out.println("Sono qui");
@@ -52,7 +48,7 @@ public class UserInsertView implements View {
 			
 			//newUserDto.ShowAttributes();
 			
-			usersController.insertUser(newUserDto);
+			doctorController.insertUser(newUserDto);
 		}
 	}
 
@@ -71,3 +67,5 @@ public class UserInsertView implements View {
 	}
 
 }
+
+
