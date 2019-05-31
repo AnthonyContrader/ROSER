@@ -26,14 +26,14 @@ public class UserInsertView implements View {
 		String username, usertype, name, surname, password;
 		boolean userState = false;
 
-		System.out.println("Inserisci i campi dell'utente:");
-		System.out.print("Insert nome: ");
+		System.out.println("INSERT USER'S FIELDS");
+		System.out.print("\nInsert name: ");
 		name = getInput();
 		
-		System.out.print("Insert cognome: ");
+		System.out.print("Insert surname: ");
 		surname = getInput();
 		
-		System.out.print("Insert l'username: ");
+		System.out.print("Insert username: ");
 		username = getInput();
 		
 		System.out.print("Insert password: ");
@@ -41,6 +41,7 @@ public class UserInsertView implements View {
 		
 	//	System.out.println("Inserisci la tipologia utente");
 		usertype="doctor";
+		userState = true;
 		
 		//System.out.println("Inserisci stato utente: ");
 		//userState = getInput();

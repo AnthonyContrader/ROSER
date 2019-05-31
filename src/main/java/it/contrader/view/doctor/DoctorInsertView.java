@@ -26,8 +26,8 @@ public class DoctorInsertView implements View {
 		String username, usertype, name, surname, password;
 		boolean userState = false;
 
-		System.out.println("Insert dati Paziente:");
-		System.out.print("Insert name: ");
+		System.out.println("INSERT PATIENT FIELDS");
+		System.out.print("\nInsert name: ");
 		name = getInput();
 		
 		System.out.print("Insert cognome: ");
@@ -40,6 +40,7 @@ public class DoctorInsertView implements View {
 		password = getInput();
 		
 		usertype="user";
+		userState = true;
 		
 		if (!username.equals("") && !usertype.equals("")) {
 		//	System.out.println("Sono qui");

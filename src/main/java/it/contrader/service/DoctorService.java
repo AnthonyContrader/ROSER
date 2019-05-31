@@ -2,21 +2,23 @@ package it.contrader.service;
 
 import java.util.List;
 
+import it.contrader.converter.ConverterDoctor;
 import it.contrader.converter.ConverterUser;
+import it.contrader.dao.DoctorDAO;
 import it.contrader.dao.UserDAO;
 import it.contrader.dto.UserDTO;
 import it.contrader.model.User;
 
 public class DoctorService {
 	
-	private UserDAO doctorDAO;
+	private DoctorDAO doctorDAO;
 	
 	public DoctorService() {
-		this.doctorDAO = new UserDAO();
+		this.doctorDAO = new DoctorDAO();
 	}
 	
 	public List<User> getAllUser() {
-		return this.doctorDAO.getAllUser();
+		return this.doctorDAO.getAllPatient();
 	}
 	
 	public boolean insertUser(UserDTO userDTO) {
@@ -24,7 +26,7 @@ public class DoctorService {
 	}
 	
 	public UserDTO readUser(int userId) {
-		return ConverterUser.toDTO(this.doctorDAO.readUser(userId));
+		return ConverterDoctor.toDTO(this.doctorDAO.readUser(userId));
 	}
 	
 	public boolean updateUser(UserDTO userDTO) {

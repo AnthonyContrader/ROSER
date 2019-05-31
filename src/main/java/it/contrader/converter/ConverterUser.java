@@ -20,7 +20,7 @@ public class ConverterUser {
 			userDTO.setSurname(user.getSurname());
 			userDTO.setUserId(user.getUserId());
 			userDTO.setUsername(user.getUsername());
-			userDTO.setUsertype(user.getUsertype());
+			userDTO.setUsertype(user.getUsertype()); //da togliere
 			userDTO.setPassword(user.getPassword());
 			userDTO.setUserState(user.isUserState());
 		}
