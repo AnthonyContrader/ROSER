@@ -74,9 +74,9 @@ public class DoctorController implements Controller {
 			case "D":
 				MainDispatcher.getInstance().callView(sub_package + "DoctorDelete", null);
 				break;
-			/*case "B":
-				MainDispatcher.getInstance().callView("HomeDoctor", null);
-				break;*/
+			case "A":
+				MainDispatcher.getInstance().callView(sub_package + "MatchDevice", null);
+				break;
 			case "E":
 				MainDispatcher.getInstance().callView("Login", null);
 				break;

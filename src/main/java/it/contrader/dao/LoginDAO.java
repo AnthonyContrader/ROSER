@@ -31,8 +31,10 @@ public class LoginDAO {
             if(statement.executeQuery().next()) {
             	rs = statement.executeQuery();
             	rs.next();
-            	userInfoTypeStatus[0] = rs.getString("user_type"); 
-            	userInfoTypeStatus[1]  = rs.getString("user_state");
+            	if(rs.getString("user_pass").equals(password)) {
+            		userInfoTypeStatus[0] = rs.getString("user_type"); 
+            		userInfoTypeStatus[1]  = rs.getString("user_state");
+            	}
             	
             	//System.out.println("tipo utente: "+ userInfoTypeStatus[0]  + "stato utente: "+ userInfoTypeStatus[1] );
             }
