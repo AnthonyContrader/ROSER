@@ -26,7 +26,7 @@ public class DevicesView implements View{
 	@Override
 	public void showOptions() {
 		
-		System.out.println("\n------ Gestione dispositivi -------\n");
+		System.out.println("\n------ DEVICES MANAGMENT -------\n");
 		
 		System.out.println("ID\tModel\tUser");
 		System.out.print("------------------------------------------------------");
@@ -34,9 +34,8 @@ public class DevicesView implements View{
 		System.out.println();
 		devices.forEach(device -> System.out.println(device));
 		System.out.println();
-		
-		System.out.println("Scegli l'operazione da effettuare:");
-		System.out.println("[I]nserisci [M]odifica [C]ancella [E]sci");
+		System.out.println("[I]nsert - [U]pdate - [D]elete - [E]xit");
+		System.out.print("Choose an operation: ");
 		try {
 			this.choice = getInput();
 		} catch(Exception e) {

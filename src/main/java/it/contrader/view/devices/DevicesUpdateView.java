@@ -28,20 +28,15 @@ public class DevicesUpdateView  implements View {
 		public void showOptions() {
 			int deviceIdToUpdate;
 			String  userId, modelName;
-			
-			//System.out.println("\n----- Seleziona l'utente da modificate  -----\n");
-			// System.out.println();
-			// users.forEach(us_type -> System.out.println(us_type.toString()));
-			// System.out.println();
 			DevicesDTO deviceDTO = new DevicesDTO();
 
-			System.out.print("Insert the devices ID to update: ");
+			System.out.print("Insert the device's ID: ");
 			try {
 				deviceIdToUpdate = Integer.parseInt(getInput());
 				if (deviceIdToUpdate != 0) {
 					deviceDTO.setDevId(deviceIdToUpdate);
 					
-					System.out.println("Cosa vuoi modificare?");
+					System.out.println("What do you want to change?");
 					System.out.println(" 1) Model");
 					System.out.println(" 2) Owner");
 					System.out.println(" 3) Exit");
@@ -66,8 +61,7 @@ public class DevicesUpdateView  implements View {
 							deviceDTO.setUser(oldUser);
 							break;
 							
-						case "3": 
-							System.out.println("Sei uscito");
+						case "3":
 							break;
 							
 							
@@ -80,7 +74,7 @@ public class DevicesUpdateView  implements View {
 
 				}
 			} catch (Exception e) {
-				System.out.println("Hai inserito un valore errato");
+				System.out.println("WRONG VALUE!!!");
 				e.printStackTrace();
 			}
 
@@ -100,39 +94,5 @@ public class DevicesUpdateView  implements View {
 			MainDispatcher.getInstance().callAction("Devices", "doControl", request);
 		}
 		
-	/*	public int accountStateUsers(int id)
-		{
-			
-			 List<User> users = usersController.getAllUser();
-			 
-			for (User gen : users) 
-			{
-				if (gen.getUserId() == id)
-				{
-					System.out.println("Valore :"+gen.isUserState());
-					
-					if(gen.isUserState())
-					{
-						System.out.println("Account user is Disabled!");
-						gen.setUserState(false);
-						return 1;
-								
-					}
-					
-					if(!gen.isUserState())
-					{
-						System.out.println("Account user is Enabled!");
-						gen.setUserState(true);
-					return 2;
-					}
-					
-				}	
-					
-			}
-			
-			return 3;
-			
-		}
-*/
 	}
 

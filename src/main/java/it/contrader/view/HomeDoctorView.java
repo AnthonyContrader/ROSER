@@ -26,20 +26,7 @@ public class HomeDoctorView implements View{
 	
 	
 	public void showOptions() {
-		/*System.out.println("-------DOCTOR MENU-------\n");
-		System.out.println("ID\tNome\tCognome\tUsername\tPassword\tTipoUtente\tStato");
-		System.out.print("-------------------------------------------------------------------------------");
-		List<User> users = doctorController.getAllUser();
-		System.out.println();
-		users.forEach(user -> System.out.println(user.toString()));
-		System.out.println();
-		System.out.println("Make a choice");
-		System.out.println("[M]odify - [D]elete Patient - [I]nsert Patient - [E]xit");
-		this.choice = this.getInput();
-		request = new Request();
-		request.put("choice",choice);
-		request.put("mode", "");*/
-		
+	
 	}
 	
 	@Override

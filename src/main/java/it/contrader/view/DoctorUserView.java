@@ -26,15 +26,16 @@ public class DoctorUserView implements View {
 	@Override
 	public void showOptions() {
 	
-		System.out.println("-------DOCTOR MENU-------\n");
-		System.out.println("ID\tNome\tCognome\tUsername\tPassword\tTipoUtente\tStato");
+		System.out.println("\n-------DOCTOR MENU-------\n");
+		System.out.println("ID\tName\tSurname\tUsername\tPassword\tUser Type\tState");
 		System.out.print("-------------------------------------------------------------------------------");
 		List<User> users = doctorController.getAllUser();
 		System.out.println();
 		users.forEach(user -> System.out.println(user.toString()));
 		System.out.println();
-		System.out.println("Make a choice");
-		System.out.println("[M]odify - [D]elete Patient - [I]nsert Patient - [E]xit");
+		
+		System.out.println("Choose an operation:");
+		System.out.println("[R]ead - [I]nsert - [U]pdate - [D]elete - [E]xit");
 		this.choice = this.getInput();
 		request = new Request();
 		request.put("choice",choice);

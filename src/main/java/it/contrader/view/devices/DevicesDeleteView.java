@@ -25,22 +25,14 @@ public class DevicesDeleteView implements View{
 	
 	@Override
 	public void showOptions() {
-		//List<User> users;
-		//String usersId;
-
-		//users = userController.getAllUser();
-		System.out.println("Seleziona il dispositivo da cancellare: ");
-		//System.out.println();
-		//user.forEach(user -> System.out.println(user));
-		//System.out.println();
-		//System.out.println("Digita l'ID:");
+		System.out.print("Insert device's id: ");
 		String devicesId = getInput();
 
 		if (devicesId != null && StringUtils.isStrictlyNumeric(devicesId)) {
 			devicesController.deleteDevices(Integer.parseInt(devicesId));
 			
 		} else {
-			System.out.println("Valore inserito errato");
+			System.out.println("WRONG VALUE!!!");
 		}
 	}
 

@@ -27,27 +27,22 @@ public class DoctorUpdateView implements View {
 	public void showOptions() {
 		String username, usertype, name, surname, password, userState;
 		int userIdToUpdate;
-		User user;
+		//User user;
 		
-		
-		//System.out.println("\n----- Seleziona l'utente da modificate  -----\n");
-		// System.out.println();
-		// users.forEach(us_type -> System.out.println(us_type.toString()));
-		// System.out.println();
 		UserDTO userDTO = new UserDTO();
 
-		System.out.print("Digita l'Id dell'utente da modificare:");
+		System.out.print("\nINSERT USER'S ID:");
 		try {
 			userIdToUpdate = Integer.parseInt(getInput());
 			if (userIdToUpdate != 0) {
 				userDTO.setUserId(userIdToUpdate);
 				
-				System.out.println("Cosa vuoi modificare?");
-				System.out.println(" 1) Nome");
-				System.out.println(" 2) Cognome");
+				System.out.println("What do you want to change?");
+				System.out.println(" 1) Name");
+				System.out.println(" 2) Surname");
 				System.out.println(" 3) Username");
 				System.out.println(" 4) Password");
-				System.out.println(" 5) Esci");
+				System.out.println(" 5) Exit");
 				
 				String scelta =	getInput();
 				
@@ -93,7 +88,7 @@ public class DoctorUpdateView implements View {
 
 			}
 		} catch (Exception e) {
-			System.out.println("Hai inserito un valore errato");
+			System.out.println("WRONG VALUE!!!");
 		}
 
 	}

@@ -1,14 +1,10 @@
 package it.contrader.view.user;
 
-import java.sql.SQLException;
-import java.util.List;
 import java.util.Scanner;
-
 import it.contrader.controller.Request;
 import it.contrader.controller.UserController;
 import it.contrader.dto.UserDTO;
 import it.contrader.main.MainDispatcher;
-import it.contrader.model.User;
 import it.contrader.view.View;
 
 public class UserReadView implements View {
@@ -28,7 +24,7 @@ public class UserReadView implements View {
 	public void showOptions() {
 		int userIdToRead;
 
-		System.out.println("Inserisci l'ID dell'utente:");
+		System.out.println("Insert user's id:");
 
 		try {
 			userIdToRead = Integer.parseInt(getInput());
@@ -39,7 +35,7 @@ public class UserReadView implements View {
 			System.out.println("User type: " + userDB.getUsertype());
 			
 			//Wait user to show
-			System.out.println("Premi un tasto per continuare");
+			System.out.println("Press key to continue...");
 			try {
 				getInput();
 			} catch (Exception e) {
@@ -47,7 +43,7 @@ public class UserReadView implements View {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Valore inserito errato.");
+			System.out.println("WRONG VALUE!!!");
 		}
 
 	}

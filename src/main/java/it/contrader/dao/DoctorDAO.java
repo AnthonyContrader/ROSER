@@ -44,11 +44,8 @@ public class DoctorDAO {
 				String surname = resultSet.getString("user_surname");
 				String password = resultSet.getString("user_pass");
 				boolean state = resultSet.getBoolean("user_state");
-				//if(!state) {
-					user = new User (doctorId,username,usertype, name, surname, password, state);
-				//}else {
-					//user = new User(userId,username,usertype, name, surname, password, true);
-			//	}
+				user = new User (doctorId,username,usertype, name, surname, password, state);
+
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -103,7 +100,6 @@ public class DoctorDAO {
 	
 	public boolean updateUser(User userToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
-		//"UPDATE users SET user_name=? , user_surname=?, user_user=? WHERE user_id=?"
 		// Check if id is present
 		if (userToUpdate.getUserId() == 0)
 			return false;
@@ -126,16 +122,9 @@ public class DoctorDAO {
 				
 				if (userToUpdate.getUsertype() == null || userToUpdate.getUsertype().equals("")) 
 					userToUpdate.setUsertype(userRead.getUsertype());
-				/*if(!userToUpdate.isUserState()) {
-					userToUpdate.setUserState(true);
-				}*/
-				//if (userToUpdate.isUserState() == false) 
-					//userToUpdate.setUserState(userRead.isUserState());
-						
-					
+
 				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-		//"UPDATE users SET user_name=? , user_surname=?, user_user=? WHERE user_id=?"
 					
 				preparedStatement.setString(1, userToUpdate.getName());
 				preparedStatement.setString(2, userToUpdate.getSurname());
@@ -143,9 +132,7 @@ public class DoctorDAO {
 				preparedStatement.setString(4, userToUpdate.getPassword());
 				
 				preparedStatement.setInt(5, userToUpdate.getUserId());
-				
-				System.out.println(preparedStatement);
-				
+			
 				int a = preparedStatement.executeUpdate();
 				
 				if (a > 0) {
@@ -180,7 +167,7 @@ public class DoctorDAO {
 	}
 	
 	public boolean matchDevices (User user , Devices device) {
-		//" UPDATE devices SET owner_id=? WHERE user_name=?"
+		
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_MATCH);
@@ -197,7 +184,6 @@ public class DoctorDAO {
 			
 	}
 	public boolean dismatchDevices (Devices device) {
-		//" UPDATE devices SET owner_id=? WHERE user_name=?"
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DISMATCH);

@@ -26,32 +26,25 @@ public class UserInsertView implements View {
 		String username, usertype, name, surname, password;
 		boolean userState = false;
 
-		System.out.println("INSERT USER'S FIELDS");
-		System.out.print("\nInsert name: ");
+		System.out.println("\nINSERT USER'S FIELDS");
+		System.out.print("\nInsert Name: ");
 		name = getInput();
 		
-		System.out.print("Insert surname: ");
+		System.out.print("Insert Surname: ");
 		surname = getInput();
 		
-		System.out.print("Insert username: ");
+		System.out.print("Insert Username: ");
 		username = getInput();
 		
-		System.out.print("Insert password: ");
+		System.out.print("Insert Password: ");
 		password = getInput();
 		
-	//	System.out.println("Inserisci la tipologia utente");
 		usertype="doctor";
 		userState = true;
 		
-		//System.out.println("Inserisci stato utente: ");
-		//userState = getInput();
-		
 		if (!username.equals("") && !usertype.equals("")) {
-		//	System.out.println("Sono qui");
-			
+
 			UserDTO newUserDto = new UserDTO(name,surname,username,password,usertype,userState);
-			
-			//newUserDto.ShowAttributes();
 			
 			usersController.insertUser(newUserDto);
 		}

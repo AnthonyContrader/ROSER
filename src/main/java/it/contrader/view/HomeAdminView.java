@@ -14,14 +14,14 @@ public class HomeAdminView implements View {
     private String choice;
 
     public void showResults(Request request) {
-    	System.out.println("Benvenuto in ROSER "+request.get("nomeUtente").toString());
+    	System.out.println("\nWelcome in ROSER "+request.get("nomeUtente").toString());
     }
 
 
     public void showOptions() {
-        System.out.println("-------MENU-------\n");
-        System.out.println("Seleziona cosa vuoi gestire:");
-        System.out.println("[U]tenti - [D]ispositivi - [E]sci");
+        System.out.println("\n-------MENU-------");
+        System.out.println("[U]sers - [D]evices - [E]xit");
+        System.out.print("Choose an option:");
         this.choice = this.getInput();
     }
 

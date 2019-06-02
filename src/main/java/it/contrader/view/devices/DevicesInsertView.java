@@ -29,11 +29,11 @@ public class DevicesInsertView implements View {
 		String model;
 		int user;
 
-		System.out.println("Insert devices:");
-		System.out.println("type model: ");
+		System.out.println("\n---INSERT A DEVICE---");
+		System.out.print("\nModel Type: ");
 		model = getInput();
 		
-		System.out.println("type user : ");
+		System.out.print("User Type : ");
 		
 		//Il blocco dentro il try esisteva gia ma senza il try catch per gestire l'eccezione dato he noi in input 1
 		//vogliamo in inteto però se non passi in itero può presentarsi un eccezionne

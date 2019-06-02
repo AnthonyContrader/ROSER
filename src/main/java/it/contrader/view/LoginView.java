@@ -15,8 +15,8 @@ public class LoginView implements View {
 	}
 
 	public void showOptions() {
-		System.out.println("----- .:LOGIN - ROSER:. ----");
-		System.out.print("Nome utente:");
+		System.out.println("----- .:LOGIN - ROSER:. ----\n");
+		System.out.print("Username:");
 		nomeUtente = getInput();
 		System.out.print("Password:");
 		password = getInput();

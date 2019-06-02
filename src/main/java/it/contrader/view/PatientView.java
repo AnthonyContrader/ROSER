@@ -20,15 +20,15 @@ public class PatientView implements View
 
 	@Override
 	public void showResults(Request request) {
-		System.out.println("Benvenuto in ROSER "+request.get("nomeUtente").toString());
+		System.out.println("\nWelcome in ROSER "+request.get("nomeUtente").toString());
 	}
 
 	@Override
 	public void showOptions() {
 		System.out.println("..................................................");
-		System.out.println("NON CI SONO ANCORA FUNZIONALITA");
+		System.out.println(" THERE ARE NO FUNCTIONALITY IN THIS MOMENT!! --- SEE YOU SOON!! ");
 		System.out.println("'..................................................'");
-		System.out.println("Scegli l'operazione da effettuare:");
+		System.out.println("Choose an option:");
 		System.out.println("[E]sci");
 		try {
 			this.choice = getInput();

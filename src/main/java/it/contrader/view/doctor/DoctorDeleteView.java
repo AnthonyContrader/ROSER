@@ -22,22 +22,16 @@ public class DoctorDeleteView implements View {
 	}
 	@Override
 	public void showOptions() {
-		//List<User> users;
-		//String usersId;
 
-		//users = userController.getAllUser();
-		System.out.println("Seleziona il paziente da cancellare: ");
-		//System.out.println();
-		//user.forEach(user -> System.out.println(user));
-		//System.out.println();
-		//System.out.println("Digita l'ID:");
+		System.out.println("\nINSERT USER'S ID:");
+
 		String doctorId = getInput();
 
 		if (doctorId != null && StringUtils.isStrictlyNumeric(doctorId)) {
 			doctorController.deleteUser(Integer.parseInt(doctorId));
 			
 		} else {
-			System.out.println("Valore inserito errato");
+			System.out.println("WRONG VALUE");
 		}
 	}
 		@Override

@@ -26,7 +26,7 @@ public class DevicesReadView implements View{
 	public void showOptions() {
 		int devicesIdToRead;
 		
-		System.out.println("Insert devices ID to remove");
+		System.out.print("Insert device's ID: ");
 		try {
 			devicesIdToRead = Integer.parseInt(getInput());
 			DevicesDTO devicesDB = devicesController.readDevices(devicesIdToRead);
@@ -36,7 +36,7 @@ public class DevicesReadView implements View{
 			System.out.println("User: " + devicesDB.getUser().getUsername());
 			
 			//Wait user to show
-			System.out.println("Premi un tasto per continuare");
+			System.out.println("Press key to continue...");
 			try {
 				getInput();
 			} catch (Exception e) {
@@ -44,7 +44,7 @@ public class DevicesReadView implements View{
 			}
 
 		} catch (Exception e) {
-			System.out.println("Valore inserito errato.");
+			System.out.println("WRONG VALUE!!!");
 		}
 	}
 	

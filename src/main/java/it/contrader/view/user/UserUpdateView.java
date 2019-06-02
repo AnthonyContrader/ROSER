@@ -1,9 +1,7 @@
 package it.contrader.view.user;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import it.contrader.controller.Request;
 import it.contrader.controller.UserController;
 import it.contrader.dao.UserDAO;
@@ -28,7 +26,7 @@ public class UserUpdateView implements View {
 	@Override
 	public void showOptions() {
 		int userIdToUpdate;
-		String username, usertype, name, surname, password, userState;
+		String username, usertype, name, surname, password;
 		
 		//System.out.println("\n----- Seleziona l'utente da modificate  -----\n");
 		// System.out.println();
@@ -37,20 +35,19 @@ public class UserUpdateView implements View {
 		UserDTO userDTO = new UserDTO();
 		
 
-		System.out.print("Digita l'Id dell'utente da modificare:");
+		System.out.print("\nINSERT USER'S ID:");
 		try {
 			userIdToUpdate = Integer.parseInt(getInput());
 			if (userIdToUpdate != 0) {
 				userDTO.setUserId(userIdToUpdate);
 				
-				System.out.println("Cosa vuoi modificare?");
-				System.out.println(" 1) Nome");
-				System.out.println(" 2) Cognome");
+				System.out.println("What do you want to change?\n");
+				System.out.println(" 1) Name");
+				System.out.println(" 2) Surname");
 				System.out.println(" 3) Username");
 				System.out.println(" 4) Password");
-				System.out.println(" 5) Tipo di utente");
-				System.out.println(" 6) Enable/Disable User Account");
-				System.out.println(" 7) Esci");
+				System.out.println(" 5) Enable/Disable User Account");
+				System.out.println(" 6) Esci");
 				
 				String scelta =	getInput();
 				
@@ -112,46 +109,23 @@ public class UserUpdateView implements View {
 						}
 						break;
 						
-					case "5":
-						System.out.print("Insert User Type: ");
-						usertype = getInput();
-						if (!usertype.equals("")) {
-							userDTO.setUsertype(usertype);
-						}
-						if(user.isUserState()) {
-							userDTO.setUserState(true);
-						}else {
+					case "5": 
+
+						int userReturnValue = accountStateUsers(userIdToUpdate);
+						if(userReturnValue == 1)
+						{
 							userDTO.setUserState(false);
+							getInput();
 						}
-						break;
-						
-					case "6": 
-						//System.out.print("Digita stato utente ");
-						//userState = getInput();
-						//if (!userState.equals(""))
-							//userDTO.setUserState(userState);
-					
-					//	if (!userState.equals(""))
-						//{
-							
-							int userReturnValue = accountStateUsers(userIdToUpdate);
-							if(userReturnValue == 1)
-							{
-								userDTO.setUserState(false);
-								getInput();
-							}
-							else if(userReturnValue == 2)
-							{
-								userDTO.setUserState(true);
-								getInput();
-							}
-								
-						//}
-						//userDTO.setUserState();
+						else if(userReturnValue == 2)
+						{
+							userDTO.setUserState(true);
+							getInput();
+						}
 						
 						break;
 						
-					case "7":
+					case "6":
 						break;
 						
 					default: System.out.println("");
@@ -161,7 +135,7 @@ public class UserUpdateView implements View {
 
 			}
 		} catch (Exception e) {
-			System.out.println("Hai inserito un valore errato");
+			System.out.println("WRONG VALUE!!");
 		}
 
 	}
@@ -189,7 +163,7 @@ public class UserUpdateView implements View {
 		{
 			if (gen.getUserId() == id)
 			{
-				System.out.println("Valore :"+gen.isUserState());
+			//	System.out.println("Valore :"+gen.isUserState());
 				
 				if(gen.isUserState())
 				{

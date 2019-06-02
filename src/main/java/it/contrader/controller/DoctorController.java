@@ -62,21 +62,21 @@ public class DoctorController implements Controller {
 			MainDispatcher.getInstance().callView("DoctorUser", null);
 		} else {
 			switch (choice.toUpperCase()) {
-			case "L":
+			case "R":
 				MainDispatcher.getInstance().callView(sub_package + "DoctorRead", null);
 				break;
 			case "I":
 				MainDispatcher.getInstance().callView(sub_package + "DoctorInsert", null);
 				break;
-			case "M":
+			case "U":
 				MainDispatcher.getInstance().callView(sub_package + "DoctorUpdate", null);
 				break;
 			case "D":
 				MainDispatcher.getInstance().callView(sub_package + "DoctorDelete", null);
 				break;
-			case "A":
-				MainDispatcher.getInstance().callView(sub_package + "MatchDevice", null);
-				break;
+			//case "A":
+				//MainDispatcher.getInstance().callView(sub_package + "MatchDevice", null);
+				//break;
 			case "E":
 				MainDispatcher.getInstance().callView("Login", null);
 				break;

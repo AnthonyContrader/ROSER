@@ -7,7 +7,8 @@ import it.contrader.main.MainDispatcher;
 import it.contrader.model.User;
 import it.contrader.service.UserService;
 
-public class UserController implements Controller {
+public class UserController implements Controller 
+{
 
 	private static String sub_package = "user.";
 	private UserService usersService;
@@ -42,33 +43,33 @@ public class UserController implements Controller {
 		String mode = (String) request.get("mode");
 		String choice = (String) request.get("choice");
 
-		if (mode == "menu") {
+		if (mode == "menu") 
+		{
 			MainDispatcher.getInstance().callView("User", null);
-		} else {
-			switch (choice.toUpperCase()) {
-			case "L":
-				MainDispatcher.getInstance().callView(sub_package + "UserRead", null);
-				break;
-			case "I":
-				MainDispatcher.getInstance().callView(sub_package + "UserInsert", null);
-				break;
-			case "M":
-				MainDispatcher.getInstance().callView(sub_package + "UserUpdate", null);
-				break;
-			case "C":
-				MainDispatcher.getInstance().callView(sub_package + "UserDelete", null);
-				break;
-			case "E":
-				MainDispatcher.getInstance().callView("Login", null);
-				break;
+		} 
+		else 
+		{
+			switch (choice.toUpperCase()) 
+			{
+				case "R":
+					MainDispatcher.getInstance().callView(sub_package + "UserRead", null);
+					break;
+				case "I":
+					MainDispatcher.getInstance().callView(sub_package + "UserInsert", null);
+					break;
+				case "U":
+					MainDispatcher.getInstance().callView(sub_package + "UserUpdate", null);
+					break;
+				case "D":
+					MainDispatcher.getInstance().callView(sub_package + "UserDelete", null);
+					break;
+				case "E":
+					MainDispatcher.getInstance().callView("Login", null);
+					break;
 				
-		/*	case "B":
-				MainDispatcher.getInstance().callView("HomeAdmin", null);
-				break;*/
-				
-			default:
-				MainDispatcher.getInstance().callView("Login", null);
-				break;
+				default:
+					MainDispatcher.getInstance().callView("Login", null);
+					break;
 			}
 		}
 	}

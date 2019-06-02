@@ -49,10 +49,10 @@ public class DevicesController implements Controller{
 			case "I":
 				MainDispatcher.getInstance().callView(sub_package + "DevicesInsert", null);
 				break;
-			case "M":
+			case "U":
 				MainDispatcher.getInstance().callView(sub_package + "DevicesUpdate", null);
 				break;
-			case "C":
+			case "D":
 				MainDispatcher.getInstance().callView(sub_package + "DevicesDelete", null);
 				break;
 			case "E":

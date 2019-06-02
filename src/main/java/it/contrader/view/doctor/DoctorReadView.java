@@ -29,7 +29,7 @@ public class DoctorReadView implements View {
 	public void showOptions() {
 		int doctorIdToRead;
 
-		System.out.println("Inserisci l'ID dell'utente:");
+		System.out.print("Insert user's ID:");
 
 		try {
 			doctorIdToRead = Integer.parseInt(getInput());
@@ -39,7 +39,7 @@ public class DoctorReadView implements View {
 			System.out.println("Username: " + doctorDB.getUsername());
 			
 			//Wait user to show
-			System.out.println("Premi un tasto per continuare");
+			System.out.println("Press key to continue..");
 			try {
 				getInput();
 			} catch (Exception e) {
@@ -47,7 +47,7 @@ public class DoctorReadView implements View {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Valore inserito errato.");
+			System.out.println("WRONG VALUE!!!");
 		}
 
 	}
@@ -63,7 +63,7 @@ public class DoctorReadView implements View {
 		request = new Request();
 		request.put("mode", "menu");
 		request.put("choice", "");
-		MainDispatcher.getInstance().callAction("HomeDoctor", "doControl", this.request);
+		MainDispatcher.getInstance().callAction("Doctor", "doControl", request);
 	}
 
 

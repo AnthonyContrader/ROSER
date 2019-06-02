@@ -26,29 +26,25 @@ public class DoctorInsertView implements View {
 		String username, usertype, name, surname, password;
 		boolean userState = false;
 
-		System.out.println("INSERT PATIENT FIELDS");
+		System.out.println("INSERT PATIENT'S FIELDS");
 		System.out.print("\nInsert name: ");
 		name = getInput();
 		
-		System.out.print("Insert cognome: ");
+		System.out.print("Insert Surname: ");
 		surname = getInput();
 		
-		System.out.print("Insert l'username: ");
+		System.out.print("Insert Username: ");
 		username = getInput();
 		
-		System.out.print("Insert password: ");
+		System.out.print("Insert Password: ");
 		password = getInput();
 		
 		usertype="user";
 		userState = true;
 		
-		if (!username.equals("") && !usertype.equals("")) {
-		//	System.out.println("Sono qui");
-			
+		if (!username.equals("") && !usertype.equals("")) 
+		{
 			UserDTO newUserDto = new UserDTO(name,surname,username,password,usertype,userState);
-			
-			//newUserDto.ShowAttributes();
-			
 			doctorController.insertUser(newUserDto);
 		}
 	}
