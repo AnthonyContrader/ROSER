@@ -34,19 +34,27 @@ public class DevicesInsertView implements View {
 		model = getInput();
 		
 		System.out.println("type user : ");
-		user = Integer.parseInt(getInput());
-		UserDAO userDAO = new UserDAO();
-		User userRead = userDAO.readUser(user);
-	
-		if (!model.equals("") && !userRead.equals("")) {
-			//System.out.println("Sono qui");
-			
-			DevicesDTO newDevicesDto = new DevicesDTO(model,userRead);
-			
-			//newUserDto.ShowAttributes();
-			
-			devicesController.insertDevices(newDevicesDto);
+		
+		//Il blocco dentro il try esisteva gia ma senza il try catch per gestire l'eccezione dato he noi in input 1
+		//vogliamo in inteto però se non passi in itero può presentarsi un eccezionne
+		//inserendo nel try nel caso non venga passato un numero entra nel catch e stampa un avviso
+		try {
+			user = Integer.parseInt(getInput());
+			UserDAO userDAO = new UserDAO();
+			User userRead = userDAO.readUser(user);
+			if (!model.equals("") && !userRead.equals("")) {
+				//System.out.println("Sono qui");
+				
+				DevicesDTO newDevicesDto = new DevicesDTO(model,userRead);
+				
+				//newUserDto.ShowAttributes();
+				
+				devicesController.insertDevices(newDevicesDto);
+			}
+		}catch(Exception e) {
+			System.out.println("Valore inserito errato.");
 		}
+		
 	}
 
 	@Override
