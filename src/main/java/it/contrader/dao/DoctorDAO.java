@@ -126,7 +126,9 @@ public class DoctorDAO {
 				
 				if (userToUpdate.getUsertype() == null || userToUpdate.getUsertype().equals("")) 
 					userToUpdate.setUsertype(userRead.getUsertype());
-				
+				/*if(!userToUpdate.isUserState()) {
+					userToUpdate.setUserState(true);
+				}*/
 				//if (userToUpdate.isUserState() == false) 
 					//userToUpdate.setUserState(userRead.isUserState());
 						

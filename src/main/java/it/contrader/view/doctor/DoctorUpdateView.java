@@ -47,8 +47,7 @@ public class DoctorUpdateView implements View {
 				System.out.println(" 2) Cognome");
 				System.out.println(" 3) Username");
 				System.out.println(" 4) Password");
-				System.out.println(" 5) Tipo di utente");
-				System.out.println(" 6) Esci");
+				System.out.println(" 5) Esci");
 				
 				String scelta =	getInput();
 				

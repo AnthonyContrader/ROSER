@@ -117,7 +117,6 @@ public class UserDAO {
 				
 				if (userToUpdate.getUsertype() == null || userToUpdate.getUsertype().equals("")) 
 					userToUpdate.setUsertype(userRead.getUsertype());
-				
 				//if (userToUpdate.isUserState() == false) 
 					//userToUpdate.setUserState(userRead.isUserState());
 						

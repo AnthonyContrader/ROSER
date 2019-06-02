@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import it.contrader.controller.Request;
 import it.contrader.controller.UserController;
+import it.contrader.dao.UserDAO;
 import it.contrader.dto.UserDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.model.User;
@@ -53,42 +54,75 @@ public class UserUpdateView implements View {
 				
 				String scelta =	getInput();
 				
-				
+				UserDAO userRead = new UserDAO();       /* MODIFICA: Aggiunti per determinare o stato del'utente */
+				User user = userRead.readUser(userIdToUpdate);
 				switch(scelta)
 				{
 					case "1": 
 						System.out.print("Insert Name: ");
 						name= getInput();
-						if (!name.equals(""))
+						if (!name.equals("")) {
 							userDTO.setName(name);
+							
+						}
+						//MODIFICA: Controlla lo stato dell'utente e lo setta di conseguenza(da mettere in ogni case)
+						if(user.isUserState()) {
+							userDTO.setUserState(true);
+						}else {
+							userDTO.setUserState(false);
+						}
 						break;
 						
 					case "2": 
 						System.out.print("Insert Surname: ");
 						surname= getInput();
-						if (!surname.equals(""))
+						if (!surname.equals("")) {
 							userDTO.setSurname(surname);
+						}
+						if(user.isUserState()) {
+							userDTO.setUserState(true);
+						}else {
+							userDTO.setUserState(false);
+						}
 						break;
 						
 					case "3": 
 						System.out.print("Insert Username: ");
 						username= getInput();
-						if (!username.equals(""))
+						if (!username.equals("")) {
 							userDTO.setUsername(username);
+						}
+						if(user.isUserState()) {
+							userDTO.setUserState(true);
+						}else {
+							userDTO.setUserState(false);
+						}
 						break;
 					
 					case "4":
 						System.out.print("Insert Password: ");
 						password = getInput();
-						if (!password.equals(""))
+						if (!password.equals("")) {
 							userDTO.setPassword(password);
+						}
+						if(user.isUserState()) {
+							userDTO.setUserState(true);
+						}else {
+							userDTO.setUserState(false);
+						}
 						break;
 						
 					case "5":
 						System.out.print("Insert User Type: ");
 						usertype = getInput();
-						if (!usertype.equals(""))
+						if (!usertype.equals("")) {
 							userDTO.setUsertype(usertype);
+						}
+						if(user.isUserState()) {
+							userDTO.setUserState(true);
+						}else {
+							userDTO.setUserState(false);
+						}
 						break;
 						
 					case "6": 
