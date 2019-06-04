@@ -18,25 +18,25 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		final HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		session.setAttribute("utente", null);
-
+		
 		if (request != null) {
-			final String nomeUtente = request.getParameter("username").toString();
-			final String password = request.getParameter("password").toString();
+			String nomeUtente = request.getParameter("user");
+			String password = request.getParameter("user_pass");
 			// recuperiamo l'utente
-			final UsersDTO usersDTO = usersServiceDTO.getUserByUsernameAndPasword(nomeUtente, password);
+			UsersDTO usersDTO = usersServiceDTO.getUserByUsernameAndPasword(nomeUtente, password);
 
 			if (usersDTO != null)
-				session.setAttribute("utente", usersDTO);
+				session.setAttribute("users", usersDTO);
 
 			// verifichiamo che tipo di ruolo ha all'interno dell'applicazione
 			// e lo reindirizziamo nella jsp opportuna
-			switch (usersDTO.getRuolo()) {
-			case "ADMIN":
+			switch (usersDTO.getUserType()) {
+			case "admin":
 				getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
 				break;
-			case "CHAT MASTER":
+			case "user":
 				getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
 				break;
 			default:

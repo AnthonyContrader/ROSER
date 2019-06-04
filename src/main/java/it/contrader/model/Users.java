@@ -1,53 +1,65 @@
 package it.contrader.model;
 
-/**
- * Classe Model di esempio
- *
- */
 public class Users {
-
-	/**
-	 * I campi che sono attributi di una certa tabella che vogliamo rappresentare
-	 * <br>
-	 * Possiamo avere n colonne
-	 */
-	private Integer id;
-	private String username;
+	private int userId;
+	private String userName;
+	private String userType;
+	private String name;
+	private String surname;
 	private String password;
-	private String ruolo;
-
-	/**
-	 * Costruttore con parametri
-	 */
-	public Users(Integer id, String username, String password, String ruolo) {
-		super();
-		this.id = id;
-		this.username = username;
+	private boolean userState;
+	
+	public Users() {}
+	
+	public Users(int userId, String userName, String userType, String name, String surname, String password, boolean userState) {
+		this.userName = userName;
+		this.userType = userType;
+		this.name = name;
+		this.surname = surname;
 		this.password = password;
-		this.ruolo = ruolo;
-
-		
+		this.userState = userState;
 	}
 
-	/**
-	 * Metodi setter e getter che ci permettono di recuperare le informazioni del
-	 * model o di settarle
-	 */
-	public Integer getId() {
-		return id;
+	public int getUserId() {
+		return userId;
+	}
+	
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public String getUserName() {
+		return userName;
 	}
 
-	public String getUsername() {
-		return username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public String getUserType() {
+		return userType;
 	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -55,11 +67,12 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getRuolo() {
-		return ruolo;
+
+	public boolean isUserState() {
+		return userState;
 	}
 
-	public void setRuolo(String ruolo) {
-		this.ruolo = ruolo;
+	public void setUserState(boolean userState) {
+		this.userState = userState;
 	}
 }

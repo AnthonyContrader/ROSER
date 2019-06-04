@@ -21,10 +21,10 @@ import it.contrader.service.UsersServiceDTO;
  *
  */
 public class UsersServlet extends HttpServlet {
-
+	
 	private final UsersServiceDTO usersServiceDTO = new UsersServiceDTO();
 	private List<UsersDTO> allUsers= new ArrayList<>();
-
+	
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -32,7 +32,7 @@ public class UsersServlet extends HttpServlet {
 		final HttpSession session = request.getSession(true);
 
 		switch (scelta) {
-
+		
 		case "UsersManager":
 			allUsers = this.usersServiceDTO.getAllUsers();
 			request.setAttribute("allUsers", allUsers);
@@ -40,11 +40,14 @@ public class UsersServlet extends HttpServlet {
 			break;			
 
 		case "insert":
-			final Integer id = Integer.parseInt(request.getParameter("id"));
-			final String username = request.getParameter("username");
-			final String password = request.getParameter("password");
-			final String ruolo = request.getParameter("ruolo");
-			final UsersDTO users = new UsersDTO(id,username, password, ruolo);
+			final int userId = Integer.parseInt(request.getParameter("user_id"));
+			final String username = request.getParameter("user_user");
+			final String userType = request.getParameter("user_type");
+			final String name = request.getParameter("user_name");
+			final String surname = request.getParameter("user_surname");
+			final String password = request.getParameter("user_pass");
+			final boolean userState = Boolean.parseBoolean(request.getParameter("user_state"));
+			final UsersDTO users = new UsersDTO(userId, username, userType, name, surname, password,userState);
 			usersServiceDTO.insertUsers(users);
 			showAllUsers(request, response);
 			break;

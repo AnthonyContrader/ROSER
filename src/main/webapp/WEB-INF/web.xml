@@ -8,11 +8,11 @@
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
-		<servlet-class>com.virtualpairprogrammers.servlets.LoginServlet</servlet-class>
+		<servlet-class>it.contrader.servlets.LoginServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>LogoutServlet</servlet-name>
-		<servlet-class>com.virtualpairprogrammers.servlets.LogoutServlet</servlet-class>
+		<servlet-class>it.contrader.servlets.LogoutServelt</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>NodesServlet</servlet-name>

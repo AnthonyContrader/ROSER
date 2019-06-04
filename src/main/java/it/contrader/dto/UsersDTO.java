@@ -1,39 +1,63 @@
 package it.contrader.dto;
 
-/**
- * Il DTO (Data transfer object) è un ponte che ci permette di nascondere le
- * informazioni principali del nostro model
- * 
- */
 public class UsersDTO {
-
-	private Integer id;
-	private String username;
+	private int userId;
+	private String userName;
+	private String userType;
+	private String name;
+	private String surname;
 	private String password;
-	private String ruolo;
+	private boolean userState;
 	
-	public UsersDTO(Integer id, String username, String password, String ruolo) {
-		super();
-		this.id = id;
-		this.username = username;
+	public UsersDTO() {}
+	
+	public UsersDTO(int userId, String userName, String userType, String name, String surname, String password, boolean userState) {
+		this.userName = userName;
+		this.userType = userType;
+		this.name = name;
+		this.surname = surname;
 		this.password = password;
-		this.ruolo = ruolo;
+		this.userState = userState;
 	}
 
-	public Integer getId() {
-		return id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public String getPassword() {
@@ -43,12 +67,12 @@ public class UsersDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getRuolo() {
-		return ruolo;
+
+	public boolean isUserState() {
+		return userState;
 	}
 
-	public void setRuolo(String ruolo) {
-		this.ruolo = ruolo;
+	public void setUserState(boolean userState) {
+		this.userState = userState;
 	}
-
 }

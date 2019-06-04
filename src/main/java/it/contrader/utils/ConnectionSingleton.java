@@ -12,7 +12,6 @@ public class ConnectionSingleton {
 
     private static Connection connection = null;
 
-
     private ConnectionSingleton() {
     }
 
@@ -20,12 +19,12 @@ public class ConnectionSingleton {
     public static Connection getInstance() {
         if (connection == null) {
             try {
-               Properties properties = new Properties();
+                //Properties properties = new Properties();
                 String vendor="mysql";
                 String driver="com.mysql.jdbc.Driver";
-                String host="127.0.0.1";
+                String host="localhost";
                 String port="3306";
-                String dbName="my-schema";
+                String dbName="contrader_java_roser";
                 String username="root";
                 String password ="root";
                 Class c = Class.forName(driver);
