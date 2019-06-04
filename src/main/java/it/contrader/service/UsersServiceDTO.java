@@ -1,61 +1,44 @@
 package it.contrader.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import it.contrader.converter.UsersConverter;
-import it.contrader.dao.UsersDAO;
-import it.contrader.dto.UsersDTO;
-import it.contrader.model.Users;
+import it.contrader.dao.UserDAO;
+import it.contrader.dto.UserDTO;
+import it.contrader.model.User;
 
-/**
- * Classe che si occupa di interfacciarsi con la persistenza e recuperare
- * attraverso i metodi del Data Access Object le tuple desiderate, Le converte
- * in un oggetto DTO e le restituisce al controller opportuno
- */
 public class UsersServiceDTO {
 
-	private final UsersDAO usersDAO;
+	private UserDAO userDAO;
 
 	public UsersServiceDTO() {
-		this.usersDAO = new UsersDAO();
+		this.userDAO = new UserDAO();
 	}
 
-	/**
-	 * Come vediamo la lista recuperata è di tipo Esempio ma noi la convertiamo in EsempioDTO
-	 * Invito chi fa i converter a fare un metodo per convertire direttamente la lista senza farli uno ad uno perchè è sporco e poco efficiente
-	 */
-	public List<UsersDTO> getAllUsers() {
-
-		List<Users> list = usersDAO.getAllUsers();
-		List<UsersDTO> listDTO = new ArrayList<>();
-
-		for (Users users : list) {
-			listDTO.add(UsersConverter.toDTO(users));
-		}
-
-		return listDTO;
+	public List<UserDTO> getAllUser() {
+		return this.userDAO.getAllUser();
 	}
 	
-	public UsersDTO getUserByUsernameAndPasword(String username, String password) {
-		return UsersConverter.toDTO(usersDAO.login(username, password));
+	public UserDTO getUserByUsernameAndPasword(String username, String password) {
+		return UsersConverter.toDTO(userDAO.login(username, password));
 	}
 
-	public boolean updateUsers (UsersDTO usersDTO) {
-		return this.usersDAO.updateUsers(UsersConverter.toEntity(usersDTO));
-		
+	public boolean insertUser(UserDTO userDTO) {
+		return this.userDAO.insertUser(UsersConverter.toEntity(userDTO));
+	}
+	
+	public UserDTO readUser(int userId) {
+		return UsersConverter.toDTO(this.userDAO.readUser(userId));
+	}
+	
+	public boolean updateUser(UserDTO userDTO) {
+		return this.userDAO.updateUser(UsersConverter.toEntity(userDTO));
+	}
+	
+	public boolean deleteUser(int userId) {
+		return this.userDAO.deleteUser(userId);
+	}
+	
+	
 }
-	
-	public boolean deleteUsers (UsersDTO usersDTO) {
-		return this.usersDAO.deleteUsers(UsersConverter.toEntity(usersDTO));
-		
-}
-	
-	public boolean insertUsers (UsersDTO usersDTO) {
-		return this.usersDAO.insertUsers(UsersConverter.toEntity(usersDTO));
-	
-}
-		
-	
-	
-}
+

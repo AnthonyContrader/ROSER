@@ -3,8 +3,9 @@ package it.contrader.converter;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.contrader.dto.UsersDTO;
-import it.contrader.model.Users;
+import it.contrader.dto.UserDTO;
+import it.contrader.model.User;
+
 
 /**
  * Il converter si occupa di "convertire" un model in un dto e viceversa
@@ -16,27 +17,43 @@ public class UsersConverter {
 	/**
 	 * Converte un NodesDTO in Nodes
 	 */
-	public static Users toEntity(UsersDTO usersDTO) {
+	public static User toEntity(UserDTO userDTO) {
 
-		Users users = null;
-		if (usersDTO != null) {
-			users = new Users(usersDTO.getId(), usersDTO.getUsername(), usersDTO.getPassword(), usersDTO.getRuolo());
+		User user = null;
+		if (userDTO != null) {
+			user = new User();
+			user.setName(userDTO.getName());
+			user.setSurname(userDTO.getSurname());
+			user.setUserId(userDTO.getUserId());
+			user.setUsername(userDTO.getUsername());
+			user.setUsertype(userDTO.getUsertype());
+			user.setPassword(userDTO.getPassword());
+			user.setUserState(userDTO.isUserState());
 		}
-
-		return users;
+		return user;
 	}
 
 	/**
 	 * Converte un Nodes in NodesDTO
 	 */
-	public static UsersDTO toDTO(Users users) {
+	public static UserDTO toDTO(User user) {
 
-		UsersDTO usersDTO = null;
-		if (users != null) {
-			usersDTO = new UsersDTO(users.getId(), users.getUsername(), users.getPassword(), users.getRuolo());
+		UserDTO userDTO = null;
+		if (user != null) {
+			userDTO = new UserDTO();
+			//userDTO.setUserId(user.getUserId());
+			//userDTO.setUsername(user.getUsername());
+			//userDTO.setUsertype(user.getUsertype());
+			
+			userDTO.setName(user.getName());
+			userDTO.setSurname(user.getSurname());
+			userDTO.setUserId(user.getUserId());
+			userDTO.setUsername(user.getUsername());
+			userDTO.setUsertype(user.getUsertype()); //da togliere
+			userDTO.setPassword(user.getPassword());
+			userDTO.setUserState(user.isUserState());
 		}
-
-		return usersDTO;
+		return userDTO;
 	}
 	
 

@@ -4,7 +4,6 @@ package it.contrader.utils;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import java.sql.Connection;
-import java.util.Properties;
 
 
 public class ConnectionSingleton {
@@ -20,17 +19,18 @@ public class ConnectionSingleton {
     public static Connection getInstance() {
         if (connection == null) {
             try {
-               Properties properties = new Properties();
+             //  Properties properties = new Properties();
                 String vendor="mysql";
-                String driver="com.mysql.jdbc.Driver";
-                String host="127.0.0.1";
+                String driver="com.mysql.jdbc.Driver"; 
+                String host="localhost";
                 String port="3306";
-                String dbName="my-schema";
+                String dbName="contrader_java_roser";
                 String username="root";
                 String password ="root";
-                Class c = Class.forName(driver);
-                System.out.println("Ho caricato: " + c.getName());
+               // Class c = Class.forName(driver);
+                System.out.println("Ho caricato: " + dbName);
                 String myUrl = "jdbc:" + vendor + "://" + host + ":" + port + "/" + dbName;
+                System.out.println("Ho caricato: " + myUrl);
                 DriverManagerDataSource dataSource = new DriverManagerDataSource(myUrl, username, password);
                 dataSource.setDriverClassName(driver);
                 connection = dataSource.getConnection();
