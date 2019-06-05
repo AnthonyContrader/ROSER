@@ -3,33 +3,27 @@ package it.contrader.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
-
-import it.contrader.utils.GestoreEccezioni;
 import it.contrader.utils.ConnectionSingleton;
-import it.contrader.dto.DoctorDTO;
-import it.contrader.dto.UserDTO;
-import it.contrader.model.Doctor;
-import it.contrader.model.User;
+import it.contrader.model.Robot;
+import it.contrader.model.Users;
 
 public class DoctorDAO {
 
-	private final String QUERY_ALL = "select * from users where user_type='doctor'";
+	private final String QUERY_ALL = "select * from users WHERE user_type='user'";
+	private final String QUERY_ALL_ROBOT = "select * from users WHERE user_type='robot'";
 	private final String QUERY_INSERT = "insert into users (user_name, user_surname, user_user, user_pass, user_type, user_state) values (?,?,?,?,?,?)";
 	private final String QUERY_READ = "select * from users where user_id=?";
     private final String QUERY_UPDATE = "UPDATE users SET user_name=? , user_surname=?, user_user=? , user_pass=?, user_type=?, user_state=? WHERE user_id=?";
 	private final String QUERY_DELETE = "delete from users where user_id=?";
 	private final String QUERY_LOGIN = "select * from users where user_user=? and user_pass=?";
+	private final String QUERY_MATCH = "UPDATE robot SET robot_owner_name = ?, robot_owner_surname = ? WHERE robot_model = ?";
 
 	public DoctorDAO() {}
 
-	public Doctor login(String username, String password) 
+	public Users login(String username, String password) 
 	{
-		
-		// User( int userId , String username, String usertype , String name , String surname ,String password , boolean userState)
-
 		Connection connection = ConnectionSingleton.getInstance();
-		Doctor doctor = null;
+		Users user = null;
 		try {
 			PreparedStatement statement = connection.prepareStatement(QUERY_LOGIN);
 			statement.setString(1, username);
@@ -38,7 +32,7 @@ public class DoctorDAO {
 			ResultSet resultSet = statement.getResultSet();
 			
 			while (resultSet.next()) {
-				int doctorId = resultSet.getInt("doctor_id");
+				int userId = resultSet.getInt("user_id");
 				String userName = resultSet.getString("user_user");
 				String usertype = resultSet.getString("user_type");
 				String name = resultSet.getString("user_name");
@@ -46,57 +40,47 @@ public class DoctorDAO {
 				String passWord = resultSet.getString("user_pass");
 				boolean state = resultSet.getBoolean("user_state");
 				
-				doctor = new Doctor(doctorId,userName,usertype, name, surname, passWord, state);
+				user = new Users(userId,userName,usertype, name, surname, passWord, state);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		//System.out.println(user.toString());
-		return doctor;
+		return user;
 	}
 	
-	public List<DoctorDTO> getAllDoctor() {
-		List<DoctorDTO> doctorList = new ArrayList<>();
-		Connection connection = ConnectionSingleton.getInstance();
+	public List<Users> getAllPatient() {
+		final List<Users> userList = new ArrayList<>();
+		final Connection connection = ConnectionSingleton.getInstance();
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
-			DoctorDTO doctor;
 			while (resultSet.next()) {
-				int doctorId = resultSet.getInt("doctor_id");
+				int userId = resultSet.getInt("user_id");
 				String username = resultSet.getString("user_user");
 				String usertype = resultSet.getString("user_type");
 				String name = resultSet.getString("user_name");
 				String surname = resultSet.getString("user_surname");
 				String password = resultSet.getString("user_pass");
 				boolean state = resultSet.getBoolean("user_state");
-				//if(!state) {
-				//String name,String surname,String username,String password,String usertype,boolean userState
-					//user = new User(userId,username,usertype, name, surname, password, state);
-				doctor = new DoctorDTO(name,surname,username,password,usertype,state);
-				//}else {
-					//user = new User(userId,username,usertype, name, surname, password, true);
-			//	}
-				doctorList.add(doctor);
+				userList.add(new Users(userId,name,surname,username,password,usertype,state));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return doctorList;
+		return userList;
 	}
 
-	public boolean insertDoctor(Doctor doctor) {
-		Connection connection = it.contrader.utils.ConnectionSingleton.getInstance();
+	public boolean insertPatient(Users user) {
+		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			//user_id, user_name, user_surname, user_user, user_pass, user_type, user_state
-			preparedStatement.setString(1, doctor.getName());
-			preparedStatement.setString(2, doctor.getSurname());
-			preparedStatement.setString(3, doctor.getUsername());
-			preparedStatement.setString(4, doctor.getPassword());
-			preparedStatement.setString(5, doctor.getUsertype());
-			preparedStatement.setBoolean(6, doctor.isUserState());
+			preparedStatement.setString(1, user.getName());
+			preparedStatement.setString(2, user.getSurname());
+			preparedStatement.setString(3, user.getUserName());
+			preparedStatement.setString(4, user.getPassword());
+			preparedStatement.setString(5, user.getUserType());
+			preparedStatement.setBoolean(6, user.isUserState());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -106,11 +90,11 @@ public class DoctorDAO {
 
 	}
 
-	public Doctor readDoctor(int doctorId) {
+	public Users readPatient(int patientId) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
-			preparedStatement.setInt(1, doctorId);
+			preparedStatement.setInt(1, patientId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			
@@ -121,39 +105,37 @@ public class DoctorDAO {
 			String password = resultSet.getString("user_pass");
 			boolean state = resultSet.getBoolean("user_state");
 
-			Doctor doctor= new Doctor(doctorId, username, usertype, name, surname, password, state);
-			return doctor;
+			Users user= new Users(patientId, username, usertype, name, surname, password, state);
+			return user;
 		} catch (SQLException e) {
 			it.contrader.utils.GestoreEccezioni.getInstance().gestisciEccezione(e);
 			return null;
 		}
 	}
 
-	public boolean updateDoctor(Doctor doctorToUpdate) {
+	public boolean updatePatient(Users userToUpdate) {
 		Connection connection = it.contrader.utils.ConnectionSingleton.getInstance();
-
-		// Check if id is present
-		if (doctorToUpdate.getDoctorId() == 0)
+		if (userToUpdate.getUserId() == 0)
 			return false;
 
-		Doctor doctorRead = readDoctor(doctorToUpdate.getDoctorId());
-		if (!doctorRead.equals(doctorToUpdate)) {
+		Users userRead = readPatient(userToUpdate.getUserId());
+		if (!userRead.equals(userToUpdate)) {
 			try {
 				// Fill the userToUpdate object
-				if (doctorToUpdate.getName() == null || doctorToUpdate.getName().equals("")) 
-					doctorToUpdate.setName(doctorRead.getName());
+				if (userToUpdate.getName() == null || userToUpdate.getName().equals("")) 
+					userToUpdate.setName(userRead.getName());
 				
-				if (doctorToUpdate.getSurname() == null || doctorToUpdate.getSurname().equals("")) 
-					doctorToUpdate.setSurname(doctorRead.getSurname());
+				if (userToUpdate.getSurname() == null || userToUpdate.getSurname().equals("")) 
+					userToUpdate.setSurname(userRead.getSurname());
 				
-				if (doctorToUpdate.getUsername() == null ||doctorToUpdate.getUsername().equals("")) 
-					doctorToUpdate.setUsername(doctorRead.getUsername());
+				if (userToUpdate.getUserName() == null ||userToUpdate.getUserName().equals("")) 
+					userToUpdate.setUserName(userRead.getUserName());
 				
-				if (doctorToUpdate.getPassword() == null || doctorToUpdate.getPassword().equals("")) 
-					doctorToUpdate.setPassword(doctorRead.getPassword());
+				if (userToUpdate.getPassword() == null || userToUpdate.getPassword().equals("")) 
+					userToUpdate.setPassword(userRead.getPassword());
 				
-				if (doctorToUpdate.getUsertype() == null || doctorToUpdate.getUsertype().equals("")) 
-					doctorToUpdate.setUsertype(doctorRead.getUsertype());
+				if (userToUpdate.getUserType() == null || userToUpdate.getUserType().equals("")) 
+					userToUpdate.setUserType(userRead.getUserType());
 				//if (userToUpdate.isUserState() == false) 
 					//userToUpdate.setUserState(userRead.isUserState());
 						
@@ -162,13 +144,13 @@ public class DoctorDAO {
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
 		
 					
-				preparedStatement.setString(1, doctorToUpdate.getName());
-				preparedStatement.setString(2, doctorToUpdate.getSurname());
-				preparedStatement.setString(3, doctorToUpdate.getUsername());
-				preparedStatement.setString(4, doctorToUpdate.getPassword());
-				preparedStatement.setString(5, doctorToUpdate.getUsertype());
-				preparedStatement.setBoolean(6, doctorToUpdate.isUserState());
-				preparedStatement.setInt(7, doctorToUpdate.getDoctorId());
+				preparedStatement.setString(1, userToUpdate.getName());
+				preparedStatement.setString(2, userToUpdate.getSurname());
+				preparedStatement.setString(3, userToUpdate.getUserName());
+				preparedStatement.setString(4, userToUpdate.getPassword());
+				preparedStatement.setString(5, userToUpdate.getUserType());
+				preparedStatement.setBoolean(6, userToUpdate.isUserState());
+				preparedStatement.setInt(7, userToUpdate.getUserId());
 				
 				System.out.println(preparedStatement);
 				
@@ -190,11 +172,11 @@ public class DoctorDAO {
 		
 	}
 
-	public boolean deleteDoctor(int id) {
+	public boolean deletePatient(int userId) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(1, userId);
 			int n = preparedStatement.executeUpdate();
 			if (n > 0) {
 				return true;
@@ -204,4 +186,76 @@ public class DoctorDAO {
 		}
 		return false;
 	}
+	
+	public List<Robot> getAllRobot(){
+		
+		final List<Robot> robot = new ArrayList<>();
+		final Connection connection = ConnectionSingleton.getInstance();
+		
+		
+		try {
+			final Statement statement = connection.createStatement();
+			final ResultSet resultSet = statement.executeQuery(QUERY_ALL_ROBOT);
+			while (resultSet.next()){
+				int robotId = resultSet.getInt("robot_id");
+				String model = resultSet.getString("robot_model");
+				String ownerName = resultSet.getString("robot_owenr_name");
+				String ownerSurname = resultSet.getString("rovot_owner_surname");
+				String userName = resultSet.getString("robot_user");
+				String password = resultSet.getString("robot_password");
+				robot.add(new Robot(robotId,model,ownerName,ownerSurname,userName,password));
+			}
+		} catch (final SQLException e) {
+			e.printStackTrace();
+		}
+		return robot;
+	}
+	
+	public boolean matchRobot(Users user, Robot robot){
+		final Connection connection = ConnectionSingleton.getInstance();
+		try {
+			final PreparedStatement statement = connection.prepareStatement(QUERY_MATCH);
+			//UPDATE robot SET robot_owner_name = ?, robot_owner_surname = ? WHERE robot_model = ?
+			statement.setString(1,user.getName());
+			statement.setString(2, user.getSurname());
+			statement.setString(3, robot.getRobotModel());
+			
+			int a = statement.executeUpdate();
+			
+			if (a > 0) {
+				return true;
+			}
+			else {
+				connection.close();
+				return false;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public boolean disMatchRobot(Robot robot){
+		final Connection connection = ConnectionSingleton.getInstance();
+		try {
+			final PreparedStatement statement = connection.prepareStatement(QUERY_MATCH);
+			//UPDATE robot SET robot_owner_name = ?, robot_owner_surname = ? WHERE robot_model = ?
+			statement.setString(1,"");
+			statement.setString(2,"");
+			statement.setString(3, robot.getRobotModel());
+			
+			int a = statement.executeUpdate();
+			
+			if (a > 0) {
+				return true;
+			}
+			else {
+				connection.close();
+				return false;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
+	

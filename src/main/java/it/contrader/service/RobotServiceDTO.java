@@ -15,27 +15,27 @@ public class RobotServiceDTO {
 	}
 
 	public List<RobotDTO> getAllRobot() {
-		return this.robotDAO.getAllRobot();
+		return null;
 	}
 	
 	public RobotDTO getRobotByUsernameAndPasword(String username, String password) {
-		return RobotConverter.toDTO(robotDAO.login(username, password));
+		return null;
 	}
 
 	public boolean insertRobot(RobotDTO robotDTO) {
-		return this.robotDAO.insertRobot(RobotConverter.toEntity(robotDTO));
+		return false;
 	}
 	
 	public RobotDTO readRobot(int robotId) {
-		return RobotConverter.toDTO(this.robotDAO.readRobot(robotId));
+		return null;
 	}
 	
 	public boolean updateRobot(RobotDTO robotDTO) {
-		return this.robotDAO.updateRobot(RobotConverter.toEntity(robotDTO));
+		return false;
 	}
 	
 	public boolean deleteRobot(int robotId) {
-		return this.robotDAO.deleteRobot(robotId);
+		return false;
 	}
 	
 }

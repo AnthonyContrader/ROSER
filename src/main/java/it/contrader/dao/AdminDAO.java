@@ -8,15 +8,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.contrader.model.Doctor;
 import it.contrader.model.Users;
 import it.contrader.utils.ConnectionSingleton;
 import it.contrader.utils.GestoreEccezioni;
 
-public class UsersDAO {
-	private final String GET_ALL = "select * from users";
+public class AdminDAO {
+	private final String GET_ALL = "select * from users WHERE user_type = 'doctor'";
 	private final String QUERY_INSERT = "INSERT INTO users (user_name, user_surname, user_user, user_pass, user_type, user_state) values (?,?,?,?,?,?)";
 	private final String QUERY_DELETE = "DELETE FROM users WHERE id = ?";
 	private final String QUERY_UPDATE = "UPDATE users SET user_name = ?, user_surname = ?, user_user = ?, user_pass = ?, user_type = ?, user_state = ? WHERE id = ?";
+	private final String QUERY_READ = "SELECT * FORM users WHERE id = ?";
 	private final String QUERY_LOGIN = "SELECT * FROM users WHERE user_user=?";
 	
 	public Users login(String username, String password) {
@@ -25,10 +27,10 @@ public class UsersDAO {
 		Users utente = null;
 		try {
 			PreparedStatement statement = connection.prepareStatement(QUERY_LOGIN);
-			statement.setString(0, username);
+			statement.setString(1, username);
 			ResultSet resultSet = statement.executeQuery();
-			if(resultSet.getString("password").equals(password)) {
-				resultSet.next();
+			resultSet.next();
+			if(resultSet.getString("user_pass").equals(password)) {
 				int userId = resultSet.getInt("user_id");
 				String userName = resultSet.getString("user_user");
 				String userType = resultSet.getString("user_type");
@@ -45,42 +47,40 @@ public class UsersDAO {
 		return utente;
 	}
 
-	public List<Users> getAllUsers() {
+	public List<Doctor> getAllDoctor() {
 
-		final List<Users> users = new ArrayList<>();
+		final List<Doctor> doctor = new ArrayList<>();
 		final Connection connection = ConnectionSingleton.getInstance();
 
 		try {
 			final Statement statement = connection.createStatement();
 			final ResultSet resultSet = statement.executeQuery(GET_ALL);
 			while (resultSet.next()) {
-				int userId = resultSet.getInt("user_id");
+				int doctorId = resultSet.getInt("user_id");
 				String userName = resultSet.getString("user_user");
-				String userType = resultSet.getString("user_type");
-			//	String user = resultSet.getString("user_type");
 				String name = resultSet.getString("user_name");
 				String surname = resultSet.getString("user_surname");
 				String pass = resultSet.getString("user_pass");
 				boolean userState = resultSet.getBoolean("user_state");
-				users.add(new Users(userId, userName, userType, name, surname, pass, userState));
+				doctor.add(new Doctor(doctorId, userName, "doctor", name, surname, pass, userState));
 			}
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
-		return users;
+		return doctor;
 	}
 	// Inserimento
 
-	public boolean insertUsers(Users users) {
+	public boolean insertDoctor(Doctor doctor) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setString(1, users.getName());
-			preparedStatement.setString(2, users.getSurname());
-			preparedStatement.setString(3, users.getUserName());
-			preparedStatement.setString(4, users.getPassword());
-			preparedStatement.setString(5, users.getUserType());
-			preparedStatement.setBoolean(6, users.isUserState());
+			preparedStatement.setString(1, doctor.getName());
+			preparedStatement.setString(2, doctor.getSurname());
+			preparedStatement.setString(3, doctor.getUserName());
+			preparedStatement.setString(4, doctor.getPassword());
+			preparedStatement.setString(5, doctor.getUserType());
+			preparedStatement.setBoolean(6, doctor.isUserState());
 			return true;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
@@ -89,11 +89,11 @@ public class UsersDAO {
 	}
 
 	// cancella una chat
-	public boolean deleteUsers(Users users) {
+	public boolean deleteDoctor(int doctorId) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
-			preparedStatement.setInt(1, users.getUserId());
+			preparedStatement.setInt(1, doctorId);
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -101,21 +101,42 @@ public class UsersDAO {
 			return false;
 		}
 	}
+	
+	public Doctor readDoctor(int doctorId) {
+		Doctor doctor = null;
+		Connection connection = ConnectionSingleton.getInstance();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
+			preparedStatement.setInt(1, doctorId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			String name = resultSet.getString("user_name");
+			String surname = resultSet.getString("user_surname");
+			String userName = resultSet.getString("user_user");
+			String type = resultSet.getString("user_type");
+			String password = resultSet.getString("user_password");
+			boolean state = resultSet.getBoolean("user_state");
+			doctor = new Doctor(doctorId, userName, type, name, surname, password,state);
+			return doctor;
+		}catch(SQLException e) {
+			GestoreEccezioni.getInstance().gestisciEccezione(e);
+			return null;
+		}
+	}
 
 	// Modifica Chat
 
-	public boolean updateUsers(Users users) {
+	public boolean updateDoctor(Doctor doctor) {
 		//UPDATE users SET user_type = ?, user_state = ? WHERE id = ?
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_UPDATE);
-			preparedStatement.setString(1, users.getName());
-			preparedStatement.setString(2, users.getSurname());
-			preparedStatement.setString(3, users.getUserName());
-			preparedStatement.setString(4, users.getPassword());
-			preparedStatement.setString(5, users.getUserType());
-			preparedStatement.setBoolean(6, users.isUserState());
-			preparedStatement.setInt(7, users.getUserId());
+			preparedStatement.setString(1, doctor.getName());
+			preparedStatement.setString(2, doctor.getSurname());
+			preparedStatement.setString(3, doctor.getUserName());
+			preparedStatement.setString(4, doctor.getPassword());
+			preparedStatement.setString(5, doctor.getUserType());
+			preparedStatement.setBoolean(6, doctor.isUserState());
+			preparedStatement.setInt(7, doctor.getDoctorId());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {

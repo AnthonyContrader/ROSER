@@ -4,8 +4,9 @@ import java.util.List;
 
 import it.contrader.converter.DoctorConverter;
 import it.contrader.dao.DoctorDAO;
-
-import it.contrader.dto.DoctorDTO;
+import it.contrader.dto.UsersDTO;
+import it.contrader.model.Robot;
+import it.contrader.model.Users;
 
 public class DoctorServiceDTO {
 
@@ -16,28 +17,36 @@ public class DoctorServiceDTO {
 		this.doctorDAO = new DoctorDAO();
 	}
 
-	public List<DoctorDTO> getAllDoctor() {
-		return this.doctorDAO.getAllDoctor();
+	public List<UsersDTO> getAllPatient() {
+		return DoctorConverter.toDTO(this.doctorDAO.getAllPatient());
 	}
 	
-	public DoctorDTO getDoctorByUsernameAndPasword(String username, String password) {
+	public UsersDTO getDoctorByUsernameAndPasword(String username, String password) {
 		return DoctorConverter.toDTO(doctorDAO.login(username, password));
 	}
 
-	public boolean insertDoctor(DoctorDTO doctorDTO) {
-		return this.doctorDAO.insertDoctor(DoctorConverter.toEntity(doctorDTO));
+	public boolean insertPatient(UsersDTO userDTO) {
+		return this.doctorDAO.insertPatient(DoctorConverter.toEntity(userDTO));
 	}
 	
-	public DoctorDTO readDoctor(int doctorId) {
-		return DoctorConverter.toDTO(this.doctorDAO.readDoctor(doctorId));
+	public UsersDTO readPatient(int patientId) {
+		return DoctorConverter.toDTO(this.doctorDAO.readPatient(patientId));
 	}
 	
-	public boolean updateDoctor(DoctorDTO doctorDTO) {
-		return this.doctorDAO.updateDoctor(DoctorConverter.toEntity(doctorDTO));
+	public boolean updateDoctor(UsersDTO patientDTO) {
+		return this.doctorDAO.updatePatient(DoctorConverter.toEntity(patientDTO));
 	}
 	
-	public boolean deleteDoctor(int doctorId) {
-		return this.doctorDAO.deleteDoctor(doctorId);
+	public boolean deletePatient(int patientId) {
+		return this.doctorDAO.deletePatient(patientId);
+	}
+	
+	public boolean matchRobot(Users user, Robot robot) {
+		return this.doctorDAO.matchRobot(user, robot);
+	}
+	
+	public boolean disMatchRobot(Robot robot) {
+		return this.doctorDAO.disMatchRobot(robot);
 	}
 	
 }

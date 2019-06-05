@@ -1,13 +1,8 @@
 package it.contrader.dto;
 
-/**
- * Il DTO (Data transfer object) è un ponte che ci permette di nascondere le
- * informazioni principali del nostro model
- * 
- */
-public class UserDTO {
+public class AdminDTO {
 	
-	private int userId;
+	private int adminId;
 	private String username;
 	private String usertype;
 	private String name;
@@ -15,9 +10,9 @@ public class UserDTO {
 	private String password;
 	private boolean userState;
 	
-	public UserDTO(int userId, String name,String surname,String username,String password,String usertype,boolean userState)
+	public AdminDTO(int adminId, String name,String surname,String username,String password,String usertype,boolean userState)
 	{
-		this.userId = userId;
+		this.adminId = adminId;
 		this.name = name;
 		this.surname = surname;
 		this.username = username;
@@ -59,19 +54,19 @@ public class UserDTO {
 		this.userState = userState;
 	}
 
-	public UserDTO(String username, String usertype) {
+	public AdminDTO(String username, String usertype) {
 		this.username = username;
 		this.usertype = usertype;
 	}
 	
-	public UserDTO() {} 
+	public AdminDTO() {} 
 	
-	public int getUserId() {
-		return userId;
+	public int getAdminId() {
+		return adminId;
 	}
 
 	public void setUserId(int userId) {
-		this.userId = userId;
+		this.adminId = userId;
 	}
 
 	public String getUsername() {
@@ -91,9 +86,8 @@ public class UserDTO {
 	}
 	
 	@Override
-	public String toString()
-	{
-		return this.getUserId() +"\t"+ this.getName() + "\t" + this.getSurname() + "\t" + this.getUsername() + "\t" + this.getPassword() + "\t"+ this.isUserState();
+	public String toString(){
+		return this.getAdminId() +"\t"+ this.getName() + "\t" + this.getSurname() + "\t" + this.getUsername() + "\t" + this.getPassword() + "\t"+ this.isUserState();
 	}
 
 }

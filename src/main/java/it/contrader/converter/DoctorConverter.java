@@ -3,53 +3,80 @@ package it.contrader.converter;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.contrader.dto.DoctorDTO;
-import it.contrader.dto.UserDTO;
-import it.contrader.model.Doctor;
-import it.contrader.model.Doctor;
+import it.contrader.dto.UsersDTO;
+import it.contrader.model.Users;
 
 
 public class DoctorConverter {
 	
-	public static Doctor toEntity(DoctorDTO doctorDTO) {
+	public static Users toEntity(UsersDTO userDTO) {
 
-		Doctor doctor = null;
-		if (doctorDTO != null) {
-			doctor = new Doctor();
-			doctor.setName(doctorDTO.getName());
-			doctor.setSurname(doctorDTO.getSurname());
-			doctor.setDoctorId(doctorDTO.getDoctorId());
-			doctor.setUsername(doctorDTO.getUsername());
-			doctor.setUsertype(doctorDTO.getUsertype());
-			doctor.setPassword(doctorDTO.getPassword());
-			doctor.setUserState(doctorDTO.isUserState());
+		Users user = null;
+		if (userDTO != null) {
+			user = new Users();
+			user.setName(userDTO.getName());
+			user.setSurname(userDTO.getSurname());
+			user.setUserId(userDTO.getUserId());
+			user.setUserName(userDTO.getUserName());
+			user.setUserType(userDTO.getUserType());
+			user.setPassword(userDTO.getPassword());
+			user.setUserState(userDTO.isUserState());
 		}
-		return doctor;
+		return user;
 	}
+	
+	public static List<Users> toEntity(List<UsersDTO> userDTO) {
+		
+		List<Users> userList = new ArrayList<>();
+		if (userDTO != null) {
+			for(UsersDTO user: userDTO) {
+				Users tempUser = new Users();
+				tempUser = new Users();
+				tempUser.setName(user.getName());
+				tempUser.setSurname(user.getSurname());
+				tempUser.setUserId(user.getUserId());
+				tempUser.setUserName(user.getUserName());
+				tempUser.setUserType(user.getUserType());
+				tempUser.setPassword(user.getPassword());
+				tempUser.setUserState(user.isUserState());
+			}
+		}
+		return userList;
+	}
+	
+	public static UsersDTO toDTO(Users user) {
 
-	/**
-	 * Converte un Nodes in NodesDTO
-	 */
-	public static DoctorDTO toDTO(Doctor doctor) {
-
-		DoctorDTO doctorDTO = null;
-		if (doctor != null) {
-			doctorDTO = new DoctorDTO();
-			//userDTO.setUserId(user.getUserId());
-			//userDTO.setUsername(user.getUsername());
-			//userDTO.setUsertype(user.getUsertype());
+		UsersDTO doctorDTO = null;
+		if (user != null) {
+			doctorDTO = new UsersDTO();
 			
-			doctorDTO.setName(doctor.getName());
-			doctorDTO.setSurname(doctor.getSurname());
-			doctorDTO.setDoctorId(doctor.getDoctorId());
-			doctorDTO.setUsername(doctor.getUsername());
-			doctorDTO.setUsertype(doctor.getUsertype()); //da togliere
-			doctorDTO.setPassword(doctor.getPassword());
-			doctorDTO.setUserState(doctor.isUserState());
+			doctorDTO.setName(user.getName());
+			doctorDTO.setSurname(user.getSurname());
+			doctorDTO.setUserId(user.getUserId());
+			doctorDTO.setUserName(user.getUserName());
+			doctorDTO.setUserType(user.getUserType());
+			doctorDTO.setPassword(user.getPassword());
+			doctorDTO.setUserState(user.isUserState());
 		}
 		return doctorDTO;
 	}
 	
+	public static List<UsersDTO> toDTO(List<Users> users) {
 
-
+		List<UsersDTO> userDTOList = new ArrayList<>();
+		if(users != null) {
+			for(Users user: users) {
+				UsersDTO usersDTO = new UsersDTO();
+				usersDTO.setUserId(user.getUserId());
+				usersDTO.setUserName(user.getUserName());
+				usersDTO.setUserType(user.getUserType());
+				usersDTO.setName(user.getName());
+				usersDTO.setSurname(user.getSurname());
+				usersDTO.setPassword(user.getPassword());
+				usersDTO.setUserState(user.isUserState());
+				userDTOList.add(usersDTO);
+			}
+		}
+		return userDTOList;
+	}
 }
