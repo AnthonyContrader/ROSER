@@ -57,7 +57,7 @@ public class UsersDAO {
 				int userId = resultSet.getInt("user_id");
 				String userName = resultSet.getString("user_user");
 				String userType = resultSet.getString("user_type");
-				String user = resultSet.getString("user_type");
+			//	String user = resultSet.getString("user_type");
 				String name = resultSet.getString("user_name");
 				String surname = resultSet.getString("user_surname");
 				String pass = resultSet.getString("user_pass");

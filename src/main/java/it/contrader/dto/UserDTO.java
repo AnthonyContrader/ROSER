@@ -6,8 +6,8 @@ package it.contrader.dto;
  * 
  */
 public class UserDTO {
-	private int userId;
 	
+	private int userId;
 	private String username;
 	private String usertype;
 	private String name;
@@ -15,8 +15,9 @@ public class UserDTO {
 	private String password;
 	private boolean userState;
 	
-	public UserDTO(String name,String surname,String username,String password,String usertype,boolean userState)
+	public UserDTO(int userId, String name,String surname,String username,String password,String usertype,boolean userState)
 	{
+		this.userId = userId;
 		this.name = name;
 		this.surname = surname;
 		this.username = username;
@@ -92,7 +93,7 @@ public class UserDTO {
 	@Override
 	public String toString()
 	{
-		return this.getName() + "\t" + this.getSurname() + "\t" + this.getUsername() + "\t" + this.getPassword();
+		return this.getUserId() +"\t"+ this.getName() + "\t" + this.getSurname() + "\t" + this.getUsername() + "\t" + this.getPassword() + "\t"+ this.isUserState();
 	}
 
 }

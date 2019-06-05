@@ -1,3 +1,4 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %> <!-- Aggiungo stringa per il foreach -->
 <html>
 <head>
 <title>Menu Principale</title>
@@ -5,11 +6,15 @@
 <body>
 	<h1>Benvenuto: ${utente}</h1>
 	<h2>------- MENU PRINCIPALE -------</h2>
-
-	<h3>1. Esempio</h3>
-	<form action="MenuServlet" method="post">
-		<button type="submit" value="esempioManager" name="richiesta">
-			bottone esempio</button>
+		
+	<form action="ManageServletUsers" method="post">
+		<button type="submit" value="ListaUtenti" name="pulsanteUtenti">
+			Lista Utenti</button>
+	</form>
+	
+	<form action="MenuServletDevices" method="post">
+			<button type="submit" value="ListaDIspositivi" name="pulsanteDispositivi">
+			Lista Dispositivi</button>
 	</form>
 	<!--  
      <h3>2. Badges</h3>

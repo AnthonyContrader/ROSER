@@ -69,13 +69,7 @@ public class UserDAO {
 				String surname = resultSet.getString("user_surname");
 				String password = resultSet.getString("user_pass");
 				boolean state = resultSet.getBoolean("user_state");
-				//if(!state) {
-				//String name,String surname,String username,String password,String usertype,boolean userState
-					//user = new User(userId,username,usertype, name, surname, password, state);
-				user = new UserDTO(name,surname,username,password,usertype,state);
-				//}else {
-					//user = new User(userId,username,usertype, name, surname, password, true);
-			//	}
+				user = new UserDTO(userId,name,surname,username,password,usertype,state);
 				usersList.add(user);
 			}
 		} catch (SQLException e) {
