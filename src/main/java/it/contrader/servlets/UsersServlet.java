@@ -4,15 +4,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import it.contrader.converter.UsersConverter;
-import it.contrader.dto.UserDTO;
-import it.contrader.service.UsersServiceDTO;
+import it.contrader.converter.AdminConverter;
+import it.contrader.dto.AdminDTO;
+import it.contrader.dto.DoctorDTO;
+import it.contrader.service.AdminServiceDTO;
 
 
 /**
@@ -22,8 +25,8 @@ import it.contrader.service.UsersServiceDTO;
  */
 public class UsersServlet extends HttpServlet {
 
-	private final UsersServiceDTO usersServiceDTO = new UsersServiceDTO();
-	private List<UserDTO> allUsers= new ArrayList<>();
+	private final AdminServiceDTO adminServiceDTO = new AdminServiceDTO();
+	private List<DoctorDTO> allDoctor = new ArrayList<>();
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,12 +37,10 @@ public class UsersServlet extends HttpServlet {
 		switch (scelta) {
 
 		case "UsersManager":
-			allUsers = this.usersServiceDTO.getAllUser();
-			request.setAttribute("allUsers", allUsers);
-			getServletContext().getRequestDispatcher("/users.jsp").forward(request, response);
+			showAllDoctor(request, response);
 			break;			
 
-		case "insert":
+		/*case "insert":
 			final Integer id = Integer.parseInt(request.getParameter("id"));
 			final String username = request.getParameter("username");
 			final String password = request.getParameter("password");
@@ -66,14 +67,15 @@ public class UsersServlet extends HttpServlet {
 					
 		//	usersServiceDTO.updateUser(user);
 			showAllUsers(request, response);
-			break;
+			break;*/
 
 		case "delete":
-			final Integer idUpdat = Integer.parseInt(request.getParameter("id"));
-			
-		//	final UserDTO use = new UserDTO(idUpdat,"" ,"","");
-		//	usersServiceDTO.deleteUser(use);
-			showAllUsers(request, response);
+			System.out.println("ciao");
+			final int doctorId = Integer.parseInt(request.getParameter("id"));
+			System.out.println(doctorId);
+			adminServiceDTO.deleteDoctor(doctorId);
+			System.out.println("ciao");
+			showAllDoctor(request,response);
 			break;
 
 		case "Indietro":
@@ -92,10 +94,10 @@ public class UsersServlet extends HttpServlet {
 
 	
 
-private void showAllUsers(HttpServletRequest request, HttpServletResponse response)
+	private void showAllDoctor(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-	allUsers = this.usersServiceDTO.getAllUser();
-	request.setAttribute("allUsers", allUsers);
-	getServletContext().getRequestDispatcher("/users.jsp").forward(request, response);
-}
+		allDoctor = this.adminServiceDTO.getAllDoctor();
+		request.setAttribute("doctor", allDoctor);
+		getServletContext().getRequestDispatcher("/manageUsers.jsp").forward(request, response);
+	}
 }

@@ -16,7 +16,7 @@ import it.contrader.utils.GestoreEccezioni;
 public class AdminDAO {
 	private final String GET_ALL = "select * from users WHERE user_type = 'doctor'";
 	private final String QUERY_INSERT = "INSERT INTO users (user_name, user_surname, user_user, user_pass, user_type, user_state) values (?,?,?,?,?,?)";
-	private final String QUERY_DELETE = "DELETE FROM users WHERE id = ?";
+	private final String QUERY_DELETE = "DELETE FROM users WHERE user_id = ?";
 	private final String QUERY_UPDATE = "UPDATE users SET user_name = ?, user_surname = ?, user_user = ?, user_pass = ?, user_type = ?, user_state = ? WHERE id = ?";
 	private final String QUERY_READ = "SELECT * FORM users WHERE id = ?";
 	private final String QUERY_LOGIN = "SELECT * FROM users WHERE user_user=?";

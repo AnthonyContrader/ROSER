@@ -8,6 +8,10 @@
     <servlet-class>it.contrader.servlets.LoginServlet</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>UsersServlet</servlet-name>
+    <servlet-class>it.contrader.servlets.UsersServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>LogoutServlet</servlet-name>
     <servlet-class>it.contrader.servlets.LogoutServlet</servlet-class>
   </servlet>
@@ -49,6 +53,10 @@
   <servlet-mapping>
     <servlet-name>MenuServletDevices</servlet-name>
     <url-pattern>/MenuServletDevices</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UsersServlet</servlet-name>
+    <url-pattern>/UsersServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

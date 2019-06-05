@@ -1,27 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="it.contrader.dto.DoctorDTO" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>MANAGEMENT USERS</title>
+<%
+	List<DoctorDTO> allDoctor = (List<DoctorDTO>) request.getAttribute("doctor");
+%>
 </head>
 <body>
 <div>
-<form action="ManageServletUsers" method="post">
 	<h2>------- USERS' LIST -------</h2>
-		<table border= 1>
-		<tr><td><b>Id</b></td><td><b>Name</b></td><td><b>Surname</b></td><td><b>Username</b></td><td><b>Password</b></td><td><b>State</b></td><td><b>Operation</b></td></tr>
-		<tr><td>${posts}</td></tr>
-  		</table>
-  		<br>
-  		<br>
-  	
-	<button type="submit" value="Insert" name="pulsante">Insert</button>
-	<!-- <button type="submit" value="Delete" name="pulsante">Delete</button>-->
-	<!-- <button type="submit" value="Update" name="pulsante">Update</button> -->
-	<button type="submit" value="Back" name="pulsante">Back</button>
-	</form>
+	
+	<table border=2>
+		<tr><th>Id</th><th>Name</th><th>Surname</th><th>Username</th><th>Password</th><th>UserType</th><th>UserState</th></tr>
+    	<%
+			for (DoctorDTO doctor : allDoctor) {
+		%>
+		<tr>
+			<td><%=doctor.getDoctorId()%></td>
+			<td><%=doctor.getName()%></td>
+			<td><%=doctor.getSurname()%></td>
+			<td><%=doctor.getUserName()%></td>
+			<td><%=doctor.getPassword()%></td>
+			<td><%=doctor.getUserType()%></td>
+			<td><%=doctor.isUserState()%></td>
+			<td><a href="UsersServlet?richiesta=delete&id=<%=doctor.getDoctorId()%>">Delete</a></td>
+		</tr>
+		<%
+			}
+		%>
+	</table>
 	
 	</div>
 </body>

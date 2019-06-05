@@ -11,14 +11,13 @@ import it.contrader.dto.UsersDTO;
 public class AdminServiceDTO {
 
 	private AdminDAO adminDAO;
-	private AdminDAO doctorDAO;
 
 	public AdminServiceDTO() {
-		this.doctorDAO = new AdminDAO();
+		this.adminDAO = new AdminDAO();
 	}
 
-	public List<DoctorDTO> getAllUser() {
-		return AdminConverter.toDTO(this.doctorDAO.getAllDoctor());
+	public List<DoctorDTO> getAllDoctor() {
+		return AdminConverter.toDTO(this.adminDAO.getAllDoctor());
 	}
 	
 	public UsersDTO getAdminByUsernameAndPasword(String username, String password) {
@@ -26,19 +25,19 @@ public class AdminServiceDTO {
 	}
 
 	public boolean insertDoctor(DoctorDTO doctorDTO) {
-		return this.doctorDAO.insertDoctor(AdminConverter.toEntity(doctorDTO));
+		return this.adminDAO.insertDoctor(AdminConverter.toEntity(doctorDTO));
 	}
 	
 	public DoctorDTO readDoctor(int doctorId) {
-		return AdminConverter.toDTO(this.doctorDAO.readDoctor(doctorId));
+		return AdminConverter.toDTO(this.adminDAO.readDoctor(doctorId));
 	}
 	
 	public boolean updateDoctor(DoctorDTO doctorDTO) {
-		return this.doctorDAO.updateDoctor(AdminConverter.toEntity(doctorDTO));
+		return this.adminDAO.updateDoctor(AdminConverter.toEntity(doctorDTO));
 	}
 	
 	public boolean deleteDoctor(int userId) {
-		return this.doctorDAO.deleteDoctor(userId);
+		return this.adminDAO.deleteDoctor(userId);
 	}
 	
 	

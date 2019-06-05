@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import it.contrader.dto.UserDTO;
+import it.contrader.dto.UsersDTO;
 import it.contrader.service.UsersServiceDTO;
 
 @SuppressWarnings("serial")
@@ -19,12 +18,9 @@ public class LoginServlet extends HttpServlet
 	private final UsersServiceDTO usersServiceDTO = new UsersServiceDTO();
 
 	@Override
-	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
-
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		final HttpSession session = request.getSession();
 		session.setAttribute("utente", null);
-		
 
 		if (request != null) {
 			final String nomeUtente = request.getParameter("username").toString();
@@ -32,51 +28,36 @@ public class LoginServlet extends HttpServlet
 			final String password = request.getParameter("password").toString();
 			
 			// recuperiamo l'utente
-			final UserDTO usersDTO = usersServiceDTO.getUserByUsernameAndPasword(nomeUtente, password);
-
-			if (usersDTO != null)
-			{
-				session.setAttribute("utente", usersDTO.getUsername());
+			final UsersDTO usersDTO = usersServiceDTO.getUsersByUserNameAndPassword(nomeUtente, password);
 			
-			// verifichiamo che tipo di ruolo ha all'interno dell'applicazione
-			// e lo reindirizziamo nella jsp opportuna
-				switch (usersDTO.getUsertype()) 
-				{
-					case "admin":
-						List<UserDTO> tmpUserDTO= usersServiceDTO.getAllUser();
-						String tmpUserData="";
-						System.out.println("XXXXXXXXXX");
-						for(UserDTO usr : tmpUserDTO)
+				if (usersDTO != null) {
+					try {
+						session.setAttribute("utente", usersDTO.getUserName());
+						// verifichiamo che tipo di ruolo ha all'interno dell'applicazione
+						// e lo reindirizziamo nella jsp opportuna
+						switch (usersDTO.getUserType()) 
 						{
-							tmpUserData += "<tr>";
-							tmpUserData += "<td>"+usr.getUserId()+"</td> <td>"+usr.getName() +"</td> <td>"+usr.getSurname()+"</td> <td>"+usr.getUsername()+"</td> <td>"+usr.getPassword()+"</td> <td>"+usr.isUserState()+"</td>";
-							tmpUserData += "<td>"+"<button type=\"submit\" value=\"Delete"+usr.getUserId()+"\" name=\"pulsante\">Delete</button></td>";
-							tmpUserData += "<td>"+"<button type=\"submit\" value=\"Update\" name=\"pulsante\">Update</button></td>";
-							tmpUserData += "</tr>";
-							
-							System.out.println(tmpUserData+"XXXXXXXXXX");
-							
+							case "admin":
+								getServletContext().getRequestDispatcher("/homeAdmin.jsp").forward(request, response);
+								break;
+							case "user": //da controllare
+								getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+								break;
+							case "doctor":
+								getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+								break;
+							default:
+								getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+								break;
 						}
-						session.setAttribute("posts", tmpUserData);
-						getServletContext().getRequestDispatcher("/manageUsers.jsp").forward(request, response);
-						break;
-				
-					case "user":
-						getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
-						break;
-				
-					case "doctor":
-						getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
-						break;
-				
-					default:
-						getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-						break;
+					}catch(Exception e) {
+						session.setAttribute("error", "WRONG USER OR PASSWORD");
+						getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);	
+					}
 				}
-		
-			}
-			else
+			else {
 				getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+			}
 		}
 	}
 }
