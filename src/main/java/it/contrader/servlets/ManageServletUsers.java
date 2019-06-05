@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,20 +33,64 @@ public class ManageServletUsers extends HttpServlet {
 		
 		if(request != null)
 		{
-			//System.out.println(usersServiceDTO.getAllUser());
 			
-			List<UserDTO> usersDTO= usersServiceDTO.getAllUser();
-			String tmpUserData="";
-			for(UserDTO usr : usersDTO)
+			String[] tmp = getValuesParameters(request.getParameter("pulsante"));
+			String choose = tmp[0]; //memorizzo il nome
+			int idUser = Integer.parseInt(tmp[1]);
+
+			switch(choose)
 			{
-				tmpUserData += "<tr>";
-				tmpUserData += "<td>" + usr.getUserId() +"</td> <td>" +usr.getName() +"</td> <td>"+usr.getSurname()+"</td> <td>"+usr.getUsername()+"</td> <td>"+usr.getPassword()+"</td> <td>"+usr.isUserState() ;
-				tmpUserData += "</tr>";
+			case "Insert":
+				getServletContext().getRequestDispatcher("/insertUser.jsp").forward(request,response);
+				break;
+				
+			case "Delete":
+				usersServiceDTO.deleteUser(idUser);
+				
+				request.getRequestDispatcher("LoginServlet").forward(request,response);
+				
+				break;
+				
+			case "Update": //non abbiamo
+				getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+				break;
+				
+			case "Back":
+				getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+				break;
+			
+				
 			}
-			session.setAttribute("posts", tmpUserData);
-			getServletContext().getRequestDispatcher("/manageUsers.jsp").forward(request, response);
 		}
 		
+	}
+	
+	
+	
+	public String[] getValuesParameters(String insert)
+	{
+		
+		String name = "";
+		String id = "";
+		String[] types = {"Insert","Delete","Update","Back"};
+		String[] result = new String[2];
+		
+		for(int i=0;i<types.length;i++)
+		{
+			if(insert.contains(types[i]))
+			{
+				name = types[i];
+				id = insert.replace(name, "");
+				System.out.println("Valore id: "+id);
+				break;
+			}
+		}
+		
+		result[0] = name;
+		result[1] = id;
+		
+			
+		return result;
 	}
 
 }

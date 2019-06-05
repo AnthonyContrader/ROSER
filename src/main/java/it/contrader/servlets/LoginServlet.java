@@ -1,6 +1,7 @@
 package it.contrader.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -42,8 +43,22 @@ public class LoginServlet extends HttpServlet
 				switch (usersDTO.getUsertype()) 
 				{
 					case "admin":
-						session.setAttribute("posts", usersServiceDTO.getAllUser());
-						getServletContext().getRequestDispatcher("/homeAdmin.jsp").forward(request, response);
+						List<UserDTO> tmpUserDTO= usersServiceDTO.getAllUser();
+						String tmpUserData="";
+						System.out.println("XXXXXXXXXX");
+						for(UserDTO usr : tmpUserDTO)
+						{
+							tmpUserData += "<tr>";
+							tmpUserData += "<td>"+usr.getUserId()+"</td> <td>"+usr.getName() +"</td> <td>"+usr.getSurname()+"</td> <td>"+usr.getUsername()+"</td> <td>"+usr.getPassword()+"</td> <td>"+usr.isUserState()+"</td>";
+							tmpUserData += "<td>"+"<button type=\"submit\" value=\"Delete"+usr.getUserId()+"\" name=\"pulsante\">Delete</button></td>";
+							tmpUserData += "<td>"+"<button type=\"submit\" value=\"Update\" name=\"pulsante\">Update</button></td>";
+							tmpUserData += "</tr>";
+							
+							System.out.println(tmpUserData+"XXXXXXXXXX");
+							
+						}
+						session.setAttribute("posts", tmpUserData);
+						getServletContext().getRequestDispatcher("/manageUsers.jsp").forward(request, response);
 						break;
 				
 					case "user":
