@@ -1,0 +1,23 @@
+/* Header */
+
+.login{
+	width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -100px;
+}
+
+.sfondo{
+	background-image: url(sfondo_login.png);
+	background-size: 600px;
+	top: 50%;
+	left: 50%;
+	background-repeat: no-repeat;
+}
+
+.header{
+	backrgound-color: #33cccc;
+}
