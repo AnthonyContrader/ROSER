@@ -30,49 +30,67 @@ public class DoctorServlet extends HttpServlet {
 
 		case "PatientManager":
 			showAllPatient(request, response);
-			break;			
-
-		/*case "insert":
-			final Integer id = Integer.parseInt(request.getParameter("id"));
-			final String username = request.getParameter("username");
-			final String password = request.getParameter("password");
-			final String ruolo = request.getParameter("ruolo");
-		//	final UserDTO users = new UserDTO(id,username, password, ruolo);
-		//	usersServiceDTO.insertUser(users);
-			showAllUsers(request, response);
 			break;
-					
-		case "update":
-			System.out.println("id: "+Integer.parseInt(request.getParameter("id")));
-			System.out.println("username: "+request.getParameter("username"));
-			System.out.println("password: "+request.getParameter("password"));
-			System.out.println("ruolo: "+request.getParameter("ruolo"));
-
-		     	
-			final Integer idUpdate = Integer.parseInt(request.getParameter("id"));
-			final String usernameUpdate = request.getParameter("username");
-			final String passwordUpdate = request.getParameter("password");
-			final String ruoloUpdate = request.getParameter("ruolo");
-		//	final UserDTO user = new UserDTO(idUpdate, usernameUpdate,passwordUpdate, ruoloUpdate);
-					
-				
-					
-		//	usersServiceDTO.updateUser(user);
-			showAllUsers(request, response);
-			break;*/
-
-		case "delete":
-			System.out.println("ciao");
-			final int patientId = Integer.parseInt(request.getParameter("id"));
-			System.out.println(patientId);
-			doctorServiceDTO.deletePatient(patientId);
-			System.out.println("ciao");
+			
+		case "insert":
+			//String userType, boolean userState
+			UsersDTO users = new UsersDTO();
+			users.setName(request.getParameter("nameuser"));
+			users.setSurname(request.getParameter("surnameuser"));
+			users.setUserName(request.getParameter("username"));
+			users.setPassword(request.getParameter("password"));
+			users.setUserType("user");
+			users.setUserState(true);
+			doctorServiceDTO.insertPatient(users);
 			showAllPatient(request,response);
 			break;
+
+		case "delete":
+			final int patientId = Integer.parseInt(request.getParameter("id"));
+			doctorServiceDTO.deletePatient(patientId);
+			showAllPatient(request,response);
+			break;
+			
+		case "updateredirect":
+			int id = Integer.parseInt(request.getParameter("id"));
+			 System.out.println(id);
+			 UsersDTO usersUpdate = new UsersDTO();
+			 usersUpdate = doctorServiceDTO.readPatient(id);
+			 request.setAttribute("usersUpdate", usersUpdate);
+			 getServletContext().getRequestDispatcher("/updateDoctor.jsp").forward(request, response);
+			 break;
+			 
+		case "update":
+			final int idUpd = Integer.parseInt(request.getParameter("id"));
+			final String nameUpdate = request.getParameter("name");
+			final String surnameUpdate = request.getParameter("surname");
+			final String usernameUpdate = request.getParameter("username");
+			final String passwordUpdate = request.getParameter("password");
+			final String type = request.getParameter("type");
+			final boolean state = Boolean.parseBoolean(request.getParameter("state"));
+			
+			final UsersDTO user = new UsersDTO();
+			user.setName(nameUpdate);
+			user.setSurname(surnameUpdate);
+			user.setUserName(usernameUpdate);
+			user.setPassword(passwordUpdate);
+			user.setUserType(type);
+			user.setUserState(state);
+			user.setUserId(idUpd);
+				
+			doctorServiceDTO.updateDoctor(user);
+			showAllPatient(request, response);
+			break;
+
 
 		case "Indietro":
 			response.sendRedirect("home.jsp");
 			break;
+			
+		case "bakc":
+			response.sendRedirect("homeDoctor.jsp");
+			break;
+
 
 		case "LogsMenu":
 			response.sendRedirect("homeLogs.jsp");

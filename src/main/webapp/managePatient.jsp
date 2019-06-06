@@ -28,13 +28,15 @@
 			<td><%=users.getPassword()%></td>
 			<td><%=users.getUserType()%></td>
 			<td><%=users.isUserState()%></td>
-			<td><a href="UsersServlet?richiesta=delete&id=<%=users.getUserId()%>">Delete</a></td>
+			<td><a href="DoctorServlet?richiesta=delete&id=<%=users.getUserId()%>">Delete</a>
+				<a href="DoctorServlet?richiesta=updateredirect&id=<%=users.getUserId()%>">Update</a></td>
 		</tr>
 		<%
 			}
 		%>
 	</table>
-	
+			<a href="insertPatient.jsp">Insert</a>
+			<a href="UsersServlet?richiesta=Back">Back</a>
 	</div>
 </body>
 </html>
