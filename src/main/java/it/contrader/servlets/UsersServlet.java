@@ -40,46 +40,50 @@ public class UsersServlet extends HttpServlet {
 			showAllDoctor(request, response);
 			break;			
 
-		/*case "insert":
-			final Integer id = Integer.parseInt(request.getParameter("id"));
+		case "insert":
 			final String username = request.getParameter("username");
 			final String password = request.getParameter("password");
-			final String ruolo = request.getParameter("ruolo");
-		//	final UserDTO users = new UserDTO(id,username, password, ruolo);
-		//	usersServiceDTO.insertUser(users);
-			showAllUsers(request, response);
+			final String name = request.getParameter("nameuser");
+			final String surname = request.getParameter("surnameuser");
+			final DoctorDTO doctorInsert = new DoctorDTO(name,surname,username,password,"doctor",true);
+			adminServiceDTO.insertDoctor(doctorInsert);
+			showAllDoctor(request, response);
 			break;
 					
 		case "update":
-			System.out.println("id: "+Integer.parseInt(request.getParameter("id")));
-			System.out.println("username: "+request.getParameter("username"));
-			System.out.println("password: "+request.getParameter("password"));
-			System.out.println("ruolo: "+request.getParameter("ruolo"));
-
-		     	
-			final Integer idUpdate = Integer.parseInt(request.getParameter("id"));
+			final int idUpd = Integer.parseInt(request.getParameter("id"));
+			final String nameUpdate = request.getParameter("name");
+			final String surnameUpdate = request.getParameter("surname");
 			final String usernameUpdate = request.getParameter("username");
 			final String passwordUpdate = request.getParameter("password");
-			final String ruoloUpdate = request.getParameter("ruolo");
-		//	final UserDTO user = new UserDTO(idUpdate, usernameUpdate,passwordUpdate, ruoloUpdate);
-					
+			final String type = request.getParameter("type");
+			final boolean state = Boolean.parseBoolean(request.getParameter("state"));
+			
+			final DoctorDTO doctor = new DoctorDTO(nameUpdate,surnameUpdate,usernameUpdate,passwordUpdate,type,state);
+			doctor.setDoctorId(idUpd);
 				
-					
-		//	usersServiceDTO.updateUser(user);
-			showAllUsers(request, response);
-			break;*/
+			adminServiceDTO.updateDoctor(doctor);
+			showAllDoctor(request, response);
+			break;
+			
+		case "updateRedirect": 
+			
+			 int id = Integer.parseInt(request.getParameter("id"));
+			 System.out.println(id);
+			 DoctorDTO doctorUpdate = new DoctorDTO();
+			 doctorUpdate=adminServiceDTO.readDoctor(id);
+			 request.setAttribute("doctorUpdate", doctorUpdate);
+			 getServletContext().getRequestDispatcher("/updateAdmin.jsp").forward(request, response);
+			 break;
 
 		case "delete":
-			System.out.println("ciao");
 			final int doctorId = Integer.parseInt(request.getParameter("id"));
-			System.out.println(doctorId);
 			adminServiceDTO.deleteDoctor(doctorId);
-			System.out.println("ciao");
 			showAllDoctor(request,response);
 			break;
 
-		case "Indietro":
-			response.sendRedirect("home.jsp");
+		case "Back":
+			response.sendRedirect("homeAdmin.jsp");
 			break;
 
 		case "LogsMenu":
@@ -89,11 +93,7 @@ public class UsersServlet extends HttpServlet {
 				}
 
 			}
-
-		
-
 	
-
 	private void showAllDoctor(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
 		allDoctor = this.adminServiceDTO.getAllDoctor();

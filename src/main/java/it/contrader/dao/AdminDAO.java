@@ -17,8 +17,8 @@ public class AdminDAO {
 	private final String GET_ALL = "select * from users WHERE user_type = 'doctor'";
 	private final String QUERY_INSERT = "INSERT INTO users (user_name, user_surname, user_user, user_pass, user_type, user_state) values (?,?,?,?,?,?)";
 	private final String QUERY_DELETE = "DELETE FROM users WHERE user_id = ?";
-	private final String QUERY_UPDATE = "UPDATE users SET user_name = ?, user_surname = ?, user_user = ?, user_pass = ?, user_type = ?, user_state = ? WHERE id = ?";
-	private final String QUERY_READ = "SELECT * FORM users WHERE id = ?";
+	private final String QUERY_UPDATE = "UPDATE users SET user_name = ?, user_surname = ?, user_user = ?, user_pass = ?, user_type = ?, user_state = ? WHERE user_id = ?";
+	private final String QUERY_READ = "SELECT * FROM users WHERE user_id = ?";
 	private final String QUERY_LOGIN = "SELECT * FROM users WHERE user_user=?";
 	
 	public Users login(String username, String password) {
@@ -81,6 +81,7 @@ public class AdminDAO {
 			preparedStatement.setString(4, doctor.getPassword());
 			preparedStatement.setString(5, doctor.getUserType());
 			preparedStatement.setBoolean(6, doctor.isUserState());
+			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
@@ -109,11 +110,12 @@ public class AdminDAO {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
 			preparedStatement.setInt(1, doctorId);
 			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet.next();
 			String name = resultSet.getString("user_name");
 			String surname = resultSet.getString("user_surname");
 			String userName = resultSet.getString("user_user");
 			String type = resultSet.getString("user_type");
-			String password = resultSet.getString("user_password");
+			String password = resultSet.getString("user_pass");
 			boolean state = resultSet.getBoolean("user_state");
 			doctor = new Doctor(doctorId, userName, type, name, surname, password,state);
 			return doctor;

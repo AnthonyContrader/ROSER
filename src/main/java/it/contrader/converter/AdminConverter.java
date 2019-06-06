@@ -9,9 +9,8 @@ import it.contrader.model.Doctor;
 public class AdminConverter {
 
 	public static Doctor toEntity(DoctorDTO doctorDTO) {
-		Doctor doctor = null;
+		Doctor doctor = new Doctor();
 		if (doctorDTO != null) {
-			doctor = new Doctor();
 			doctor.setName(doctorDTO.getName());
 			doctor.setSurname(doctorDTO.getSurname());
 			doctor.setDoctorId(doctorDTO.getDoctorId());

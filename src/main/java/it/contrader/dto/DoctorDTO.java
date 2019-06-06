@@ -12,9 +12,11 @@ public class DoctorDTO {
 	
 	public DoctorDTO() {}
 	
-	public DoctorDTO(String username, String usertype) {
+	public DoctorDTO(String name,String surname,String username, String password) {
+		this.name = name;
+		this.surname=surname;
 		this.username = username;
-		this.usertype = usertype;
+		this.password = password;
 	}
 		
 	public DoctorDTO(String name,String surname,String username,String password,String usertype,boolean userState){

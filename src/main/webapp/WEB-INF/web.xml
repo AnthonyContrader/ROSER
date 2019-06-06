@@ -8,6 +8,10 @@
     <servlet-class>it.contrader.servlets.LoginServlet</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>DoctorServlet</servlet-name>
+    <servlet-class>it.contrader.servlets.DoctorServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>UsersServlet</servlet-name>
     <servlet-class>it.contrader.servlets.UsersServlet</servlet-class>
   </servlet>
@@ -67,5 +71,9 @@
   <servlet-mapping>
     <servlet-name>ManageServletUsers</servlet-name>
     <url-pattern>/ManageServletUsers</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DoctorServlet</servlet-name>
+    <url-pattern>/DoctorServlet</url-pattern>
   </servlet-mapping>
 </web-app>

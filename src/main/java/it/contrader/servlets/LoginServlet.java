@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet
 								getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
 								break;
 							case "doctor":
-								getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+								getServletContext().getRequestDispatcher("/homeDoctor.jsp").forward(request, response);
 								break;
 							default:
 								getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);

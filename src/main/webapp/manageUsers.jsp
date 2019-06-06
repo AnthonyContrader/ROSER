@@ -16,7 +16,7 @@
 	<h2>------- USERS' LIST -------</h2>
 	
 	<table border=2>
-		<tr><th>Id</th><th>Name</th><th>Surname</th><th>Username</th><th>Password</th><th>UserType</th><th>UserState</th></tr>
+		<tr><th>Id</th><th>Name</th><th>Surname</th><th>Username</th><th>Password</th><th>UserType</th><th>UserState</th><th>Options</th></tr>
     	<%
 			for (DoctorDTO doctor : allDoctor) {
 		%>
@@ -28,12 +28,18 @@
 			<td><%=doctor.getPassword()%></td>
 			<td><%=doctor.getUserType()%></td>
 			<td><%=doctor.isUserState()%></td>
-			<td><a href="UsersServlet?richiesta=delete&id=<%=doctor.getDoctorId()%>">Delete</a></td>
+			<td><a href="UsersServlet?richiesta=delete&id=<%=doctor.getDoctorId()%>">Delete</a>
+				<a href="UsersServlet?richiesta=updateRedirect&id=<%=doctor.getDoctorId()%>">Update</a></td>
+			
 		</tr>
 		<%
 			}
 		%>
 	</table>
+	<br>
+			<br>
+			<a href="insertUser.jsp">Insert</a>
+			<a href="UsersServlet?richiesta=Back">Back</a>
 	
 	</div>
 </body>
