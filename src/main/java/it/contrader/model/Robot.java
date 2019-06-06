@@ -2,85 +2,122 @@ package it.contrader.model;
 
 public class Robot {
 
-	private int robot_id;
+	private int robotId;
 	
-	private String robot_model;
-	private String robot_username;
-	private String robot_password;
-	private String robot_owner_name;
-	private String robot_owner_surname;
+	private String robotModel;
+	public int getRobotId() {
+		return robotId;
+	}
+
+	public void setRobotId(int robotId) {
+		this.robotId = robotId;
+	}
+
+	public String getRobotModel() {
+		return robotModel;
+	}
+
+	public void setRobotModel(String robotModel) {
+		this.robotModel = robotModel;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public boolean isState() {
+		return state;
+	}
+
+	public void setState(boolean state) {
+		this.state = state;
+	}
+
+	public String getRobotOwnerName() {
+		return robotOwnerName;
+	}
+
+	public void setRobotOwnerName(String robotOwnerName) {
+		this.robotOwnerName = robotOwnerName;
+	}
+
+	public String getRobotOwnerSurname() {
+		return robotOwnerSurname;
+	}
+
+	public void setRobotOwnerSurname(String robotOwnerSurname) {
+		this.robotOwnerSurname = robotOwnerSurname;
+	}
+
+	private String username;
+	private String password;
+	private String name;
+	private String surname;
+	private String type;
+	private boolean state;
+	private String robotOwnerName;
+	private String robotOwnerSurname;
 	
 	public Robot() {}
 	
-	public Robot(int robotId, String robotModel,String ownerName, String ownerSurname, String username, String password) {
-		this.robot_id = robotId;
-		this.robot_model  = robotModel;
-		this.robot_username = username;
-		this.robot_password = password;
-		this.robot_owner_name = ownerName;
-		this.robot_owner_surname = ownerSurname;
-	}
-
-	public int getRobotId() {
-		return robot_id;
-	}
-
-
-	public void setRobotId(int robot_id) {
-		this.robot_id = robot_id;
-	}
-
-
-	public String getRobotModel() {
-		return robot_model;
-	}
-
-
-	public void setRobotModel(String robot_model) {
-		this.robot_model = robot_model;
-	}
-
-
-	public String getRobotOwnerName() {
-		return robot_owner_name;
-	}
-
-
-	public void setRobotOwnerName(String robot_owner_name) {
-		this.robot_owner_name = robot_owner_name;
-	}
-
-
-	public String getRoborOwnerSurname() {
-		return robot_owner_surname;
-	}
-
-
-	public void setRobotOwnerSurname(String robot_owner_surname) {
-		this.robot_owner_surname = robot_owner_surname;
+	public Robot(int robotId,String name,String surname,String username,String password,String type,boolean state)
+	{
+		this.robotId = robotId;
+		this.name=name;
+		this.surname = surname;
+		this.username = username;
+		this.password = password;
+		this.type = type;
+		this.state=state;
+		
 	}
 	
-	public String getRobotUsername() {
-		return robot_username;
+	public String getType() {
+		return type;
 	}
 
-	public void setRobotUsername(String robot_username) {
-		this.robot_username = robot_username;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public String getRobotPassword() {
-		return robot_password;
+	public Robot(int robotId, String robotModel,String ownerName, String ownerSurname, String username, String password) {
+		this.robotId = robotId;
+		this.robotModel  = robotModel;
+		this.username = username;
+		this.password = password;
+		this.robotOwnerName = ownerName;
+		this.robotOwnerSurname = ownerSurname;
 	}
 
 	public void setRobotPassword(String robot_password) {
-		this.robot_password = robot_password;
+		this.password = robot_password;
 	}
-
-
-	@Override
-	public String toString()
-	{
-		return this.getRobotModel() + "\t" + this.getRobotOwnerName() +"\t" +this.getRoborOwnerSurname();
-	}
-	
 }

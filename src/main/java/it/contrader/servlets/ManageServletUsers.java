@@ -36,7 +36,10 @@ public class ManageServletUsers extends HttpServlet {
 			
 			String[] tmp = getValuesParameters(request.getParameter("pulsante"));
 			String choose = tmp[0]; //memorizzo il nome
-			int idUser = Integer.parseInt(tmp[1]);
+			System.out.println("CHOOSE: "+choose);
+			int idUser = 0 ;
+			if(tmp[1] != null)
+			idUser = Integer.parseInt(tmp[1]);
 
 			switch(choose)
 			{
@@ -46,8 +49,7 @@ public class ManageServletUsers extends HttpServlet {
 				
 			case "Delete":
 				usersServiceDTO.deleteUser(idUser);
-				
-				request.getRequestDispatcher("LoginServlet").forward(request,response);
+				getServletContext().getRequestDispatcher("/manageUsers.jsp").forward(request,response);
 				
 				break;
 				

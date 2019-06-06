@@ -17,7 +17,6 @@
 			
 			<h3><font color="red" name="error">${error}</font></h3>
 			<button type="submit" value="Login" name="pulsante">Login</button>
-			<br> <a href="register.jsp"> Registrati </a>
 		</form>
 	</div>
 </body>
