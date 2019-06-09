@@ -1,21 +1,24 @@
 package it.contrader.converter;
 
-import java.util.List;
-
 import it.contrader.dto.RobotDTO;
 import it.contrader.model.Robot;
 
 public class RobotConverter {
-
+	
 	public static Robot toEntity(RobotDTO robotDTO) {
-		return null;
+		//String robotOwnerName, String robotOwnerSurname
+		Robot robot = null;
+		if (robotDTO != null) {
+			robot = new Robot(robotDTO.getRobotId(), robotDTO.getRobotName(), robotDTO.getRobotSurname(), robotDTO.getPassword(),robotDTO.getRobotModel(), robotDTO.getRobotOwnerName(), robotDTO.getRobotOwnerName());
+		}
+		return robot;
 	}
-	
-	public static List<Robot> toEntity(List<RobotDTO> robotDTO) {
-		return null;
-	}
-	
+
 	public static RobotDTO toDTO(Robot robot) {
-		return null;
+		RobotDTO robotDTO = null;
+		if (robot != null) {
+			robotDTO = new RobotDTO(robot.getRobotId(), robot.getRobotName(), robot.getRobotSurname(), robot.getPassword(),robot.getRobotModel(), robot.getRobotOwnerName(), robot.getRobotOwnerName());
+		}
+		return robotDTO;
 	}
 }

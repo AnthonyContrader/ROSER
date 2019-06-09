@@ -1,31 +1,41 @@
 package it.contrader.model;
-
 public class Users {
-	private int userId;
+	private Integer userId;
 	private String userName;
+	private String userSurname;
+	private String userUser;
+	private String userPassword;
 	private String userType;
-	private String name;
-	private String surname;
-	private String password;
 	private boolean userState;
 	
 	public Users() {}
 	
-	public Users(int userId, String userName, String userType, String name, String surname, String password, boolean userState) {
-		this.userId = userId;
-		this.userName = userName;
-		this.userType = userType;
-		this.name = name;
-		this.surname = surname;
-		this.password = password;
-		this.userState = userState;
-	}
-
-	public int getUserId() {
-		return userId;
+	public Users(String userName, String userSurname, String userUser, String userPassword, String userType, boolean userState) {
+		setUserId(userId);
+		setUserName(userName);
+		setUserSurname(userSurname);
+		setUserUser(userUser);
+		setUserPassword(userPassword);
+		setUserType(userType);
+		setUserState(userState);
 	}
 	
-	public void setUserId(int userId) {
+	public Users(Integer userId,String userName, String userSurname, String userUser, String userPassword, String userType,
+			boolean userState) {
+		setUserId(userId);
+		setUserName(userName);
+		setUserSurname(userSurname);
+		setUserUser(userUser);
+		setUserPassword(userPassword);
+		setUserType(userType);
+		setUserState(userState);
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
@@ -37,36 +47,36 @@ public class Users {
 		this.userName = userName;
 	}
 
+	public String getUserSurname() {
+		return userSurname;
+	}
+
+	public void setUserSurname(String userSurname) {
+		this.userSurname = userSurname;
+	}
+
+	public String getUserUser() {
+		return userUser;
+	}
+
+	public void setUserUser(String userUser) {
+		this.userUser = userUser;
+	}
+
+	public String getUserPassword() {
+		return userPassword;
+	}
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
+	}
+
 	public String getUserType() {
 		return userType;
 	}
 
 	public void setUserType(String userType) {
 		this.userType = userType;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public boolean isUserState() {

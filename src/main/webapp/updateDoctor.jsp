@@ -5,41 +5,28 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-
-
-<%
-	UsersDTO doctorUpdate = (UsersDTO) request.getAttribute("usersUpdate");
-%>
+<title>Update Doctor</title>
+	<%
+		UsersDTO doctorUpdate = (UsersDTO) request.getAttribute("doctor");
+	 %>
 </head>
 <body>
-<div class="center">
-
-		<div class="pre_contenitore">
-
-			<h2>------- USERS UPDATE -------</h2>
-
-		</div>
-		<form method="POST" action="DoctorServlet?richiesta=update">
-			<input type="hidden" name="id" value="<%=doctorUpdate.getUserId()%>" />
-			<input type="hidden" name="type" value="<%=doctorUpdate.getUserType()%>" />
-			<table border = 2>
-
+	<form method="POST" action="DoctorManagementServlet?richiesta=Update&user_id=<%=doctorUpdate.getUserId()%>">
 			<tr>
 				<td><b>Name:</b></td>
-				<td> <input type="text" size="40" maxlength="40" name="name" value="<%=doctorUpdate.getName()%>" /></td>
+				<td> <input type="text" size="40" maxlength="40" name="name" value="<%= doctorUpdate.getUserName()%>"/></td>
 			</tr>
 			<tr>
 				<td><b>Surname:</b></td> 
-				<td> <input type="text" size="40" maxlength="40" name="surname" value="<%=doctorUpdate.getSurname()%>" /></td>
+				<td> <input type="text" size="40" maxlength="40" name="surname" value="<%=doctorUpdate.getUserSurname()%>" /></td>
 			</tr>
 			<tr>
 				<td><b>Username:</b></td>
-				<td> <input type="text" size="40" maxlength="40" name="username" value="<%=doctorUpdate.getUserName()%>" /></td>
+				<td> <input type="text" size="40" maxlength="40" name="username" value="<%=doctorUpdate.getUserUser()%>" /></td>
 			</tr>
 			<tr>
 				<td><b>Password:</b></td>
-				<td> <input type="text" size="40" maxlength="40" name="password" value="<%=doctorUpdate.getPassword()%>" /></td>
+				<td> <input type="text" size="40" maxlength="40" name="password" value="<%=doctorUpdate.getUserPassword()%>" /></td>
 			</tr>
 			<tr>
 					<td><b>Status:</b></td>
@@ -55,10 +42,8 @@
 
 			<br>
 			<br>
-			<a href="DoctorServlet?richiesta=PatientManager">Back</a>
-
 		</form>
-
-	</div>
+		
+		<a href="DoctorManagementServlet?richiesta=DoctorManager">Back</a>
 </body>
 </html>

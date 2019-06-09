@@ -1,72 +1,84 @@
 package it.contrader.dto;
 
 public class UsersDTO {
-	private int userId;
-	private String username;
-	private String usertype;
-	private String name;
-	private String surname;
-	private String password;
+	private Integer userId;
+	private String userName;
+	private String userSurname;
+	private String userUser;
+	private String userPassword;
+	private String userType;
 	private boolean userState;
 	
-	public UsersDTO() {}
+	public UsersDTO(Integer userId) {
+		setUserId(userId);
+	}
 	
-	public UsersDTO(int userId, String name, String surname, String userName, String password,String userType, boolean userState) {
-		this.userId = userId;
-		this.name = name;
-		this.surname = surname;
-		this.username = userName;
-		this.password = password;
-		this.usertype = userType;
-		this.userState = userState;
+	public UsersDTO(String userName, String userSurname, String userUser, String userPassword, String userType, boolean userState) {
+		setUserName(userName);
+		setUserSurname(userSurname);
+		setUserUser(userUser);
+		setUserPassword(userPassword);
+		setUserType(userType);
+		setUserState(userState);
+	}
+	
+	public UsersDTO(Integer userId,String userName, String userSurname, String userUser, String userPassword, String userType,
+			boolean userState) {
+		setUserId(userId);
+		setUserName(userName);
+		setUserSurname(userSurname);
+		setUserUser(userUser);
+		setUserPassword(userPassword);
+		setUserType(userType);
+		setUserState(userState);
 	}
 
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
 	public String getUserName() {
-		return username;
+		return userName;
 	}
 
-	public void setUserName(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserSurname() {
+		return userSurname;
+	}
+
+	public void setUserSurname(String userSurname) {
+		this.userSurname = userSurname;
+	}
+
+	public String getUserUser() {
+		return userUser;
+	}
+
+	public void setUserUser(String userUser) {
+		this.userUser = userUser;
+	}
+
+	public String getUserPassword() {
+		return userPassword;
+	}
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 
 	public String getUserType() {
-		return usertype;
+		return userType;
 	}
 
-	public void setUserType(String usertype) {
-		this.usertype = usertype;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 
 	public boolean isUserState() {
@@ -75,11 +87,5 @@ public class UsersDTO {
 
 	public void setUserState(boolean userState) {
 		this.userState = userState;
-	}
-	
-	@Override
-	public String toString()
-	{
-		return this.getUserId() +"\t"+ this.getName() + "\t" + this.getSurname() + "\t" + this.getUserName() + "\t" + this.getPassword() + "\t"+ this.isUserState();
 	}
 }

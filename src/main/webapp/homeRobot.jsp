@@ -4,14 +4,18 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Gestione robot</title>
+<title>Home Robot</title>
 </head>
 <body>
-
-	<h1>Benvenuto: ${utente}</h1>
-	<h2>-------- MENU PRINCIPALE --------</h2>
-		NON SONO PRESENTI AZIONI 
-		<br><br>
-		<a href="LogoutServlet">Logout</a>
+<h1>Welcome: ${utente}</h1>  <!-- variabile che avrà la stessa dell'etichetta impostata sul servlet -->
+	<h2>------- MENU PRINCIPALE -------</h2>
+	<a href="UsersManagementServlet?richiesta=UserManager">Read parameter</a>
+	<br>
+	<br>
+	<br>
+	<a href="RobotManagementServlet?richiesta=ReadParameter">Show log</a>
+	<br>
+	<br>
+	<a href="LogoutServlet">Logout</a>
 </body>
 </html>

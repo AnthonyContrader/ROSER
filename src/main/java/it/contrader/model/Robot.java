@@ -1,32 +1,75 @@
 package it.contrader.model;
 
 public class Robot {
-
 	private int robotId;
-	
 	private String robotModel;
+	private String robotOwnerName;
+	private String robotOwnerSurname;
+	private String robotName;
+	private String robotSurname;
+	private String password;
+	/*private int decibel;
+	private int faceexpress;
+	private int humidity;*/
+	
+	public Robot(String robotName, String robotSurname, String password, String robotModel, String robotOwnerName, String robotOwnerSurname) {
+		this.robotName = robotName;
+		this.robotSurname = robotSurname;
+		this.password = password;
+		this.robotModel = robotModel;
+		this.robotOwnerName = robotOwnerName;
+		this.robotOwnerSurname = robotOwnerSurname;
+	}
+	
+	public Robot(Integer robotId, String robotName, String robotSurname, String password, String robotModel, String robotOwnerName, String robotOwnerSurname) {
+		this.robotName = robotName;
+		this.robotSurname = robotSurname;
+		this.password = password;
+		this.robotId = robotId;
+		this.robotModel = robotModel;
+		this.robotOwnerName = robotOwnerName;
+		this.robotOwnerSurname = robotOwnerSurname;
+	}
+	
 	public int getRobotId() {
 		return robotId;
 	}
-
 	public void setRobotId(int robotId) {
 		this.robotId = robotId;
 	}
-
 	public String getRobotModel() {
 		return robotModel;
 	}
-
 	public void setRobotModel(String robotModel) {
 		this.robotModel = robotModel;
 	}
-
-	public String getUsername() {
-		return username;
+	public String getRobotOwnerName() {
+		return robotOwnerName;
+	}
+	public void setRobotOwnerName(String robotOwnerName) {
+		this.robotOwnerName = robotOwnerName;
+	}
+	public String getRobotOwnerSurname() {
+		return robotOwnerSurname;
+	}
+	public void setRobotOwnerSurname(String robotOwnerSurname) {
+		this.robotOwnerSurname = robotOwnerSurname;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public String getRobotName() {
+		return robotName;
+	}
+
+	public void setRobotName(String robotName) {
+		this.robotName = robotName;
+	}
+
+	public String getRobotSurname() {
+		return robotSurname;
+	}
+
+	public void setRobotSurname(String robotSurname) {
+		this.robotSurname = robotSurname;
 	}
 
 	public String getPassword() {
@@ -36,88 +79,23 @@ public class Robot {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public boolean isState() {
-		return state;
-	}
-
-	public void setState(boolean state) {
-		this.state = state;
-	}
-
-	public String getRobotOwnerName() {
-		return robotOwnerName;
-	}
-
-	public void setRobotOwnerName(String robotOwnerName) {
-		this.robotOwnerName = robotOwnerName;
-	}
-
-	public String getRobotOwnerSurname() {
-		return robotOwnerSurname;
-	}
-
-	public void setRobotOwnerSurname(String robotOwnerSurname) {
-		this.robotOwnerSurname = robotOwnerSurname;
-	}
-
-	private String username;
-	private String password;
-	private String name;
-	private String surname;
-	private String type;
-	private boolean state;
-	private String robotOwnerName;
-	private String robotOwnerSurname;
 	
-	public Robot() {}
-	
-	public Robot(int robotId,String name,String surname,String username,String password,String type,boolean state)
-	{
-		this.robotId = robotId;
-		this.name=name;
-		this.surname = surname;
-		this.username = username;
-		this.password = password;
-		this.type = type;
-		this.state=state;
-		
+	/*public int getDecibel() {
+		return decibel;
 	}
-	
-	public String getType() {
-		return type;
+	public void setDecibel(int decibel) {
+		this.decibel = decibel;
 	}
-
-	public void setType(String type) {
-		this.type = type;
+	public int getFaceexpress() {
+		return faceexpress;
 	}
-
-	public Robot(int robotId, String robotModel,String ownerName, String ownerSurname, String username, String password) {
-		this.robotId = robotId;
-		this.robotModel  = robotModel;
-		this.username = username;
-		this.password = password;
-		this.robotOwnerName = ownerName;
-		this.robotOwnerSurname = ownerSurname;
+	public void setFaceexpress(int faceexpress) {
+		this.faceexpress = faceexpress;
 	}
-
-	public void setRobotPassword(String robot_password) {
-		this.password = robot_password;
+	public int getHumidity() {
+		return humidity;
 	}
+	public void setHumidity(int humidity) {
+		this.humidity = humidity;
+	}*/
 }

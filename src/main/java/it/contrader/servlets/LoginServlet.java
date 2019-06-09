@@ -1,66 +1,62 @@
 package it.contrader.servlets;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import it.contrader.dto.UsersDTO;
-import it.contrader.service.UsersServiceDTO;
+import it.contrader.service.UsersService;
 
-@SuppressWarnings("serial")
-public class LoginServlet extends HttpServlet 
-{
+public class LoginServlet extends HttpServlet {
 
-	private final UsersServiceDTO usersServiceDTO = new UsersServiceDTO();
+	private final UsersService usersService = new UsersService();
 
 	@Override
-	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		final HttpSession session = request.getSession();
-		session.setAttribute("utente", null);
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		final HttpSession session = request.getSession();
+		session.setAttribute("utente", null); // ("etichetta per l'invio dei dati", dato inviato);
+		
 		if (request != null) {
-			final String nomeUtente = request.getParameter("username").toString();
 			
-			final String password = request.getParameter("password").toString();
+			//Viene preso il parametro in ingresso
+			//request.getParameter("etichetta per l'invio dei dati della pagina a cui e collegata la classe");
 			
-			// recuperiamo l'utente
-			final UsersDTO usersDTO = usersServiceDTO.getUsersByUserNameAndPassword(nomeUtente, password);
+			final String nomeUtente = request.getParameter("user_user");
+			final String password = request.getParameter("user_pass");
+	
+			final UsersDTO usersDTO = usersService.getUserByUsernameAndPasword(nomeUtente, password);
+			try {
+				if (usersDTO != null)
+					session.setAttribute("utente", usersDTO.getUserName());
 			
-				if (usersDTO != null) {
-					try {
-						session.setAttribute("utente", usersDTO.getUserName());
-						// verifichiamo che tipo di ruolo ha all'interno dell'applicazione
-						// e lo reindirizziamo nella jsp opportuna
-						switch (usersDTO.getUserType()) 
-						{
-							case "admin":
-								getServletContext().getRequestDispatcher("/homeAdmin.jsp").forward(request, response);
-								break;
-							case "user": //da controllare
-								getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
-								break;
-							case "doctor":
-								getServletContext().getRequestDispatcher("/homeDoctor.jsp").forward(request, response);
-								break;
-							case "robot":
-								getServletContext().getRequestDispatcher("/homeRobot.jsp").forward(request, response);
-								break;
-							default:
-								getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-								break;
-						}
-					}catch(Exception e) {
-						session.setAttribute("error", "WRONG USER OR PASSWORD");
-						getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);	
-					}
+				//In base al parametro dello switch aprira una pagina dedicata
+				switch (usersDTO.getUserType()) {
+					case "admin":
+						getServletContext().getRequestDispatcher("/homeAdmin.jsp").forward(request, response);
+						break;
+					case "doctor":
+						getServletContext().getRequestDispatcher("/homeDoctor.jsp").forward(request, response);
+						break;
+					case "robot":
+						getServletContext().getRequestDispatcher("/homeRobot.jsp").forward(request, response);
+						break;
+					/*case "user":
+						getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+						break;*/
+					default:
+						getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+						break;
 				}
-			else {
+			}catch(Exception ex) {
+				session.setAttribute("errore", "WRONG PASSWORD OR USERNAME");
 				getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 			}
 		}
 	}
+
 }

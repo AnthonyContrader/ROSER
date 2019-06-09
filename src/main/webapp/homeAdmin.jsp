@@ -1,17 +1,18 @@
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %> <!-- Aggiungo stringa per il foreach -->
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-<title>Menu Principale</title>
-<link href="css/style.css" rel="stylesheet" type="text/css">
+<title>Admin Menu</title>
 </head>
 <body>
-<div class="header">
-	<h1>Benvenuto: ${utente}</h1>
+	<h1>Welcome: ${utente}</h1>  <!-- variabile che avrà la stessa dell'etichetta impostata sul servlet -->
 	<h2>------- MENU PRINCIPALE -------</h2>
-	
-</div>
-			<a href="UsersServlet?richiesta=UsersManager">User Management</a>
-			<br>
-			<a href="DevicesServlet?richiesta=DevicesManager"> Device management</a>
+	<a href="DoctorManagementServlet?richiesta=DoctorManager">Doctor management</a>
+	<br>
+	<br>
+	<br>
+	<a href="RobotManagementServlet?richiesta=RobotManager">Device management</a>
+	<br>
+	<br>
+	<a href="LogoutServlet">Logout</a>
 </body>
 </html>
