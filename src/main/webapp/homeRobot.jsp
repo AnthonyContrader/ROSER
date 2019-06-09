@@ -13,7 +13,7 @@
 	<br>
 	<br>
 	<br>
-	<a href="RobotManagementServlet?richiesta=Show log">Show log</a>
+	<a href="RobotManagementServlet?richiesta=Showlog">Show log</a>
 	<br>
 	<br>
 	<a href="LogoutServlet">Logout</a>
