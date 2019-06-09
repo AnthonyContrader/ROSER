@@ -8,9 +8,9 @@ public class RobotDTO {
 	private String robotName;
 	private String robotSurname;
 	private String password;
-	/*private int decibel;
+	private int decibel;
 	private int faceexpress;
-	private int humidity;*/
+	private int humidity;
 	
 	public RobotDTO() {}
 	
@@ -82,7 +82,7 @@ public class RobotDTO {
 		this.password = password;
 	}
 	
-	/*public int getDecibel() {
+	public int getDecibel() {
 		return decibel;
 	}
 	public void setDecibel(int decibel) {
@@ -99,5 +99,5 @@ public class RobotDTO {
 	}
 	public void setHumidity(int humidity) {
 		this.humidity = humidity;
-	}*/
+	}
 }

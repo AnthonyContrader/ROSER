@@ -8,9 +8,10 @@ public class Robot {
 	private String robotName;
 	private String robotSurname;
 	private String password;
-	/*private int decibel;
+	private int decibel;
 	private int faceexpress;
-	private int humidity;*/
+	private int humidity;
+	private String data;
 	
 	public Robot(String robotName, String robotSurname, String password, String robotModel, String robotOwnerName, String robotOwnerSurname) {
 		this.robotName = robotName;
@@ -80,22 +81,35 @@ public class Robot {
 		this.password = password;
 	}
 	
-	/*public int getDecibel() {
+	public int getDecibel() {
 		return decibel;
 	}
+	
 	public void setDecibel(int decibel) {
 		this.decibel = decibel;
 	}
+	
 	public int getFaceexpress() {
 		return faceexpress;
 	}
+	
 	public void setFaceexpress(int faceexpress) {
 		this.faceexpress = faceexpress;
 	}
+	
 	public int getHumidity() {
 		return humidity;
 	}
+	
 	public void setHumidity(int humidity) {
 		this.humidity = humidity;
-	}*/
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
 }

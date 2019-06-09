@@ -202,8 +202,8 @@ public class RobotDAO {
 		}
 	}
 
-	/*public String[] readlog(Robot robot) {
-		List<String[]> data = new ArrayList<String[]>();
+	public Robot readlog(Robot robot, String data) {
+		Robot robotWithData = robot;
 		
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
@@ -213,31 +213,34 @@ public class RobotDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			
-			data[0]
+			robotWithData.setDecibel(Integer.parseInt(resultSet.getString("deciblel")));
+			robotWithData.setFaceexpress(Integer.parseInt(resultSet.getString("deciblel")));
+			robotWithData.setHumidity(Integer.parseInt(resultSet.getString("deciblel")));
+			robotWithData.setData(data);
 			
-			return data;
+			return robotWithData;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
 			return null;
 		}
 	}
 	
-	public boolean insertData(String[] data, Robot robot) {
+	public boolean insertData(Robot robot) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT_LOG);
 			preparedStatement.setString(1, robot.getRobotModel());
 			preparedStatement.setString(2, robot.getRobotOwnerName());
 			preparedStatement.setString(3, robot.getRobotOwnerSurname());
-			preparedStatement.setString(4, data[0]);
-			preparedStatement.setString(5, data[1]);
-			preparedStatement.setString(6, data[2]);
-			preparedStatement.setString(7, data[3]);
+			preparedStatement.setString(4, Integer.toString(robot.getDecibel()));
+			preparedStatement.setString(5, Integer.toString(robot.getFaceexpress()));
+			preparedStatement.setString(6, Integer.toString(robot.getHumidity()));
+			preparedStatement.setString(7, robot.getData());
 			
 			return true;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
 			return false;
 		}
-	}*/
+	}
 }
