@@ -11,6 +11,7 @@ public class RobotDTO {
 	private int decibel;
 	private int faceexpress;
 	private int humidity;
+	private String data;
 	
 	public RobotDTO() {}
 	
@@ -99,5 +100,18 @@ public class RobotDTO {
 	}
 	public void setHumidity(int humidity) {
 		this.humidity = humidity;
+	}
+	
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	@Override
+	public String toString() {
+		return "Modello: " + this.getRobotModel() +"\n Decibel: " + this.getDecibel() + "\n Face: " + this.getFaceexpress() + "\n Humidity: " + this.getHumidity() + "\n Data: " + this.getData();
 	}
 }

@@ -112,4 +112,9 @@ public class Robot {
 	public void setData(String data) {
 		this.data = data;
 	}
+	
+	@Override
+	public String toString() {
+		return "Modello: " + this.getRobotModel() +"\n Decibel: " + this.getDecibel() + "\n Face: " + this.getFaceexpress() + "\n Humidity: " + this.getHumidity() + "\n Data: " + this.getData();
+	}
 }

@@ -26,7 +26,7 @@ public class RobotDAO {
 	private final String QUERY_DISMATCH ="UPDATE robot SET robot_owner_name=' ', robot_owner_surname=' ' WHERE robot_model=?";
 	
 	private final String QUERY_READ_LOG = "SELECT * FROM sensordata WHERE robot_model = ?";
-	private final String QUERY_INSERT_LOG = "INSER INTO (robot_model,patient_name,patientsurname,decibel,face_express,humidity,data_date) VALUE (?,?,?,?,?,?,?)";
+	private final String QUERY_INSERT_LOG = "INSERT INTO sensordata (robot_model,patient_name,patient_surname,decibel,face_express,humidity,data_date) VALUE (?,?,?,?,?,?,?)";
 	
 	public List<Robot> getAllRobot() {
 
@@ -228,6 +228,13 @@ public class RobotDAO {
 	public boolean insertData(Robot robot) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
+			System.out.println("Stampe DAO: \n Model:" + robot.getRobotModel() +
+							"\nOwner Name: " + robot.getRobotOwnerName() + 
+							"\nOwner Surname" + robot.getRobotOwnerSurname() +
+							"\nDecibel: " + robot.getDecibel() + 
+							"\nFace: " + robot.getFaceexpress() + 
+							"\nHumidity: " + robot.getHumidity() +
+							"\nData: " + robot.getData());
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT_LOG);
 			preparedStatement.setString(1, robot.getRobotModel());
 			preparedStatement.setString(2, robot.getRobotOwnerName());
@@ -236,6 +243,8 @@ public class RobotDAO {
 			preparedStatement.setString(5, Integer.toString(robot.getFaceexpress()));
 			preparedStatement.setString(6, Integer.toString(robot.getHumidity()));
 			preparedStatement.setString(7, robot.getData());
+			
+			preparedStatement.execute();
 			
 			return true;
 		} catch (SQLException e) {

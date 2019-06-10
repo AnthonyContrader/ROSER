@@ -50,12 +50,12 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>Robot</display-name>
-    <servlet-name>Robot</servlet-name>
-    <servlet-class>it.contrader.servlets.robot.Robot</servlet-class>
+    <display-name>RobotServlet</display-name>
+    <servlet-name>RobotServlet</servlet-name>
+    <servlet-class>it.contrader.servlets.robot.RobotServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Robot</servlet-name>
-    <url-pattern>/Robot</url-pattern>
+    <servlet-name>RobotServlet</servlet-name>
+    <url-pattern>/RobotServlet</url-pattern>
   </servlet-mapping>
 </web-app>

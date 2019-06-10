@@ -9,7 +9,7 @@
 <body>
 <h1>Welcome: ${utente}</h1>  <!-- variabile che avrà la stessa dell'etichetta impostata sul servlet -->
 	<h2>------- MENU PRINCIPALE -------</h2>
-	<a href="UsersManagementServlet?richiesta=ReadParameter">Read parameter</a>
+	<a href="RobotServlet?richiesta=ReadParameter&robot=${utente}">Read parameter</a>
 	<br>
 	<br>
 	<br>

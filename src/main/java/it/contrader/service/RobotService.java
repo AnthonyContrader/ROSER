@@ -62,4 +62,12 @@ public class RobotService {
 	public RobotDTO readRobot(String robotModel) {
 		return RobotConverter.toDTO(this.robotDAO.readRobot(robotModel));
 	}
+	
+	public boolean insertData(RobotDTO robotDTO) {
+		return this.robotDAO.insertData(RobotConverter.toEntity(robotDTO));
+	}
+	
+	public Robot readlog(RobotDTO robotDTO, String data) {
+		return this.robotDAO.readlog(RobotConverter.toEntity(robotDTO), data);
+	}
 }

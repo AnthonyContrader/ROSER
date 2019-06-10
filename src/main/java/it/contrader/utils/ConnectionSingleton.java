@@ -26,7 +26,7 @@ public class ConnectionSingleton {
                 String port="3306";
                 String dbName="contrader_java_roser";
                 String username="root";
-                String password ="root";
+                String password ="roser";
                 Class c = Class.forName(driver);
                 System.out.println("Ho caricato: " + dbName);
                 String myUrl = "jdbc:" + vendor + "://" + host + ":" + port + "/" + dbName;

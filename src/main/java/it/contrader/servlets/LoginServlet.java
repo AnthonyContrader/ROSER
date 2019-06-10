@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 			final UsersDTO usersDTO = usersService.getUserByUsernameAndPasword(nomeUtente, password);
 			try {
 				if (usersDTO != null)
-					session.setAttribute("utente", usersDTO.getUserName());
+					session.setAttribute("utente", usersDTO.getUserUser());
 			
 				//In base al parametro dello switch aprira una pagina dedicata
 				switch (usersDTO.getUserType()) {
