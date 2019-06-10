@@ -27,13 +27,28 @@ public class RobotServlet extends HttpServlet {
 			case "ReadParameter":
 				String robotModel= request.getParameter("robot");
 				robot = robotService.readRobot(robotModel);
-				robot.setDecibel(getValue());
-				robot.setFaceexpress(getValue());
-				robot.setHumidity(getValue());
-				robot.setData(getData());
+				
+				int decibel = getValue();
+				robot.setDecibel(decibel);
+				
+				int faceExpress = getValue();
+				System.out.println("Ho prelevato: " + faceExpress +" come valore face");
+				robot.setFaceexpress(faceExpress);
+				
+				int humidity = getValue();
+				robot.setHumidity(humidity);
+				
+				String data = getData();
+				robot.setData(data);
 				robotService.insertData(robot);
+				
+				int media = (decibel+humidity+faceExpress)/3;
+				
+				String url = getUrl(media);
+				
+				request.setAttribute("url", url);
+				getServletContext().getRequestDispatcher("/postInsertData.jsp").forward(request, response);
 				break;
-				//robot_model,patient_name,patientsurname,decibel,face_express,humidity,data_date
 		}
 	}
 	
@@ -42,7 +57,7 @@ public class RobotServlet extends HttpServlet {
 	
 	public int getValue() {
 		Random r = new Random();
-		return r.nextInt(9);
+		return r.nextInt(9)+1;
 	}
 	
 	public String getData() {
@@ -51,5 +66,17 @@ public class RobotServlet extends HttpServlet {
 		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		dataStr = format.format(data);
 		return dataStr;
+	}
+	
+	public String getUrl(int media) {
+		String url = "";
+		if(media>0 && media<4) {
+			url = "src/sadDog.png";
+		}else if(media>3 && media<7) {
+			url = "src/ThinkingDog.png";
+		}else if(media>6 && media<11) {
+			url = "src/HappyDog.png";
+		}
+		return url;
 	}
 }
