@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.lang.Nullable;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,24 +18,32 @@ import lombok.NoArgsConstructor;
 public class User {
 
 	@Id
-	@Column(name = "idUser")
+	@Column(name = "userId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idUser;
+	private Integer userId;	
 
-	@Column(name = "username")
+	@Column(name = "userName")
 	@NotNull
-	private String username;
+	private String userName;
 
-	@Column(name = "password")
+	@Column(name = "userPass")
 	@NotNull
-	private String password;
+	private String userPass;
 
+	@Column(name = "userUser")
 	@NotNull
-	@Column(name = "ruolo")
-	private String ruolo;
-
-	@Nullable
-	@Column(name = "email")
-	private String email;
+	private String userUser;
+	
+	@Column(name = "userType")
+	@NotNull
+	private String userType;
+	
+	@Column(name = "userSurname")
+	@NotNull
+	private String userSurname;
+	
+	@Column(name = "userState")
+	@NotNull
+	private boolean userState;
 
 }

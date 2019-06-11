@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@	page import="it.contrader.dto.UserDTO"%>
 
 <html lang="en">
 <head>
@@ -16,18 +17,22 @@
 
 <!-- Custom styles for this template -->
 <link href="/css/navbar.css" rel="stylesheet">
+
 </head>
 
 <body>
+<div>
+<h2>WELCOME ${utenteCollegato}</h2>
+
+</div>
 <nav class='navbar navbar-inverse'>
      <div class='container-fluid'>
          <ul class='nav navbar-nav navbar-inverse navbar-custom'>
-            <li><a href="/Home/userManagement/">User</a></li>
-            <li><a href="/Home/chatManagement/">Chatbot</a></li>
+            <li><a href="/Home/userManagement/">Doctor Managment</a></li>
+            <li><a href="/Home/chatManagement/">Devices Managment</a></li>
             <li><a href="/Home/logout/">Logout</a></li>
          </ul>
     </div>
 </nav>
-<h1>Progetto METABOT</h1>
 </body>
 </html>

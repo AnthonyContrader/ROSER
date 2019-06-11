@@ -1,5 +1,6 @@
 package it.contrader.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,8 +33,17 @@ public class HomeController {
 	@RequestMapping(value = "/userManagement", method = RequestMethod.GET)
 	public String userManagement(HttpServletRequest request) {
 		List<UserDTO> allUser = this.userService.getListaUserDTO();
-		request.setAttribute("allUserDTO", allUser);
-		return "homeUser";
+		List<UserDTO> tmpUsers = new ArrayList<>();
+		
+		for(UserDTO user: allUser)
+		{
+			if(user.getUserType().equals("doctor"))
+				tmpUsers.add(user);
+			
+		}
+		
+		request.setAttribute("user", tmpUsers);
+		return "doctorManagment";
 
 	}
 

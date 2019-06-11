@@ -74,9 +74,9 @@ public class UserController {
 		String password = request.getParameter("password").toString();
 		String ruolo = request.getParameter("ruolo").toString();
 
-		UserDTO userObj = new UserDTO(0, username, password, ruolo,"");
+	//	UserDTO userObj = new UserDTO(0, username, password, ruolo,"");
 		
-		userService.insertUser(userObj);
+	//	userService.insertUser(userObj);
 
 		visualUser(request);
 		return "homeUser";
@@ -89,14 +89,31 @@ public class UserController {
 		final String username = request.getParameter("username");
 		final String password = request.getParameter("password");
 		final UserDTO userDTO = userService.getByUsernameAndPassword(username, password);
-		final String ruolo = userDTO.getRuolo();
+		final String ruolo = userDTO.getUserType();
+		
 		if (!StringUtils.isEmpty(ruolo)) {
-			session.setAttribute("utenteCollegato", userDTO);
-			if (ruolo.equals("ADMIN")) {
+			//session.setAttribute("utenteCollegato", userDTO);
+			
+			switch (ruolo)
+			{
+			case "admin":
+				session.setAttribute("utenteCollegato", userDTO.getUserUser());
+				System.out.println(userDTO.getUserUser());
+				return "home";
+				
+			case "user":
+				return "homeUser";
+				
+			case "doctor":
+				return "homeDoctor";
+				
+				default: return "index";
+			}
+			/*if (ruolo.equals("admin")) {
 				return "home";
 			} else if (ruolo.equals("CHATMASTER")) {
 				return "home";
-			}
+			}*/
 		}
 		return "index";
 	}
