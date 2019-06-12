@@ -28,8 +28,8 @@
 <nav class='navbar navbar-inverse'>
      <div class='container-fluid'>
          <ul class='nav navbar-nav navbar-inverse navbar-custom'>
-            <li><a href="/Home/userManagement/">Doctor Managment</a></li>
-            <li><a href="/Home/chatManagement/">Devices Managment</a></li>
+            <li><a href="/Home/doctorManagement/">Doctor Managment</a></li>
+            <li><a href="/Home/devicesManagement/">Devices Managment</a></li>
             <li><a href="/Home/logout/">Logout</a></li>
          </ul>
     </div>

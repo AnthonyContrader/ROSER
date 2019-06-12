@@ -99,7 +99,7 @@ public class UserController {
 			case "admin":
 				session.setAttribute("utenteCollegato", userDTO.getUserUser());
 				System.out.println(userDTO.getUserUser());
-				return "home";
+				return "homeAdmin";
 				
 			case "user":
 				return "homeUser";

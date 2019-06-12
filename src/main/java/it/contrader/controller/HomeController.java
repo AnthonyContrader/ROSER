@@ -24,28 +24,27 @@ public class HomeController {
 		this.userService = userService;
 	}
 
-	@RequestMapping(value = "/chatManagement", method = RequestMethod.GET)
-	public String chatManagement(HttpServletRequest request) {
-		return "homeChatbot";
-
-	}
-
-	@RequestMapping(value = "/userManagement", method = RequestMethod.GET)
+	@RequestMapping(value = "/doctorManagement", method = RequestMethod.GET)
 	public String userManagement(HttpServletRequest request) {
-		List<UserDTO> allUser = this.userService.getListaUserDTO();
-		List<UserDTO> tmpUsers = new ArrayList<>();
+		List<UserDTO> tmpUser = this.userService.getListaUserDTO();
+		List<UserDTO> doctorList = new ArrayList<>();
 		
-		for(UserDTO user: allUser)
+		for(UserDTO user: tmpUser)
 		{
 			if(user.getUserType().equals("doctor"))
-				tmpUsers.add(user);
-			
+				doctorList.add(user);
 		}
 		
-		request.setAttribute("user", tmpUsers);
+		request.setAttribute("user", doctorList);
 		return "doctorManagment";
 
 	}
+	
+	/*@RequestMapping(value = "/devicesManagement", method = RequestMethod.GET)
+	public String devicesManagement(HttpServletRequest request) {
+		return "devicesManagement";
+
+	}*/
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request) {
