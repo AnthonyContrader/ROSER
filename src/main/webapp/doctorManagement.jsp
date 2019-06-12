@@ -26,7 +26,7 @@
 		 		<td><%=user.getUserType()%></td>
 		 		<td><%=user.isUserState()%></td>
 		 		<td><a href="/Admin/deleteDoctor?id=<%=user.getUserId() %>">Delete</a></td>
-		 		<td><a href="UsersManagementServlet?richiesta=UpdateRedirect&id=<%=user.getUserId()%>">Update</a></td>
+		 		<td><a href="/Admin/redirectUpdate?id=<%=user.getUserId()%>">Update</a></td>
 		 	</tr>
 		<% 
 			}
@@ -36,6 +36,6 @@
 	<br>
 	<br>
 	
-	<a href="homeAdmin">Back</a>
+	<input type="button" value="BACK" onclick="history.go(-1)"></input>
 </body>
 </html>

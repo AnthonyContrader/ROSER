@@ -28,6 +28,6 @@
 		<button class="btn btn-primary btn-lg btn-block" type="submit">Insert</button>
 	</form>
 	
-	<a href="DoctorManagementServlet?richiesta=DoctorManager">Back</a>
+	<a href="/Admin/doctorManagement">Back</a>
 </body>
 </html>

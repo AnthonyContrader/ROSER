@@ -25,6 +25,7 @@ public class UserController {
 		this.userService = userService;
 	}
 	
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginControl(HttpServletRequest request) {
 

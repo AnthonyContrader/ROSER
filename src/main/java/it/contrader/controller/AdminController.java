@@ -37,6 +37,59 @@ public class AdminController {
 		return "doctorManagement";
 	}
 	
+	@RequestMapping(value ="/home", method = RequestMethod.GET)
+	public String home(HttpServletRequest request) {
+		
+		return "homeAdmin";
+	}
+	
+	/*
+	 * 
+	 * final int idUpd = Integer.parseInt(request.getParameter("id"));
+			final String nameUpdate = request.getParameter("name");
+			final String surnameUpdate = request.getParameter("surname");
+			final String usernameUpdate = request.getParameter("username");
+			final String passwordUpdate = request.getParameter("password");
+			final String type = request.getParameter("type");
+			final boolean state = Boolean.parseBoolean(request.getParameter("state"));
+			
+			final DoctorDTO doctor = new DoctorDTO(nameUpdate,surnameUpdate,usernameUpdate,passwordUpdate,type,state);
+			doctor.setDoctorId(idUpd);
+				
+			adminServiceDTO.updateDoctor(doctor);
+			showAllDoctor(request, response);
+	 */
+	
+	@RequestMapping(value = "/updateDoctor", method = RequestMethod.POST)
+	public String updateUser(HttpServletRequest request)
+	{
+		int idUpd = Integer.parseInt(request.getParameter("id"));
+		String nameUpdate = request.getParameter("name");
+		String surnameUpdate = request.getParameter("surname");
+		String usernameUpdate = request.getParameter("username");
+		String passwordUpdate = request.getParameter("password");
+		//String type = request.getParameter("type");
+		boolean state = Boolean.parseBoolean(request.getParameter("state"));
+		
+		final UserDTO doctor = new UserDTO(nameUpdate,passwordUpdate,usernameUpdate,"doctor",surnameUpdate,state);
+		doctor.setUserId(idUpd);
+		
+		userService.updateUser(doctor);
+		request.setAttribute("doctor", getDoctor());
+		return "doctorManagement";	
+		
+	}
+	
+	@RequestMapping(value = "/redirectUpdate", method = RequestMethod.GET)
+	public String redirectUpdate(HttpServletRequest request) {
+		int idDoctor = Integer.parseInt(request.getParameter("id"));
+		
+		UserDTO doctor = userService.getUserDTOById(idDoctor);
+		
+		request.setAttribute("doctor", doctor);
+		return "updateDoctor";
+	}
+	
 	@RequestMapping(value = "/insertDoctor", method = RequestMethod.POST)
 	public String insertDoctor(HttpServletRequest request) {
 		
