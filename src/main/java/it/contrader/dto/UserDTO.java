@@ -1,5 +1,8 @@
 package it.contrader.dto;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import it.contrader.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +26,15 @@ public class UserDTO {
 	
 	private boolean userState;
 
+	@Autowired
+	public UserDTO(String userName, String userPass, String userUser, String userType, String userSurname, boolean userState) {
+		this.userName = userName;
+		this.userPass = userPass;
+		this.userUser = userUser;
+		this.userType = userType;
+		this.userSurname = userSurname;
+		this.userState = userState;
+	}
 	
 }
 

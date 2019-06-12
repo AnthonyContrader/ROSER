@@ -32,10 +32,10 @@
 			}
 		%>
 	</table>
-	<a href="insertUser.jsp">Insert Patient</a>
+	<a href="/insertDoctor.jsp/">Insert Doctor</a>
 	<br>
 	<br>
 	
-	<a href="homeDoctor.jsp">Back</a>
+	<a href="homeAdmin">Back</a>
 </body>
 </html>

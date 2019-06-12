@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import it.contrader.dao.UserRepository;
 import it.contrader.dto.UserDTO;
 import it.contrader.services.UserService;
 
@@ -43,5 +42,28 @@ public class DoctorController {
 		request.setAttribute("user", tmpUsers);
 		return "doctorManagment";
 	}
+	
+	
+	@RequestMapping(value = "/insert", method = RequestMethod.GET)
+	public String insert(HttpServletRequest request) {
+		String nameInsert = request.getParameter("user_name");
+		String surnameInsert = request.getParameter("user_surname");
+		String userNameInsert = request.getParameter("user_user");
+		String passwordInsert = request.getParameter("user_pass");
+		UserDTO doctorToInsert = new UserDTO(nameInsert,surnameInsert,userNameInsert,passwordInsert,"doctor",true);
+		userService.insertUser(doctorToInsert);
+		List<UserDTO> allUser = this.userService.getListaUserDTO();
+		List<UserDTO> tmpUsers = new ArrayList<>();
+		
+		for(UserDTO user: allUser)
+		{
+			if(user.getUserType().equals("doctor"))
+				tmpUsers.add(user);
+		}
+		
+		request.setAttribute("user", tmpUsers);
+		return "doctorManagment";
+	}
+	
 	
 }

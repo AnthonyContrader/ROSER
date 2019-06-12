@@ -36,7 +36,7 @@ public class HomeController {
 		}
 		
 		request.setAttribute("user", doctorList);
-		return "doctorManagment";
+		return "doctorManagement";
 
 	}
 	
