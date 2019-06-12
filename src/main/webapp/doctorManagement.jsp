@@ -8,7 +8,7 @@
 <meta charset="ISO-8859-1">
 <title>Doctor Management</title>
 	<%
-		List<UserDTO> listUser = (List<UserDTO>) request.getAttribute("user");
+		List<UserDTO> listUser = (List<UserDTO>) request.getAttribute("doctor");
 	 %>
 </head>
 <body>
@@ -25,7 +25,7 @@
 		 		<td><%=user.getUserPass()%></td>
 		 		<td><%=user.getUserType()%></td>
 		 		<td><%=user.isUserState()%></td>
-		 		<td><a href="/Doctor/delete?id=<%=user.getUserId() %>">Delete</a></td>
+		 		<td><a href="/Admin/deleteDoctor?id=<%=user.getUserId() %>">Delete</a></td>
 		 		<td><a href="UsersManagementServlet?richiesta=UpdateRedirect&id=<%=user.getUserId()%>">Update</a></td>
 		 	</tr>
 		<% 

@@ -7,7 +7,7 @@
 <body>
 	<h2>----- INSERT DOCTOR -----</h2>
 	
-	<form class="insert-form" action="/Doctor/insert" method="post">
+	<form class="insert-form" action="/Admin/insertDoctor" method="post">
 		<table>
 			<tr>
 				<td>Name</td><td><input type="text" name="user_name" placeholder="name"></td>

@@ -34,7 +34,6 @@
 		
 	<div class="col-sm-6">
 	<form class="login-form" action="/User/login" method="post">
-	
 		<div class="login-wrap">
 					<p class="login-img"><i class="icon_lock_alt"></i></p>
 					<div class="input-group">

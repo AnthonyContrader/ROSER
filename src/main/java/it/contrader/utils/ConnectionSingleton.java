@@ -21,11 +21,11 @@ public class ConnectionSingleton {
              Properties properties = new Properties();
               String vendor="mysql";
               String driver="com.mysql.jdbc.Driver";
-              String host="127.0.0.1";
+              String host="localhost";
               String port="3306";
               String dbName="roser_spring";
               String username="root";
-              String password ="roser";
+              String password ="root";
               Class c = Class.forName(driver);
               System.out.println("Ho caricato: " + c.getName());
               String myUrl = "jdbc:" + vendor + "://" + host + ":" + port + "/" + dbName;

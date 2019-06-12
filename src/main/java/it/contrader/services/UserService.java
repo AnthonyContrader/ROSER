@@ -20,7 +20,7 @@ public class UserService {
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
-
+	
 	public List<UserDTO> getListaUserDTO() {
 		return ConverterUser.toListDTO((List<User>) userRepository.findAll());
 	}
