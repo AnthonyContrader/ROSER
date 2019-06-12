@@ -18,7 +18,8 @@ body {
 
     background: #eeeeee;
 
-    font-family: 'Lato', sans-serif;
+	font-family: "Long Shot";
+    /*font-family: 'Lato', sans-serif;*/
 
     padding: 0px !important;
 
@@ -987,7 +988,6 @@ ul.sidebar-menu li.active a i {
     min-height: 60px;
 
     padding: 0 15px;
-
 }
 
 .box1 {
@@ -1015,8 +1015,6 @@ ul.sidebar-menu li.active a i {
     z-index: 1002;
 
 }
-
-
 
 .white-bg {
 
@@ -9908,4 +9906,12 @@ span.customSelect.changed {
 
 #sendmessage.show, #errormessage.show, .show {
 	display:block;
+}
+
+
+/* personali */
+
+.titolo{
+	color: #ffffff;
+	font-size :40px;
 }

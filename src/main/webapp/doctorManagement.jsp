@@ -35,7 +35,6 @@
 	<a href="/insertDoctor.jsp/">Insert Doctor</a>
 	<br>
 	<br>
-	
-	<input type="button" value="BACK" onclick="history.go(-1)"></input>
+	<a href="/homeAdmin.jsp">Back</a>
 </body>
 </html>

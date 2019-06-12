@@ -27,12 +27,15 @@
 
 <body  class="login-img3-body">
   <div class="container"> <!-- Container generale della pagina-->
+  	<div class="col">
+  	</div>
 	<div class="row">     <!-- Container oer creare la griglia a colonne -->
-		<div class="col-sm-6 login-logo">  <!-- Container per la prima colonna la proprieta: col-sm-(x) {x=12/numero colonne previste} -->
-				<img src="img/logo_bianco.svg">
-		</div>
 		
-	<div class="col-sm-6">
+		<div class="col-lg-6 login-logo titolo">  <!-- Container per la prima colonna la proprieta: col-sm-(x) {x=12/numero colonne previste} -->
+				<img src="img/logo_bianco.svg">
+  					ROSER
+		</div>
+	<div class="col-lg-6">
 	<form class="login-form" action="/User/login" method="post">
 		<div class="login-wrap">
 					<p class="login-img"><i class="icon_lock_alt"></i></p>
