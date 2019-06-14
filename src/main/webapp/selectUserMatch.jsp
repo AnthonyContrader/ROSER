@@ -1,17 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert doctor</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@	page import="it.contrader.dto.UserDTO"%>
+<%@ page import="it.contrader.dto.RobotDTO" %>
+<%@ page import="java.util.List" %>
 
+<html lang="en">
+<head>
+
+<% 
+	List<UserDTO> listUser = (List<UserDTO>) request.getAttribute("userlist");
+	RobotDTO robot = (RobotDTO) request.getAttribute("robot");
+%>
 <meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Home Robot</title>
+ <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
   <meta name="author" content="GeeksLabs">
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Insert Doctor</title>
+  <title>Creative - Bootstrap Admin Template</title>
 
   <!-- Bootstrap CSS -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -43,8 +57,9 @@
     Author URL: https://bootstrapmade.com
   ======================================================= -->
 </head>
+
 <body>
-	  <!-- container section start -->
+ <!-- container section start -->
   <section id="container" class="">
 
 
@@ -86,21 +101,21 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
           <li class="sub-menu">
-            <a class="" href="/homeAdmin.jsp">
+            <a class="" href="/homeDoctor.jsp">
                           <i class="icon_house_alt"></i>
                           <span>Dashboard</span>
                       </a>
           </li>
-          <li class="active">
-            <a href="/Admin/doctorManagement" class="">
+          <li class="sub-menu">
+            <a href="/Doctor/userManagement" class="">
                           <i class="icon_document_alt"></i>
-                          <span>Doctor Management</span>
+                          <span>User Management</span>
                       </a>
           </li>
-          <li class="sub-menu">
-            <a href="/Admin/devicesManagement" class="">
+          <li class="active">
+            <a href="/Doctor/matchRobotRedirect" class="">
                           <i class="icon_desktop"></i>
-                          <span>Robot management</span>
+                          <span>Match robot</span>
                       </a>
           </li>
         </ul>
@@ -109,44 +124,37 @@
     </aside>
     <!--sidebar end-->
 
+
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
         <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> Doctor Update</h3>
+            <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i>Home</a></li>
-              <li><i class="fa fa-laptop"></i>Doctor Update</li>
+              <li><i class="fa fa-home"></i><a href="#">Home</a></li>
+              <li><i class="fa fa-laptop"></i>Dashboard</li>
             </ol>
           </div>
         </div>
         
         <div class="row">
         	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        		<form class="table" action="/Admin/insertDoctor" method="post">
-		<table>
-			<tr>
-				<td>Name</td><td><input type="text" name="user_name" placeholder="name"></td>
-			</tr>
-			
-			<tr>
-				<td>Surname</td><td><input type="text" name="user_surname" placeholder="surname"></td>
-			</tr>
-			
-			<tr>
-				<td>UserName</td><td><input type="text" name="user_user" placeholder="username"></td>
-			</tr>
-			
-			<tr>
-				<td>Password</td><td><input type="password" name="user_pass" placeholder="password"></td>
-			</tr>
-		</table>
-		<button class="btn btn-primary btn-lg btn-block" type="submit">Insert</button>
-	</form>
-	
-	<a class="btn btn-primary btn-lg btn-block" href="/Admin/doctorManagement">Back</a>
+        		<table class="table">
+        			<tr><th>Name</th><th>Surname</th></tr>
+            		<% 
+            			for(UserDTO user: listUser){
+            		%>
+            			<tr>
+            				<td><%=user.getUserName() %></td>
+            				<td><%=user.getUserSurname() %></td>
+            				<td><a  class="btn btn-primary btn-lg btn-block" href="/Doctor/matchRobot?user=<%=user.getUserId() %>&robot=<%=robot.getRobotModel() %>">Match</a></td>
+            			</tr>
+            		<%
+            			}
+            		%>
+            	</table>
             </div>
         </div>
 

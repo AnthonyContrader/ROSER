@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.contrader.converter.ConverterRobot;
+import it.contrader.converter.ConverterUser;
 import it.contrader.dao.RobotRepository;
 import it.contrader.dto.RobotDTO;
+import it.contrader.dto.UserDTO;
 import it.contrader.model.Robot;
+import it.contrader.model.User;
 
 @Service
 public class RobotService {
@@ -21,12 +24,24 @@ public class RobotService {
 		this.robotRepository = robotRepository;
 	}
 	
+	public List<RobotDTO> getAllRobotDTO() {
+		return ConverterRobot.toListDTO((List<Robot>) robotRepository.findAll());
+	}
+	
+	public RobotDTO save(RobotDTO robotDTO) {
+		return ConverterRobot.toDTO(robotRepository.save(ConverterRobot.toEntity(robotDTO)));
+	}
+	
 	/*public List<RobotDTO> getListaRobotDTO() {
 		return ConverterRobot.toListDTO((List<Robot>) robotRepository.findAll());
 	}*/
 	
 	public RobotDTO readRobot(String robotModel) {
 		return ConverterRobot.toDTO(this.robotRepository.findRobotByRobotModel(robotModel));
+	}
+	
+	public void disMatchRobot(int idRobot) {
+		robotRepository.disMatch(idRobot);
 	}
 
 	/*public UserDTO getUserDTOById(Integer id) {

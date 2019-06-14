@@ -18,8 +18,7 @@ body {
 
     background: #eeeeee;
 
-	font-family: "Long Shot";
-    /*font-family: 'Lato', sans-serif;*/
+    font-family: 'Roboto';
 
     padding: 0px !important;
 
@@ -187,16 +186,15 @@ table tr th { color: #688a7e;}
 
     max-width: 350px;
 
-    margin: 200px auto 0;
+    margin: 150px auto 0;
 
     background: #d5d7de;
 
 }
 
 .login-logo{
-	max-width: 350px;
 
-    margin: 200px auto 0;
+    margin: 50px auto 0;
 }
 
 .login-img-body .login-form{
@@ -523,7 +521,7 @@ table tr th { color: #688a7e;}
 
     position: fixed;
 
-    background: #ef5050;
+    background: #012E4C;
 
 }
 
@@ -625,7 +623,7 @@ ul.sidebar-menu li ul.sub li a {
 
 ul.sidebar-menu li ul.sub li a:hover, ul.sidebar-menu li ul.sub li.active a {
 
-    color: #000000;
+    color: #FBB03B;
 
     -webkit-transition: all 0.3s ease;
 
@@ -683,7 +681,7 @@ ul.sidebar-menu li a span{
 
 ul.sidebar-menu li a{
 
-    color: #000000;
+    color: #ffffff;
 
     text-decoration: none;
 
@@ -725,7 +723,7 @@ ul.sidebar-menu li.active a, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:fo
 
     background: #2e3b46;
 
-    color: #fff;
+    color: #FBB03B;
 
     display: block;
 
@@ -753,7 +751,7 @@ ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
 
 /*ul.sidebar-menu li.active a,*/ ul.sidebar-menu .sub-menu li.active a{
 
-    border-bottom: 1px solid #d0d8df;
+    border-bottom: 1px solid #ffffff;
 
 }
 
@@ -781,7 +779,7 @@ ul.sidebar-menu li a:hover i, ul.sidebar-menu li a:focus i {
 
 ul.sidebar-menu li.active a i {
 
-    color: #fff;
+    color: #FBB03B;
 
 }
 
@@ -988,6 +986,7 @@ ul.sidebar-menu li.active a i {
     min-height: 60px;
 
     padding: 0 15px;
+
 }
 
 .box1 {
@@ -1015,6 +1014,8 @@ ul.sidebar-menu li.active a i {
     z-index: 1002;
 
 }
+
+
 
 .white-bg {
 
@@ -9908,10 +9909,8 @@ span.customSelect.changed {
 	display:block;
 }
 
-
-/* personali */
-
-.titolo{
-	color: #ffffff;
-	font-size :40px;
+/* personalizzate */
+.vl {
+  border-left: 6px solid white;
+  height: 500px;
 }
