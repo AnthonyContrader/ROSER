@@ -29,8 +29,8 @@
      <div class='container-fluid'>
          <ul class='nav navbar-nav navbar-inverse navbar-custom'>
             <li><a href="/Admin/doctorManagement/">Doctor Managment</a></li>
-            <li><a href="/Home/devicesManagement/">Devices Managment</a></li>
-            <li><a href="/Home/logout/">Logout</a></li>
+            <li><a href="/Admin/devicesManagement/?robot=${utenteCollegato}">Devices Managment</a></li>
+            <li><a href="/Admin/logout/">Logout</a></li>
          </ul>
     </div>
 </nav>
