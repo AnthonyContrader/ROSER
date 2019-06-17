@@ -1,2 +1,2 @@
-# ROSER
-Roser project
+# SAMPLE
+Sample Projects
