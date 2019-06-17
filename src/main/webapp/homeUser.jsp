@@ -1,18 +1,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@	page import="it.contrader.dto.UserDTO"%>
-<!DOCTYPE html>
-<html lang="en">
 
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Home User</title>
+ <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
   <meta name="author" content="GeeksLabs">
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Home - DOCTOR</title>
+  <title>Creative - Bootstrap Admin Template</title>
 
   <!-- Bootstrap CSS -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +50,7 @@
 </head>
 
 <body>
-  <!-- container section start -->
+ <!-- container section start -->
   <section id="container" class="">
 
 
@@ -88,27 +92,9 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
           <li class="active">
-            <a class="" href="/homeDoctor.jsp">
+            <a class="" href="#">
                           <i class="icon_house_alt"></i>
                           <span>Dashboard</span>
-                      </a>
-          </li>
-          <li class="sub-menu">
-            <a href="/Doctor/userManagement" class="">
-                          <i class="icon_document_alt"></i>
-                          <span>User Management</span>
-                      </a>
-          </li>
-          <li class="sub-menu">
-            <a href="/Doctor/matchRobotRedirect" class="">
-                          <i class="icon_desktop"></i>
-                          <span>Match Robot</span>
-                      </a>
-          </li>
-           <li class="sub-menu">
-            <a href="/Doctor/userTherapy" class="">
-                          <i class="icon_desktop"></i>
-                          <span>User Therapy</span>
                       </a>
           </li>
         </ul>
@@ -125,19 +111,14 @@
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i>Home</a></li>
+              <li><i class="fa fa-home"></i><a href="#">Home</a></li>
               <li><i class="fa fa-laptop"></i>Dashboard</li>
             </ol>
           </div>
         </div>
         
         <div class="row">
-        	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            	<div class="info-box blue-bg">
-              		<i class="fa fa-cloud-download"></i>
-              		<div class="count">${patientnumber}</div>
-              		<div class="title">User</div>
-            	</div>
+        	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             </div>
         </div>
 
@@ -233,7 +214,5 @@
         });
       });
     </script>
-
 </body>
-
 </html>

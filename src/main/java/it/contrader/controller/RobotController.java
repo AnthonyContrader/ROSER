@@ -1,7 +1,6 @@
 package it.contrader.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -56,11 +55,8 @@ public class RobotController {
 	
 	@RequestMapping(value ="/showLog", method = RequestMethod.GET)
 	public String showLog(HttpServletRequest request) {
-		System.out.println("Sono qui");
 		String robotModel= request.getParameter("robot");
-		System.out.println("Il robot e': " + robotModel);
 		List<SensordataDTO> data = sensordataService.findDataByRobotModel(robotModel);
-		System.out.println("lista: " + data);
 		request.setAttribute("log", data);
 		return "showLog";
 	}

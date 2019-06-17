@@ -1,18 +1,23 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@	page import="it.contrader.dto.UserDTO"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ page import="it.contrader.dto.TherapyDTO" %>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="utf-8">
+<meta charset="ISO-8859-1">
+<title>THERAPY UPDATE</title>
+
+<%
+	TherapyDTO therapyUpdate = (TherapyDTO) request.getAttribute("therapy");
+%>
+<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
   <meta name="author" content="GeeksLabs">
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Home - DOCTOR</title>
+  <title>Therapy Update</title>
 
   <!-- Bootstrap CSS -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -44,9 +49,9 @@
     Author URL: https://bootstrapmade.com
   ======================================================= -->
 </head>
-
 <body>
-  <!-- container section start -->
+
+ <!-- container section start -->
   <section id="container" class="">
 
 
@@ -87,7 +92,7 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
-          <li class="active">
+          <li class="sub-menu">
             <a class="" href="/homeDoctor.jsp">
                           <i class="icon_house_alt"></i>
                           <span>Dashboard</span>
@@ -102,12 +107,12 @@
           <li class="sub-menu">
             <a href="/Doctor/matchRobotRedirect" class="">
                           <i class="icon_desktop"></i>
-                          <span>Match Robot</span>
+                          <span>Match robot</span>
                       </a>
           </li>
-           <li class="sub-menu">
+          <li class="active">
             <a href="/Doctor/userTherapy" class="">
-                          <i class="icon_desktop"></i>
+                          <i class="icon_document_alt"></i>
                           <span>User Therapy</span>
                       </a>
           </li>
@@ -123,21 +128,51 @@
         <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+            <h3 class="page-header"><i class="fa fa-laptop"></i> User Update</h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i>Home</a></li>
-              <li><i class="fa fa-laptop"></i>Dashboard</li>
+              <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+              <li><i class="fa fa-laptop"></i>Therapy Update</li>
             </ol>
           </div>
         </div>
         
         <div class="row">
-        	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            	<div class="info-box blue-bg">
-              		<i class="fa fa-cloud-download"></i>
-              		<div class="count">${patientnumber}</div>
-              		<div class="title">User</div>
-            	</div>
+        	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        		<form method="POST" action="/Doctor/updateTherapy">
+			<input type="hidden" name="therapyId" value="<%=therapyUpdate.getTherapyId()%>" />
+			<table class="table">
+
+			<tr>
+				<td><b>Medicines Type:</b></td>
+				<td> <input type="text" size="40" maxlength="40" name="medicinesType" value="<%=therapyUpdate.getMedicinesType()%>" /></td>
+			</tr>
+			<tr>
+				<td><b>Medicines Name:</b></td> 
+				<td> <input type="text" size="40" maxlength="40" name="medicinesName" value="<%=therapyUpdate.getMedicinesName()%>" /></td>
+			</tr>
+			<tr>
+				<td><b>Medicines Number:</b></td>
+				<td> <input type="text" size="40" maxlength="40" name="medicinesNumber" value="<%=therapyUpdate.getMedicinesNumber()%>" /></td>
+			</tr>
+			<tr>
+				<td><b>Start Date:</b></td>
+				<td> <input type="text" size="40" maxlength="40" name="startDate" value="<%=therapyUpdate.getStartDate()%>" /></td>
+			</tr>
+			<tr>
+				<td><b>End Date:</b></td>
+				<td> <input type="text" size="40" maxlength="40" name="endDate" value="<%=therapyUpdate.getEndDate()%>" /></td>
+			</tr>
+			</table>
+			<br>
+			<br>
+			<input class="btn btn-primary btn-lg btn-block" type="SUBMIT" value="Update">
+		
+
+			<br>
+			<br>
+			<a class="btn btn-primary btn-lg btn-block" href="/Doctor/userTherapy">Back</a>
+
+		</form>
             </div>
         </div>
 
@@ -234,6 +269,6 @@
       });
     </script>
 
-</body>
 
+</body>
 </html>

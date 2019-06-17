@@ -1,9 +1,11 @@
 package it.contrader.controller;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import it.contrader.dto.RobotDTO;
+import it.contrader.dto.TherapyDTO;
 import it.contrader.dto.UserDTO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.contrader.services.RobotService;
+import it.contrader.services.TherapyService;
 import it.contrader.services.UserService;
 
 @Controller
@@ -21,11 +24,13 @@ import it.contrader.services.UserService;
 public class DoctorController {
 	private final UserService userService;
 	private final RobotService robotService;
+	private final TherapyService therapyService;
 	
 	@Autowired
-	public DoctorController(UserService userService, RobotService robotService) {
+	public DoctorController(UserService userService, RobotService robotService, TherapyService therapyService) {
 		this.userService = userService;
 		this.robotService = robotService;
+		this.therapyService = therapyService;
 	}
 	
 	@RequestMapping(value = "/userManagement", method = RequestMethod.GET)
@@ -45,7 +50,7 @@ public class DoctorController {
 		robotDTO.setRobotOwnerName(userDTO.getUserName());
 		robotDTO.setRobotOwnerSurname(userDTO.getUserSurname());
 		
-		robotService.save(robotDTO);
+		robotService.insertRobot(robotDTO);
 		
 		request.setAttribute("listarobot", getRobot());
 		return "matchRobot";
@@ -73,7 +78,7 @@ public class DoctorController {
 		RobotDTO robotDTO = robotService.readRobot(robotModel);
 		robotDTO.setRobotOwnerName("");
 		robotDTO.setRobotOwnerSurname("");
-		robotService.save(robotDTO);
+		robotService.insertRobot(robotDTO);
 		request.setAttribute("listarobot", getRobot());
 		return "matchRobot";
 	}
@@ -133,6 +138,66 @@ public class DoctorController {
 		return "userManagement";		
 	}
 	
+	@RequestMapping(value = "/userTherapy", method = RequestMethod.GET)
+	public String userTherapy(HttpServletRequest request) {
+		request.setAttribute("therapy", getTherapy());
+		return "userTherapy";		
+	}
+	
+	@RequestMapping(value ="/deleteTherapy", method = RequestMethod.GET)
+	public String deleteTherapy(HttpServletRequest request) {
+		int idTherapy = Integer.parseInt(request.getParameter("id"));
+		therapyService.deleteTherapyById(idTherapy);
+		request.setAttribute("therapy", getTherapy());
+		return "userTherapy";
+	}
+	
+	@RequestMapping(value = "/insertTherapy", method = RequestMethod.POST)
+	public String insertTherapy(HttpServletRequest request) throws ParseException {
+		
+		String medicinesType = request.getParameter("medicinesType");
+		String medicinesName = request.getParameter("medicinesName");
+		int medicinesNumber = Integer.parseInt(request.getParameter("medicinesNumber"));
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
+
+		TherapyDTO therapyDTO = new TherapyDTO(medicinesType, medicinesName, medicinesNumber, startDate, endDate);
+		
+		therapyService.insertTherapy(therapyDTO);
+		
+		request.setAttribute("therapy", getTherapy());
+		
+		return "userTherapy";		
+	}
+	
+	@RequestMapping(value = "/updateTherapy", method = RequestMethod.POST)
+	public String updateTherapy(HttpServletRequest request) throws ParseException
+	{
+		int therapyId = Integer.parseInt(request.getParameter("therapyId"));
+		String medicinesType = request.getParameter("medicinesType");
+		String medicinesName = request.getParameter("medicinesName");
+		int medicinesNumber = Integer.parseInt(request.getParameter("medicinesNumber"));
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
+		
+		final TherapyDTO therapy = new TherapyDTO(therapyId, medicinesType, medicinesName, medicinesNumber, startDate, endDate);
+		therapy.setTherapyId(therapyId);
+		
+		therapyService.updateTherapy(therapy);
+		request.setAttribute("therapy", getTherapy());
+		return "userTherapy";		
+	}
+	
+	@RequestMapping(value = "/redirectUpdateTherapy", method = RequestMethod.GET)
+	public String redirectUpdateTherapy(HttpServletRequest request) {
+		int therapyId = Integer.parseInt(request.getParameter("id"));
+		
+		TherapyDTO therapy = therapyService.getTherapyDTOById(therapyId);
+		
+		request.setAttribute("therapy", therapy);
+		return "updateTherapy";
+	}
+	
 	public List<UserDTO> getUser() {
 		List<UserDTO> tmpList = userService.getListaUserDTO();
 		List<UserDTO> userList = new ArrayList<>();
@@ -148,4 +213,10 @@ public class DoctorController {
 		List<RobotDTO> robotList = robotService.getAllRobotDTO();
 		return robotList;
 	}
+	
+	public List<TherapyDTO> getTherapy(){
+		List<TherapyDTO> therapyList = therapyService.getAllTherapyDTO();
+		return therapyList;
+	}
+	
 }

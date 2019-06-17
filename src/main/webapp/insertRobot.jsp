@@ -91,13 +91,13 @@
                           <span>Dashboard</span>
                       </a>
           </li>
-          <li class="active">
+          <li class="sub-menu">
             <a href="/Admin/doctorManagement" class="">
                           <i class="icon_document_alt"></i>
                           <span>Doctor Management</span>
                       </a>
           </li>
-          <li class="sub-menu">
+          <li class="active">
             <a href="/Admin/devicesManagement" class="">
                           <i class="icon_desktop"></i>
                           <span>Robot management</span>

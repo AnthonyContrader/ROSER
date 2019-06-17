@@ -1,18 +1,16 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@	page import="it.contrader.dto.UserDTO"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="utf-8">
+<meta charset="ISO-8859-1">
+<title>Insert therapy</title>
+<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
   <meta name="author" content="GeeksLabs">
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Home - DOCTOR</title>
+  <title>Insert Therapy</title>
 
   <!-- Bootstrap CSS -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -44,9 +42,8 @@
     Author URL: https://bootstrapmade.com
   ======================================================= -->
 </head>
-
 <body>
-  <!-- container section start -->
+	  <!-- container section start -->
   <section id="container" class="">
 
 
@@ -87,7 +84,7 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
-          <li class="active">
+          <li class="sub-menu">
             <a class="" href="/homeDoctor.jsp">
                           <i class="icon_house_alt"></i>
                           <span>Dashboard</span>
@@ -105,9 +102,9 @@
                           <span>Match Robot</span>
                       </a>
           </li>
-           <li class="sub-menu">
+           <li class="active">
             <a href="/Doctor/userTherapy" class="">
-                          <i class="icon_desktop"></i>
+                          <i class="icon_document_alt"></i>
                           <span>User Therapy</span>
                       </a>
           </li>
@@ -123,21 +120,44 @@
         <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+            <h3 class="page-header"><i class="fa fa-laptop"></i> Insert Therapy</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i>Home</a></li>
-              <li><i class="fa fa-laptop"></i>Dashboard</li>
+              <li><i class="fa fa-laptop"></i>Insert Therapy</li>
             </ol>
           </div>
         </div>
         
         <div class="row">
-        	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            	<div class="info-box blue-bg">
-              		<i class="fa fa-cloud-download"></i>
-              		<div class="count">${patientnumber}</div>
-              		<div class="title">User</div>
-            	</div>
+        	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        		<form class="insert-form" action="/Doctor/insertTherapy" method="post">
+		<table>
+			<tr>
+				<td>Medicines Type</td><td><input type="text" name="medicinesType" placeholder="medicinesType"></td>
+			</tr>
+			
+			<tr>
+				<td>Medicines Name</td><td><input type="text" name="medicinesName" placeholder="medicinesName"></td>
+			</tr>
+			
+			<tr>
+				<td>Medicines Number</td><td><input type="text" name="medicinesNumber" placeholder="medicinesNumber"></td>
+			</tr>
+			
+			<tr>
+				<td>Start Date</td><td><input type="text" name="startDate" placeholder="startDate"></td>
+			</tr>
+	
+			<tr>
+				<td>End Date</td><td><input type="text" name="endDate" placeholder="endDate"></td>
+			</tr>
+			
+		</table>
+		<br>
+		<button class="btn btn-primary btn-lg btn-block" type="submit">Insert</button>
+	</form>
+	<br>
+	<a class="btn btn-primary btn-lg btn-block" href="/Doctor/userTherapy">Back</a>
             </div>
         </div>
 
@@ -233,7 +253,5 @@
         });
       });
     </script>
-
 </body>
-
 </html>

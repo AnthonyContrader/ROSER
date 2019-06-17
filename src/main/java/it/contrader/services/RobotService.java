@@ -1,18 +1,14 @@
 package it.contrader.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.contrader.converter.ConverterRobot;
-import it.contrader.converter.ConverterUser;
 import it.contrader.dao.RobotRepository;
 import it.contrader.dto.RobotDTO;
-import it.contrader.dto.UserDTO;
 import it.contrader.model.Robot;
-import it.contrader.model.User;
 
 @Service
 public class RobotService {
@@ -28,13 +24,10 @@ public class RobotService {
 		return ConverterRobot.toListDTO((List<Robot>) robotRepository.findAll());
 	}
 	
-	public RobotDTO save(RobotDTO robotDTO) {
-		return ConverterRobot.toDTO(robotRepository.save(ConverterRobot.toEntity(robotDTO)));
+	public boolean insertRobot(RobotDTO robotDTO) {
+		return robotRepository.save(ConverterRobot.toEntity(robotDTO)) != null;
 	}
 	
-	/*public List<RobotDTO> getListaRobotDTO() {
-		return ConverterRobot.toListDTO((List<Robot>) robotRepository.findAll());
-	}*/
 	
 	public RobotDTO readRobot(String robotModel) {
 		return ConverterRobot.toDTO(this.robotRepository.findRobotByRobotModel(robotModel));

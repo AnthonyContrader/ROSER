@@ -1,18 +1,24 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@	page import="it.contrader.dto.UserDTO"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List" %>
+<%@	page import="it.contrader.dto.TherapyDTO"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="utf-8">
+<meta charset="ISO-8859-1">
+<title>User Therapy</title>
+	<%
+		List<TherapyDTO> listTherapy = (List<TherapyDTO>) request.getAttribute("therapy");
+	 %>
+	 
+	 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
   <meta name="author" content="GeeksLabs">
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Home - DOCTOR</title>
+  <title>User Therapy</title>
 
   <!-- Bootstrap CSS -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -44,9 +50,8 @@
     Author URL: https://bootstrapmade.com
   ======================================================= -->
 </head>
-
 <body>
-  <!-- container section start -->
+	  <!-- container section start -->
   <section id="container" class="">
 
 
@@ -87,7 +92,7 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
-          <li class="active">
+          <li class="sub-menu">
             <a class="" href="/homeDoctor.jsp">
                           <i class="icon_house_alt"></i>
                           <span>Dashboard</span>
@@ -102,12 +107,13 @@
           <li class="sub-menu">
             <a href="/Doctor/matchRobotRedirect" class="">
                           <i class="icon_desktop"></i>
-                          <span>Match Robot</span>
+                          <span>Match robot</span>
                       </a>
           </li>
-           <li class="sub-menu">
+           </li>
+          <li class="active">
             <a href="/Doctor/userTherapy" class="">
-                          <i class="icon_desktop"></i>
+                          <i class="icon_document_alt"></i>
                           <span>User Therapy</span>
                       </a>
           </li>
@@ -123,21 +129,38 @@
         <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+            <h3 class="page-header"><i class="fa fa-laptop"></i> User Therapy</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i>Home</a></li>
-              <li><i class="fa fa-laptop"></i>Dashboard</li>
+              <li><i class="fa fa-laptop"></i>User Therapy</li>
             </ol>
           </div>
         </div>
         
         <div class="row">
-        	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            	<div class="info-box blue-bg">
-              		<i class="fa fa-cloud-download"></i>
-              		<div class="count">${patientnumber}</div>
-              		<div class="title">User</div>
-            	</div>
+        	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            	<table class="table table-striped">
+		<tr><th>Medicines Type</th><th>Medicines Name</th><th>Medicines Number</th><th>Start Date</th><th>End Date</th><th colspan=2>Option</th></tr>
+		<%
+			for(TherapyDTO therapy: listTherapy){
+		 %>
+		 	<tr>
+		 		<td><%=therapy.getMedicinesType()%></td>
+		 		<td><%=therapy.getMedicinesName()%></td>
+		 		<td><%=therapy.getMedicinesNumber()%></td>
+		 		<td><%=therapy.getStartDate()%></td>
+		 		<td><%=therapy.getEndDate()%></td>
+		 		<td><a class="btn btn-primary btn-lg btn-block" href="/Doctor/deleteTherapy?id=<%=therapy.getTherapyId() %>">Delete</a></td>
+		 		<td><a class="btn btn-primary btn-lg btn-block"href="/Doctor/redirectUpdateTherapy?id=<%=therapy.getTherapyId()%>">Update</a></td>
+		 	</tr>
+		<% 
+			}
+		%>
+	</table>
+	<a class="btn btn-primary btn-lg btn-block" href="/insertTherapy.jsp/">Insert Therapy</a>
+	<br>
+	<a class="btn btn-primary btn-lg btn-block" href="/homeDoctor.jsp">Back</a>
+	<br>
             </div>
         </div>
 
@@ -233,7 +256,6 @@
         });
       });
     </script>
-
+	
 </body>
-
 </html>

@@ -110,6 +110,12 @@
                           <span>Match robot</span>
                       </a>
           </li>
+          <li class="sub-menu">
+            <a href="/Doctor/userTherapy" class="">
+                          <i class="icon_desktop"></i>
+                          <span>User Therapy</span>
+                      </a>
+          </li>
         </ul>
         <!-- sidebar menu end-->
       </div>
@@ -122,10 +128,10 @@
         <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> Doctor Management</h3>
+            <h3 class="page-header"><i class="fa fa-laptop"></i> User Management</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i>Home</a></li>
-              <li><i class="fa fa-laptop"></i>Doctor Management</li>
+              <li><i class="fa fa-laptop"></i>User Management</li>
             </ol>
           </div>
         </div>

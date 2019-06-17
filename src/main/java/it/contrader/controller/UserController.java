@@ -84,6 +84,11 @@ public class UserController {
 				request.setAttribute("errore", "");
 				return "homeDoctor";
 				
+			case "user":
+				session.setAttribute("utenteCollegato", userDTO.getUserUser());
+				request.setAttribute("errore", "");
+				return "homeUser";
+				
 				default:
 					request.setAttribute("errore", "");
 					return "index";

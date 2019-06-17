@@ -21,6 +21,7 @@ import it.contrader.services.UserService;
 public class AdminController {
 	@Autowired
 	private UserService userService;
+	@Autowired
 	private RobotService robotService;
 	
 	
@@ -108,8 +109,11 @@ public class AdminController {
 		String userUser = request.getParameter("user_user");
 		
 		UserDTO userDTO = new UserDTO(userName, userPass, userUser, "robot", userSurname, true);
+		RobotDTO robotDTO = new RobotDTO(userUser, "", "");
 		
+		robotDTO.setRobotModel(userUser);
 		userService.insertUser(userDTO);
+		robotService.insertRobot(robotDTO);
 		
 		request.setAttribute("robot", getRobot());
 		

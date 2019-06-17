@@ -115,6 +115,12 @@
                           <span>Match robot</span>
                       </a>
           </li>
+          <li class="sub-menu">
+            <a href="/Doctor/userTherapy" class="">
+                          <i class="icon_document_alt"></i>
+                          <span>User Therapy</span>
+                      </a>
+          </li>
         </ul>
         <!-- sidebar menu end-->
       </div>
@@ -127,10 +133,10 @@
         <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+            <h3 class="page-header"><i class="fa fa-laptop"></i> Match Robot</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i>Home</a></li>
-              <li><i class="fa fa-laptop"></i>Dashboard</li>
+              <li><i class="fa fa-laptop"></i>Match Robot</li>
             </ol>
           </div>
         </div>
