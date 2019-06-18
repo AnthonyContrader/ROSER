@@ -1,32 +1,41 @@
 package it.contrader.dto;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import it.contrader.model.User.Usertype;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import it.contrader.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * DTO della classe User. Ha gli stessi attributi di User
- * 
- * @author Vittorio Valent & Girolamo Murdaca
- * 
- *@see User
- */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class UserDTO {
 
-	private long id;
+	private Integer userId;	
 	
-	private String username;
-	
-	private String password;
+	private String userName;
 
-	private Usertype usertype;
-	
+	private String userPass;
 
+	private String userUser;
+	
+	private String userType;
+	
+	private String userSurname;
+	
+	private boolean userState;
+
+	@Autowired
+	public UserDTO(String userName, String userPass, String userUser, String userType, String userSurname, boolean userState) {
+		this.userName = userName;
+		this.userPass = userPass;
+		this.userUser = userUser;
+		this.userType = userType;
+		this.userSurname = userSurname;
+		this.userState = userState;
+	}
+	
 }
+
+
