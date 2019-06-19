@@ -8,6 +8,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
 import { AdminModule } from './admin/admin.module';
 
+import { UserRoutingModule } from './user/user-routing.module';
+import { UserModule} from './user/user.module';
+
+import { DoctorDashboardComponent } from './doctor/doctor-dashboard/doctor-dashboard.component';
+import { DoctorRoutingModule } from './doctor/doctor-routing.module';
+import { DoctorLayoutComponent } from './layout/doctor-layout/doctor-layout.component';
+
+import { RobotDashboardComponent } from './robot/robot-dashboard/robot-dashboard.component';
+import { RobotRoutingModule } from './robot/robot-routing.module';
+import { RobotLayoutComponent } from './layout/robot-layout/robot-layout.component';
+
+
 /** 
  * Modulo principale dell'applicazione. Qui vengono importati i moduli secondari. L'UNICA component
  * da dichiare qui è l'AppComponent, tutte le altre devono essere dichiarate nel loro modulo e questo importato
@@ -17,15 +29,23 @@ import { AdminModule } from './admin/admin.module';
 */
 @NgModule({
   declarations: [
-    AppComponent
-  ],
+    AppComponent,
+    DoctorDashboardComponent,
+    DoctorLayoutComponent,
+    RobotDashboardComponent,
+    RobotLayoutComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LoginModule,
     HttpClientModule,
     LayoutModule,
-    AdminModule
+    AdminModule,
+    UserModule,
+    UserRoutingModule,
+    DoctorRoutingModule,
+    RobotRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -26,13 +26,21 @@ export class LoginComponent implements OnInit {
       if (user != null) {
         localStorage.setItem('currentUser', JSON.stringify(user));
 
-        switch (user.usertype.toString()) {
-          case 'ADMIN': {
+        switch (user.userType.toString()) {
+          case 'user': {
+            this.router.navigate(['/user-dashboard']);
+            break;
+          }
+          case 'doctor': {
+            this.router.navigate(['/doctor-dashboard']);
+            break;
+          }
+          case 'admin': {
             this.router.navigate(['/admin-dashboard']);
             break;
           }
-          case 'USER': {
-            this.router.navigate(['/user-dashboard']);
+          case 'robot': {
+            this.router.navigate(['/robot-dashboard']);
             break;
           }
           default:
