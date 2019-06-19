@@ -12,16 +12,22 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.AbstractController;
 
 import it.contrader.services.RobotService;
 import it.contrader.services.TherapyService;
 import it.contrader.services.UserService;
 
-@Controller
-@RequestMapping("Doctor")
+@RestController
+@RequestMapping("/Doctor")
+@CrossOrigin(value="*")
 public class DoctorController {
+	
 	private final UserService userService;
 	private final RobotService robotService;
 	private final TherapyService therapyService;
@@ -33,13 +39,12 @@ public class DoctorController {
 		this.therapyService = therapyService;
 	}
 	
-	@RequestMapping(value = "/userManagement", method = RequestMethod.GET)
-	public String userManagement(HttpServletRequest request) {
-		request.setAttribute("user", getUser());
-		return "userManagement";		
+	@GetMapping(value = "/userManagement")
+	public List<UserDTO> userManagement() {
+		return userService.getListaUserDTO();		
 	}
 	
-	@RequestMapping(value = "/matchRobot", method = RequestMethod.GET)
+	@GetMapping(value = "/matchRobot")
 	public String matchRobot(HttpServletRequest request) {
 		int idUser = Integer.parseInt(request.getParameter("user"));
 		String robotModel = request.getParameter("robot");

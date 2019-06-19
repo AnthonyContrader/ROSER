@@ -9,23 +9,27 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import it.contrader.dto.RobotDTO;
 import it.contrader.dto.SensordataDTO;
 import it.contrader.services.RobotService;
 import it.contrader.services.SensordataService;
 
-@Controller
-@RequestMapping("Robot")
+@RestController
+@CrossOrigin(value="*")
+@RequestMapping("/Robot")
 public class RobotController {
 	@Autowired
 	private SensordataService sensordataService;
 	@Autowired
 	private RobotService robotService;
 	
-	@RequestMapping(value = "/readParameter", method = RequestMethod.GET)
+	@GetMapping(value = "/readParameter")
 	public String readParameter(HttpServletRequest request) {
 		String robotModel= request.getParameter("robot");
 		int decibel = getValue();

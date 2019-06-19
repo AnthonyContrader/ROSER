@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,10 +27,9 @@ public class AdminController {
 	private RobotService robotService;
 	
 	
-	@RequestMapping(value = "/doctorManagement", method = RequestMethod.GET)
-	public String doctorManagement(HttpServletRequest request) {
-		request.setAttribute("doctor", getDoctor());
-		return "doctorManagement";		
+	@GetMapping(value = "/doctorManagement")
+	public List<UserDTO> doctorManagement() {
+		return userService.getListaUserDTO();		
 	}
 	
 	@RequestMapping(value = "/devicesManagement", method = RequestMethod.GET)
