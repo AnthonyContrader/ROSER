@@ -1,2 +1,0 @@
-# SAMPLE
-Sample Projects
