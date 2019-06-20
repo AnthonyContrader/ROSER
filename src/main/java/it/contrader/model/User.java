@@ -28,7 +28,9 @@ public class User {
 	
 	public enum Usertype {
 		ADMIN,
-		USER
+		USER,
+		ROBOT,
+	   DOCTOR
 	}
 
 	@Id

@@ -24,5 +24,8 @@ public class RobotService extends AbstractService<Robot,RobotDTO> {
 	public RobotDTO findById(int id) {
 		return converter.toDTO(((RobotRepository)repository).findById(id));
 	}
+	public RobotDTO findByModel (String x) {
+		return converter.toDTO(((RobotRepository)repository).findByModel(x));
+	}
 
 }

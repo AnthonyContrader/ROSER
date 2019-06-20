@@ -2,6 +2,9 @@ package it.contrader.dto;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import java.util.Date;
+
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -28,7 +31,7 @@ public class SensordataDTO {
 	
 	private long id;
 	
-	private String dataDate;
+	private Date dataDate;
 	
 	private int decibel;
 	

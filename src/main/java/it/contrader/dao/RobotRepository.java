@@ -22,5 +22,7 @@ import it.contrader.model.Robot;
 public interface RobotRepository extends CrudRepository<Robot, Long>{
 
 	Robot findById(int id);
+
+	Robot findByModel(String x);
 	
 }

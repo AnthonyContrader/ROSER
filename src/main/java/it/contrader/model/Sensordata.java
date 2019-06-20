@@ -1,5 +1,7 @@
 package it.contrader.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +25,7 @@ public class Sensordata {
 	
 	@Column(unique = true)
 	
-	private String dataDate;
+	private Date dataDate;
 	
 	private int decibel;
 	
