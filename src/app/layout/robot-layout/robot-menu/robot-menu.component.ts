@@ -2,16 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-admin-menu',
-  templateUrl: './admin-menu.component.html',
-  styleUrls: ['./admin-menu.component.css']
+  selector: 'app-robot-menu',
+  templateUrl: './robot-menu.component.html',
+  styleUrls: ['./robot-menu.component.css']
 })
-export class AdminMenuComponent implements OnInit {
+export class RobotMenuComponent implements OnInit {
 
   isUserCollapsed = false;
   isClientCollapsed = false;
   isAccountCollapsed = false;
   isRobotCollapsed = false;
+  isSensordataCollapsed = false;
+  
 
   constructor(private router: Router) {
   }
@@ -40,6 +42,10 @@ export class AdminMenuComponent implements OnInit {
     if (this.isRobotCollapsed === false) {
       this.isRobotCollapsed = true;
     } else { this.isRobotCollapsed = false; }
-    
+  }
+  sensordatacollapse() {
+    if (this.isSensordataCollapsed === false) {
+      this.isSensordataCollapsed = true;
+    } else { this.isSensordataCollapsed = false; }
   }
 }

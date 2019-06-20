@@ -1,4 +1,7 @@
 export enum Usertype {
     ADMIN,
-    USER
+    USER,
+    ROBOT,
+    DOCTOR
+
 }

@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
 
   login(f: NgForm): void {
     this.loginDTO = new LoginDTO(f.value.username, f.value.password);
-
     this.service.login(this.loginDTO).subscribe((user) => {
 
       if (user != null) {
@@ -33,6 +32,15 @@ export class LoginComponent implements OnInit {
           }
           case 'USER': {
             this.router.navigate(['/user-dashboard']);
+            break;
+          } 
+          case 'ROBOT': {
+            sessionStorage.setItem("currentUser",JSON.stringify(user));
+            this.router.navigate(['/robot-dashboard']);
+            break;
+          }
+          case 'DOCTOR': {
+            this.router.navigate(['/doctor-dashboard']);
             break;
           }
           default:

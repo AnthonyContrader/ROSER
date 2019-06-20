@@ -3,6 +3,7 @@ import { AbstractService } from './abstractservice';
 import { RobotDTO } from 'src/dto/robotdto';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UserDTO } from 'src/dto/userdto';
 
 /**
  * I service sono decorati da @Injectable. 
@@ -23,4 +24,8 @@ export class RobotService extends AbstractService<RobotDTO>{
     this.type = 'robot';
   }
 
+  getParamenter(robot : UserDTO) : Observable<any> {
+    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    return this.http.post('http://localhost:8080/robot/parameters',robot);
+  }
 }

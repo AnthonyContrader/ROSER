@@ -5,7 +5,6 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
-import { RobotComponent } from './robot/robot.component';
 
 /**
  * Modulo dell'admin, qui vengono dichiarate le component che utilizza 
@@ -16,7 +15,7 @@ import { RobotComponent } from './robot/robot.component';
  * @see AdminRoutingModule
  */
 @NgModule({
-  declarations: [AdminDashboardComponent, UsersComponent, WorkInProgressComponent, RobotComponent],
+  declarations: [AdminDashboardComponent, UsersComponent, WorkInProgressComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
