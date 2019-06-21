@@ -16,6 +16,7 @@ export class RobotDashboardComponent implements OnInit {
 
   sensordata: SensordataDTO;
   robot : UserDTO;
+  list : String[];
   constructor(private service:RobotService,private router:Router) { }
 
   ngOnInit() {
