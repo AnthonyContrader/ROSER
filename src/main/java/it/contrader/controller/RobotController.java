@@ -1,6 +1,9 @@
 package it.contrader.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,18 +46,22 @@ public class RobotController extends AbstractController<RobotDTO>{
 	@Autowired
 	private RobotService robS;
 	
+	private int decibel;
+	private int faceExpress;
+	private int humidity;
+	
 	@PostMapping("/parameters")
 	public SensordataDTO getParameter(@RequestBody UserDTO robot ) {
-		int decibel = (new Random()).nextInt(34);
-		int faceExpress = (new Random()).nextInt(34);
-		int humidity = (new Random()).nextInt(34);
-		Date currentDate = new Date();
+		this.decibel = getRandomValue();
+		this.faceExpress = getRandomValue();
+		this.humidity = getRandomValue();
+		String data = getData();
 		String robotModel = robot.getUsername();
 		RobotDTO robotInfo = robS.findByModel(robot.getUsername());
 		String ownerName = robotInfo.getOwnername();
 		String ownerSurname = robotInfo.getOwnersurname();
 		SensordataDTO sensorIns = new SensordataDTO ();
-		sensorIns.setDataDate(currentDate);
+		sensorIns.setDataDate(data);
 		sensorIns.setDecibel(decibel);
 		sensorIns.setFaceExpress(faceExpress);
 		sensorIns.setHumidity(humidity);
@@ -67,4 +74,35 @@ public class RobotController extends AbstractController<RobotDTO>{
 		
 	}
 	
+	public String getData() {
+		String dataStr = "";
+		Date data = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+		dataStr = format.format(data);
+		return dataStr;
+	}
+	@PostMapping("/getMedia")
+	public List<String> getMedia(@RequestBody SensordataDTO sensorData){
+		
+		int media = (sensorData.getHumidity()+sensorData.getDecibel()+sensorData.getFaceExpress())/3;
+		
+		List<String> tmpUrl = new ArrayList<String>();
+		if(media>0 && media<4) {
+			tmpUrl.add("0_3.png");
+			tmpUrl.add("SAD");
+		}
+		else if(media>3 && media<7) {
+			tmpUrl.add("4_6.png");
+			tmpUrl.add("NORMAL");
+		}
+		else {
+			tmpUrl.add("7_9.png");
+			tmpUrl.add("HAPPY");
+		}
+		return tmpUrl;
+	}
+	private int getRandomValue() {
+		Random r = new Random();
+		return r.nextInt(9)+1;
+	}
 }

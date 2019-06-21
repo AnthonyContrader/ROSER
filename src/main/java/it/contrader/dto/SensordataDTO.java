@@ -31,7 +31,7 @@ public class SensordataDTO {
 	
 	private long id;
 	
-	private Date dataDate;
+	private String dataDate;
 	
 	private int decibel;
 	

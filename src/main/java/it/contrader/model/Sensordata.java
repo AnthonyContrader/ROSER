@@ -25,7 +25,7 @@ public class Sensordata {
 	
 	@Column(unique = true)
 	
-	private Date dataDate;
+	private String dataDate;
 	
 	private int decibel;
 	
