@@ -31,11 +31,11 @@ export class LoginComponent implements OnInit {
             break;
           }
           case 'USER': {
-            this.router.navigate(['/user-dashboard']);
+            this.router.navigate(['/patient-dashboard']);
             break;
           } 
           case 'ROBOT': {
-            sessionStorage.setItem("currentUser",JSON.stringify(user));
+          //  sessionStorage.setItem("currentUser",JSON.stringify(user));
             this.router.navigate(['/robot-dashboard']);
             break;
           }
@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/doctor-dashboard']);
             break;
           }
+
           default:
             this.router.navigate(['/login']);
         }

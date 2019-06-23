@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row mt-5">
+      
+      <div class="col-md-12">
+        <table>
+          <tr>
+            <th>
+              Model
+            </th>
+            <th>
+              Owner Name
+            </th>
+            <th>
+              Owner Surname
+            </th>
+            <th>
+                Edit
+              </th>
+              <th>
+                  Robots
+                </th>
+          </tr>
+                <tr *ngFor="let robot of robots">
+                    <td>
+                        <p>{{robot.model}}</p>
+                    </td>
+                    <td *ngFor ="let user of users">
+                       <p>{{user.name}} </p>
+                    </td>
+                    <td>
+                        <p>{{robot.ownersurname}}</p>
+                    </td>
+                    <td>
+                        <button (click)=update(robot)>Save</button>
+                      </td>
+                      <td>
+                        <button (click)="delete(robot)">Delete</button>
+                      </td>
+                    </tr>
+        </table>
+      </div>
+    </div>
+  </div>

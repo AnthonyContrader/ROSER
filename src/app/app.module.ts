@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
 import { AdminModule } from './admin/admin.module';
 import { RobotModule } from './robot/robot.module';
+import { DoctorModule } from './doctor/doctor.module';
+import { PatientModule } from './patient/patient.module';
 
 /** 
  * Modulo principale dell'applicazione. Qui vengono importati i moduli secondari. L'UNICA component
@@ -18,7 +20,7 @@ import { RobotModule } from './robot/robot.module';
 */
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,9 @@ import { RobotModule } from './robot/robot.module';
     HttpClientModule,
     LayoutModule,
     AdminModule,
-    RobotModule
+    RobotModule,
+    DoctorModule,
+    PatientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

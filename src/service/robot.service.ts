@@ -32,4 +32,5 @@ export class RobotService extends AbstractService<RobotDTO>{
   getMedia(sensorData: SensordataDTO): Observable<any>{
     return this.http.post('http://localhost:8080/robot/getMedia',sensorData);
   } 
+
 }

@@ -2,18 +2,18 @@
     <div class="col-md-12">
         <div class="sidenav">
             <button class="menubtn">
-                <a [routerLink]="['/admin-dashboard']"> <i class="fas fa-home" style="margin-right: 10px"> </i>
+                <a [routerLink]="['/doctor-dashboard']"> <i class="fas fa-home" style="margin-right: 10px"> </i>
                     Dashboard </a>
             </button>
 
             <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#users"
                 (click)="userscollapse()">
-                <i class="fas fa-users" style="margin-right: 15px"></i>Users
+                <i class="fas fa-users" style="margin-right: 15px"></i>Patients
             </button>
             <div class="collapsebtn" id="users" *ngIf="isUserCollapsed">
                 <button class="menubtn" style="padding-left: 40px; background-color: #334247;">
-                    <a [routerLink]="['/admin-dashboard/users']"> <i class="fas fa-edit" style="margin-right: 10px">
-                        </i> Manage Users </a>
+                    <a [routerLink]="['/doctor-dashboard/patients-management']"> <i class="fas fa-edit" style="margin-right: 10px">
+                        </i> Manage Patients </a>
                 </button>
             </div>
             <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#robot"
@@ -22,7 +22,7 @@
             </button>
             <div class="collapsebtn" id="robot" *ngIf="isRobotCollapsed">
                 <button class="menubtn" style="padding-left: 40px; background-color: #334247;">
-                    <a [routerLink]="['/admin-dashboard/robot-managment']"> <i class="fas fa-edit" style="margin-right: 10px">
+                    <a [routerLink]="['/doctor-dashboard/robot-management-doctor']"> <i class="fas fa-edit" style="margin-right: 10px">
                         </i> Manage Robots </a>
                 </button>
             </div>

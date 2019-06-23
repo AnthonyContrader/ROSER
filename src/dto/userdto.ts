@@ -9,14 +9,21 @@ import {Usertype} from './usertype';
  * @author Vittorio Valent
  */
 export class UserDTO {
-
+   
    id: number;
 
    username: string;
 
    password: string;
 
+   name: string;
+
+   surname: string;
+
+   state: boolean;
+
    usertype: Usertype;
+
 
 }
 

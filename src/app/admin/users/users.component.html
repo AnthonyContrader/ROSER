@@ -1,9 +1,7 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-1">
-
-    </div>
-    <div class="col-md-10">
+    
+    <div class="col-md-12">
       <table>
         <tr>
           <th>
@@ -13,7 +11,16 @@
             Password
           </th>
           <th>
+            Name
+          </th>
+          <th>
+            Surname
+          </th>
+          <th>
             Usertype
+          </th>
+          <th>
+            Status
           </th>
           <th>
             Edit
@@ -30,16 +37,27 @@
             <input placeholder="password" [(ngModel)]="usertoinsert.password">
           </td>
           <td>
+            <input placeholder="name" [(ngModel)]="usertoinsert.name">
+          </td>
+          <td>
+            <input placeholder="surname" [(ngModel)]="usertoinsert.surname">
+          </td>
+          <td>
             <select placeholder="usertype" [(ngModel)]="usertoinsert.usertype">
-              <option value="ADMIN">ADMIN</option>
-              <option value="USER">USER</option>
-            </select>
+              <option value="DOCTOR">DOCTOR</option>
+              </select>
+          </td>
+          <td>
+            <select placeholder="state" [(ngModel)]="usertoinsert.state">
+              <option value="true">true</option>
+              <option value="false">false</option>
+              </select>
           </td>
           <td>
             <button (click)="insert(usertoinsert)">Insert</button>
           </td>
           <td>
-            <button (click)="clear()">Clear</button>
+            <button (click)="clear()"> Clear</button>
           </td>
         </tr>
         <tr *ngFor="let user of users">
@@ -50,10 +68,21 @@
             <input [(ngModel)]="user.password">
           </td>
           <td>
-            <select [(ngModel)]="user.usertype">
-              <option [selected]="user.usertype===ADMIN" value="ADMIN">ADMIN</option>
-              <option [selected]="user.usertype===USER" value="USER">USER</option>
-            </select>
+            <input [(ngModel)]="user.name">
+          </td>
+          <td>
+            <input [(ngModel)]="user.surname">
+          </td>
+          <td>
+            <p>
+              {{user.usertype}}
+            </p>
+          </td>
+          <td>
+            <select placeholder="state" [(ngModel)]="user.state">
+              <option value="true">true</option>
+              <option value="false">false</option>
+              </select>
           </td>
           <td>
             <button (click)=update(user)>Save</button>
@@ -64,8 +93,6 @@
         </tr>
       </table>
     </div>
-    <div class="col-md-1">
-
-    </div>
+    
   </div>
 </div>

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/service/user.service';
 import { UserDTO } from 'src/dto/userdto';
+import { UserService } from 'src/service/user.service';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'app-patients-management',
+  templateUrl: './patients-management.component.html',
+  styleUrls: ['./patients-management.component.css']
 })
-export class UsersComponent implements OnInit {
+export class PatientsManagementComponent implements OnInit {
 
   users: UserDTO[];
   usertoinsert: UserDTO = new UserDTO();
@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
   constructor(private service: UserService) { }
 
   ngOnInit() {
-    this.getUserByType("DOCTOR");
+    this.getUserByType("USER");
   }
 
   getUsers() {
@@ -28,18 +28,19 @@ export class UsersComponent implements OnInit {
   }
 
   delete(user: UserDTO) {
-    this.service.delete(user.id).subscribe(() => this.getUserByType("DOCTOR"));
+    this.service.delete(user.id).subscribe(() => this.getUserByType("USER"));
   }
 
   update(user: UserDTO) {
-    this.service.update(user).subscribe(() => this.getUserByType("DOCTOR"));
+    this.service.update(user).subscribe(() => this.getUserByType("USER"));
   }
 
   insert(user: UserDTO) {
-    this.service.insert(user).subscribe(() => this.getUserByType("DOCTOR"));
+    this.service.insert(user).subscribe(() => this.getUserByType("USER"));
   }
 
   clear(){
     this.usertoinsert = new UserDTO();
   }
+
 }
