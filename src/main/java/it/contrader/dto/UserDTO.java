@@ -21,12 +21,24 @@ import lombok.NoArgsConstructor;
 public class UserDTO {
 
 	private long id;
-	
 	private String username;
-	
 	private String password;
+	private String name;
+	private String surname;
+	private boolean state;
 
 	private Usertype usertype;
+	
+	public UserDTO(String username,String password,String name, String surname,boolean state,Usertype usertype){
+		
+		this.username = username;
+		this.password = password;
+		this.name = name;
+		this.surname = surname;
+		this.state = state;
+		this.usertype = usertype;
+		
+	}
 	
 
 }

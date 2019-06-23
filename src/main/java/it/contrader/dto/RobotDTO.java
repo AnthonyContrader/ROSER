@@ -35,7 +35,12 @@ public class RobotDTO {
 	private String ownername;
 	
 	private String ownersurname;
-
 	
+	public RobotDTO(String model,String ownername,String ownersurname)
+	{
+		this.model = model;
+		this.ownername = ownername;
+		this.ownersurname = ownersurname;
+	}
 	
 }

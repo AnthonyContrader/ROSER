@@ -1,11 +1,7 @@
 package it.contrader.model;
 
-import javax.persistence.Entity;
-
 import javax.persistence.*;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,8 +25,8 @@ public class User {
 	public enum Usertype {
 		ADMIN,
 		USER,
-		ROBOT,
-	   DOCTOR
+		DOCTOR,
+		ROBOT
 	}
 
 	@Id
@@ -39,8 +35,14 @@ public class User {
 	
 	@Column(unique = true)
 	private String username;
-	
+	@NotNull
 	private String password;
+	@NotNull
+	private String name;
+	@NotNull
+	private String surname;
+	@NotNull
+	private boolean State;
 
 	private Usertype usertype;
 	

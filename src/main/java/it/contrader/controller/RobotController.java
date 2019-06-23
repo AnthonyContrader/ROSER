@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import it.contrader.dto.RobotDTO;
 import it.contrader.dto.SensordataDTO;
 import it.contrader.dto.UserDTO;
+import it.contrader.model.User.Usertype;
 import it.contrader.service.RobotService;
 import it.contrader.service.SensordataService;
 import it.contrader.service.TherapyService;
+import it.contrader.service.UserService;
 
 
 /**
@@ -45,6 +47,8 @@ public class RobotController extends AbstractController<RobotDTO>{
 	private SensordataService senS;
 	@Autowired
 	private RobotService robS;
+	@Autowired
+	private UserService usrS;
 	
 	private int decibel;
 	private int faceExpress;
@@ -73,6 +77,7 @@ public class RobotController extends AbstractController<RobotDTO>{
 		return sensorIns;
 		
 	}
+	
 	
 	public String getData() {
 		String dataStr = "";
