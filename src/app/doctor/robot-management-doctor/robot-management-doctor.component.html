@@ -8,33 +8,27 @@
               Model
             </th>
             <th>
-              Owner Name
+              Patient
             </th>
-            <th>
-              Owner Surname
-            </th>
-            <th>
+            <th colspan="2">
                 Edit
               </th>
-              <th>
-                  Robots
-                </th>
           </tr>
                 <tr *ngFor="let robot of robots">
                     <td>
                         <p>{{robot.model}}</p>
                     </td>
-                    <td *ngFor ="let user of users">
-                       <p>{{user.name}} </p>
-                    </td>
                     <td>
-                        <p>{{robot.ownersurname}}</p>
-                    </td>
+                        <select [(ngModel)] = "robot.ownersurname" [(ngModel)] = "robot.ownername">
+                          <option></option>
+                          /* da aggiustare*/
+                            <option *ngFor ="let user of users" [value] ="user.surname" [value] ="user.name"  >
+                              {{user.surname}} {{user.name}}
+                          </option>
+                          </select>
+                    </td>  
                     <td>
-                        <button (click)=update(robot)>Save</button>
-                      </td>
-                      <td>
-                        <button (click)="delete(robot)">Delete</button>
+                        <button (click)=update(robot)>Match</button>
                       </td>
                     </tr>
         </table>

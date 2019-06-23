@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { RobotLayoutComponent } from '../layout/robot-layout/robot-layout.component';
 import { RobotDashboardComponent } from './robot-dashboard/robot-dashboard.component';

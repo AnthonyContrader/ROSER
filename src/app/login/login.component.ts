@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
             break;
           } 
           case 'ROBOT': {
-          //  sessionStorage.setItem("currentUser",JSON.stringify(user));
+            sessionStorage.setItem("currentUser",JSON.stringify(user));
             this.router.navigate(['/robot-dashboard']);
             break;
           }
