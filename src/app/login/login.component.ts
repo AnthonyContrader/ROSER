@@ -21,30 +21,27 @@ export class LoginComponent implements OnInit {
 
   login(f: NgForm): void {
     this.loginDTO = new LoginDTO(f.value.username, f.value.password);
-
     this.service.login(this.loginDTO).subscribe((token : any) => {
-      localStorage.setItem("currentUser", JSON.stringify({ "usertype": token.id_token }));
+      localStorage.setItem('currentUser', JSON.stringify({ authorities: token.id_token }));
 
       this.service.userLogged(this.loginDTO.username).subscribe((user:UserDTO)=>{
 
-      if (user != null) {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        console.log(user);
-        if(user.usertype == 0) {
-          this.router.navigate(['/admin-dashboard']);
+        if(user != null){
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          console.log("utente: " + user);
+          console.log("type" + user.authorities)
+          if(user.authorities == 'ROLE_USER'){
+            this.router.navigate(['/users-dashboard'])
+          }else if(user.authorities == 'ROLE_USER,ROLE_ADMIN'){
+            this.router.navigate(['/admin-dashboard']);
+          }else if(user.authorities == 'ROLE_USER,ROLE_DOCTOR'){
+            this.router.navigate(['/doctor-dashboard']);
+          }else if(user.authorities == 'ROLE_ROBOT,ROLE_USER'){
+            this.router.navigate(['/robot-dashboard']);
+          }
+          
         }
-        if(user.usertype == 1) {
-          this.router.navigate(['/user-dashboard']);
-        }
-        if(user.usertype == 2) {
-          this.router.navigate(['/doctor-dashboard']);
-        }
-        if(user.usertype == 3) {
-          this.router.navigate(['/robot-dashboard']);
-        }
-        
-      }
     });
   });
-  }
+}
 }

@@ -30,7 +30,7 @@ export class UserService extends AbstractService<UserDTO>{
     
     console.log(user);
     if(user) {
-        return 'Bearer ' + user.usertype;
+        return 'Bearer ' + user.authorities;
     } else {
         return "";
     }

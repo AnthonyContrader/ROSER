@@ -26,7 +26,7 @@ export abstract class AbstractService<DTO> implements Service<DTO> {
         
         console.log(user);
         if(user) {
-            return "Bearer " + user.usertype;
+            return "Bearer " + user.authority;
         } else {
             return "";
         }

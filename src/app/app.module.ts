@@ -31,7 +31,7 @@ import { PatientModule } from './patient/patient.module';
     AdminModule,
     RobotModule,
     DoctorModule,
-    PatientModule
+    PatientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

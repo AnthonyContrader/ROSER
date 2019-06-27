@@ -1,10 +1,9 @@
-import {Usertype} from './usertype';
 
 /**
  * Classe DTO di User. DEVE essere uguale (stesso nome classe, stessi attributi e stessi nomi) a
  * quello nel backend. 
  * 
- * @see Usertype
+ * @see Authority
  * 
  * @author Vittorio Valent
  */
@@ -12,18 +11,31 @@ export class UserDTO {
    
    id: number;
 
-   username: string;
+   firstName: string;
 
-   password: string;
+   lastName: string;
 
-   name: string;
+   email: string;
 
-   surname: string;
+   imageUrl: string;
+   
+   activated: boolean;
 
-   state: boolean;
+   langKey: string;
 
-   usertype: Usertype;
+   actiovationKey: string;
 
+   resetKey: string;
 
+   createdBy: string;
+
+   createDate: string;
+
+   resetDate: string;
+
+   lastModifiedBy: string;
+
+   lastModifiedDate: string;
+
+   authorities: any;
 }
-
