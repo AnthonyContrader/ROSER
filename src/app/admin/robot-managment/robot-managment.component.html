@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row mt-5">
+    
+    <div class="col-md-12">
+      <table>
+        <tr>
+          <th>
+            Model
+          </th>
+          <th>
+            Owner Name
+          </th>
+          <th>
+            Owner Surname
+          </th>
+          <th>
+              Edit
+            </th>
+            <th>
+                Robots
+              </th>
+        </tr>
+        <tr>
+            <td>
+              <input placeholder="model" [(ngModel)]="robottoinsert.model">
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+                <button (click)="insert(robottoinsert)">Insert</button>
+              </td>
+              <td>
+                <button (click)="clear()"> Clear</button>
+              </td>
+              </tr>
+              <tr *ngFor="let robot of robots">
+                  <td>
+                    <input [(ngModel)]="robot.model">
+                  </td>
+                  <td>
+                    <p>{{robot.ownername}}</p>
+                  </td>
+                  <td>
+                      <p>{{robot.ownersurname}}</p>
+                  </td>
+                  <td>
+                      <button (click)=update(robot)>Save</button>
+                    </td>
+                    <td>
+                      <button (click)="delete(robot)">Delete</button>
+                    </td>
+                  </tr>
+      </table>
+    </div>
+  </div>
+</div>

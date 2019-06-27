@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row mt-5">
+      
+      <div class="col-md-12">
+        <table>
+          <tr>
+            <th>
+              Model
+            </th>
+            <th>
+              Patient
+            </th>
+            <th colspan="2">
+                Edit
+              </th>
+          </tr>
+                <tr *ngFor="let robot of robots">
+                    <td>
+                        <p>{{robot.model}}</p>
+                    </td>
+                    <td>
+                        <select [(ngModel)] = "robot.ownersurname" [(ngModel)] = "robot.ownername">
+                          <option></option>
+                          /* da aggiustare*/
+                            <option *ngFor ="let user of users" [value] ="user.surname" [value] ="user.name"  >
+                              {{user.surname}} {{user.name}}
+                          </option>
+                          </select>
+                    </td>  
+                    <td>
+                        <button (click)=update(robot)>Match</button>
+                      </td>
+                    </tr>
+        </table>
+      </div>
+    </div>
+  </div>
