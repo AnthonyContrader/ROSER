@@ -1,0 +1,35 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.contrader.roser"
+    },
+    "jhipsterVersion": "5.8.2",
+    "applicationType": "microservice",
+    "baseName": "microAdmin",
+    "packageName": "com.contrader.roser",
+    "packageFolder": "com/contrader/roser",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "consul",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YzVlMjYxOGMwM2Y3NjExYTk1MzZkODk2NDE3NzZkZjNjMTM4OGQ1YmFiNWUyNjdiY2M0MzQwN2EzYjdjYzY5M2U3MTk1NjYwMmJlZDkwOTk3OWQ3ZWZhMTJiODE5NGUzZWI2YzIyNmVmYzAxOTlmYTI0Yzk4MGM0MjA2ZGY4N2E=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
