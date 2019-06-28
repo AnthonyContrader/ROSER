@@ -131,7 +131,7 @@ jhipster:
                 # - In the JHipster Registry (which includes a Spring Cloud Config server)
                 # - In a separate `application-prod.yml` file, in the same folder as your executable WAR file
                 # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
-                base64-secret: Y2NhOTRmYTFiMDlkMDY2YzZjZjk2MjIzMjA2MDJlOWEwNDExOGM0MzY1NmEwN2Y4ZTdiMDEyNDU0ZTEwOWJlZTRlZjFlYjhiNjRlMjA1YzM3MDU2N2ViZTBhYWQ3ODdiMDIzMjg4ODA3MjdlODc2ZGI5NDZkNmMyZjI5NDNmZTM=
+                base64-secret: MzRjM2I4N2I0N2U2ZDg1ZDVkMjhmN2ExNWNhNmE4MWJkNTg0NWYxYTg4NWE0MzRlNDM4Yzg3NWIyN2VmYzViYjU2MGUwYjUyODE5YjYxMTcyMGJiZmI0OWIxOGExMzRkMDkyODJiYjRmYmMyODI0OThmZTlmNTAyNmM4ODhlODc=
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
