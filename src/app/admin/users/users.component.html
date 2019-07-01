@@ -62,16 +62,16 @@
         </tr>
         <tr *ngFor="let user of users">
           <td>
-            <input [(ngModel)]="user.username">
+            <input [(ngModel)]="users.username">
           </td>
           <td>
-            <input [(ngModel)]="user.password">
+            <input [(ngModel)]="users.password">
           </td>
           <td>
-            <input [(ngModel)]="user.name">
+            <input [(ngModel)]="users.name">
           </td>
           <td>
-            <input [(ngModel)]="user.surname">
+            <input [(ngModel)]="users.surname">
           </td>
           <td>
             <p>
@@ -85,10 +85,10 @@
               </select>
           </td>
           <td>
-            <button (click)=update(user)>Save</button>
+            <button (click)=update(users)>Save</button>
           </td>
           <td>
-            <button (click)="delete(user)">Delete</button>
+            <button (click)="delete(users)">Delete</button>
           </td>
         </tr>
       </table>

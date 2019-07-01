@@ -7,7 +7,7 @@ import { UserDTO } from 'src/dto/userdto';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit{
 
   users: UserDTO[];
   usertoinsert: UserDTO = new UserDTO();
@@ -15,10 +15,10 @@ export class UsersComponent implements OnInit {
   constructor(private service: UserService) { }
 
   ngOnInit() {
-    this.getUserByType("DOCTOR");
+    this.getAll();
   }
 
-  getUsers() {
+  getAll(){
     this.service.getAll().subscribe(users => this.users = users);
   }
 

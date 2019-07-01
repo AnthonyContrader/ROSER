@@ -15,14 +15,15 @@ export abstract class AbstractService<DTO> implements Service<DTO> {
 
     type: string;
     port: string = '8080';
-    micro1: string ;
+    gateway: string;
+    micro1: string;
     entityName: string;
 
     constructor(protected http: HttpClient) {
     }
 
     auth() {
-        var user = JSON.parse(localStorage.getItem("currentUser"));
+        var user = JSON.parse(localStorage.getItem("Autoken"));
         
         console.log(user);
         if(user) {
@@ -32,14 +33,13 @@ export abstract class AbstractService<DTO> implements Service<DTO> {
         }
       }
 
-      getAll(): Observable<DTO[]> {
-        return this.http.get<DTO[]>('http://localhost:' + this.port + '/' + this.micro1 + '/api/' +this.entityName ,{
+    getAll(): Observable<DTO[]> {
+        return this.http.get<DTO[]>('http://localhost:' + this.port + '/' + this.gateway + '/api/' +this.entityName ,{
             headers: {
                 "Authorization": this.auth()
             }
         }) ;
     }
-
     read(id: number): Observable<DTO> {
         return this.http.get<DTO>('http://localhost:' + this.port + '/' + this.micro1 + '/api/' +this.entityName+ '/read?id=' + id);
     }

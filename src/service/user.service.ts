@@ -20,15 +20,18 @@ import { RobotDTO } from 'src/dto/robotdto';
 })
 export class UserService extends AbstractService<UserDTO>{
 
+  gateway: string = 'gateway';
+  entityName : string = 'users';
+
   constructor(http: HttpClient) {
     super(http);
     this.type = 'user';
   }
 
   auth() {
-    var user = JSON.parse(localStorage.getItem("currentUser")) as UserDTO;
+    var user = JSON.parse(localStorage.getItem('Autoken')) as UserDTO;
     
-    console.log(user);
+    console.log("Service auth method: " + user);
     if(user) {
         return 'Bearer ' + user.authorities;
     } else {
@@ -41,13 +44,17 @@ export class UserService extends AbstractService<UserDTO>{
   }
 
   userLogged(username: string){
-    console.log("qua: ", this.auth())
-    console.log(this.auth());
+    console.log("Service user logged method: ", this.auth())
     return this.http.get('http://localhost:8080/api/users/'+username, {
       headers: {
           "Authorization": this.auth()
       }
     });
+  }
+
+
+  getAll(){
+    return this.http.get<any>('http://localhost:' + this.port + '/api/' +this.entityName);
   }
 
 

@@ -22,7 +22,9 @@ export class LoginComponent implements OnInit {
   login(f: NgForm): void {
     this.loginDTO = new LoginDTO(f.value.username, f.value.password);
     this.service.login(this.loginDTO).subscribe((token : any) => {
+      
       localStorage.setItem('currentUser', JSON.stringify({ authorities: token.id_token }));
+      localStorage.setItem('Autoken', JSON.stringify({ authorities: token.id_token }));
 
       this.service.userLogged(this.loginDTO.username).subscribe((user:UserDTO)=>{
 
@@ -34,6 +36,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/users-dashboard'])
           }else if(user.authorities == 'ROLE_USER,ROLE_ADMIN'){
             this.router.navigate(['/admin-dashboard']);
+            
           }else if(user.authorities == 'ROLE_USER,ROLE_DOCTOR'){
             this.router.navigate(['/doctor-dashboard']);
           }else if(user.authorities == 'ROLE_ROBOT,ROLE_USER'){
