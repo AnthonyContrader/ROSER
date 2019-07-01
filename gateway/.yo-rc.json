@@ -1,35 +1,32 @@
 {
-    "generator-jhipster": {
-        "promptValues": {
-            "packageName": "com.contrader.roser"
-        },
-        "jhipsterVersion": "5.8.2",
-        "applicationType": "gateway",
-        "baseName": "gateway",
-        "packageName": "com.contrader.roser",
-        "packageFolder": "com/contrader/roser",
-        "serverPort": "8080",
-        "authenticationType": "jwt",
-        "cacheProvider": "hazelcast",
-        "enableHibernateCache": false,
-        "websocket": false,
-        "databaseType": "sql",
-        "devDatabaseType": "h2Disk",
-        "prodDatabaseType": "mysql",
-        "searchEngine": false,
-        "messageBroker": false,
-        "serviceDiscoveryType": "consul",
-        "buildTool": "maven",
-        "enableSwaggerCodegen": false,
-        "jwtSecretKey": "MDEyNTljMGRhYTQzNTM3YjQ3YTRjMTcyMTE5MDIwZjA3YmQzZjg5N2QxMzFlMWQ1NjRlODBhOGEyNTg1YmE0MmYyODUxYjU1MWY2YWYxNmU1NTI1Mjg2MWM3NjViNzhmMTBmOWI1Yjg5NDE3MjE3YmE4OTY5MDZlZjNjNWU5Yjk=",
-        "clientFramework": "angularX",
-        "useSass": true,
-        "clientPackageManager": "npm",
-        "testFrameworks": [],
-        "jhiPrefix": "jhi",
-        "entitySuffix": "",
-        "dtoSuffix": "DTO",
-        "otherModules": [],
-        "enableTranslation": false
-    }
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.contrader.roser"
+    },
+    "jhipsterVersion": "5.2.1",
+    "applicationType": "gateway",
+    "baseName": "Gateway",
+    "packageName": "com.contrader.roser",
+    "packageFolder": "com/contrader/roser",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "consul",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "36a418f9b03ae7124f651280248abac0519aa7dd",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "enableTranslation": false
+  }
 }

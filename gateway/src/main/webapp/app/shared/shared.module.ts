@@ -12,10 +12,4 @@ import { GatewaySharedLibsModule, GatewaySharedCommonModule, JhiLoginModalCompon
     exports: [GatewaySharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class GatewaySharedModule {
-    static forRoot() {
-        return {
-            ngModule: GatewaySharedModule
-        };
-    }
-}
+export class GatewaySharedModule {}

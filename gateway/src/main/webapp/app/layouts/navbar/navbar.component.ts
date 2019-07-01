@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { VERSION } from 'app/app.constants';
-import { AccountService, LoginModalService, LoginService } from 'app/core';
-import { ProfileService } from 'app/layouts/profiles/profile.service';
+import { Principal, LoginModalService, LoginService } from 'app/core';
+import { ProfileService } from '../profiles/profile.service';
 
 @Component({
     selector: 'jhi-navbar',
     templateUrl: './navbar.component.html',
-    styleUrls: ['navbar.scss']
+    styleUrls: ['navbar.css']
 })
 export class NavbarComponent implements OnInit {
     inProduction: boolean;
@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
 
     constructor(
         private loginService: LoginService,
-        private accountService: AccountService,
+        private principal: Principal,
         private loginModalService: LoginModalService,
         private profileService: ProfileService,
         private router: Router
@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
     }
 
     isAuthenticated() {
-        return this.accountService.isAuthenticated();
+        return this.principal.isAuthenticated();
     }
 
     login() {
@@ -60,6 +60,6 @@ export class NavbarComponent implements OnInit {
     }
 
     getImageUrl() {
-        return this.isAuthenticated() ? this.accountService.getImageUrl() : null;
+        return this.isAuthenticated() ? this.principal.getImageUrl() : null;
     }
 }

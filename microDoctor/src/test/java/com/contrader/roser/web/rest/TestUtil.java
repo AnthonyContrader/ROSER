@@ -20,22 +20,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Utility class for testing REST controllers.
  */
-public final class TestUtil {
-
-    private static final ObjectMapper mapper = createObjectMapper();
+public class TestUtil {
 
     /** MediaType for JSON UTF8 */
     public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(
             MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(), StandardCharsets.UTF_8);
-
-
-    private static ObjectMapper createObjectMapper() {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-        mapper.registerModule(new JavaTimeModule());
-        return mapper;
-    }
 
     /**
      * Convert an object to JSON byte array.
@@ -47,6 +37,12 @@ public final class TestUtil {
      */
     public static byte[] convertObjectToJsonBytes(Object object)
             throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+        JavaTimeModule module = new JavaTimeModule();
+        mapper.registerModule(module);
+
         return mapper.writeValueAsBytes(object);
     }
 
@@ -136,6 +132,4 @@ public final class TestUtil {
         registrar.registerFormatters(dfcs);
         return dfcs;
     }
-
-    private TestUtil() {}
 }

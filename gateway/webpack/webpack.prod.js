@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const Visualizer = require('webpack-visualizer-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -13,7 +12,7 @@ const utils = require('./utils.js');
 const commonConfig = require('./webpack.common.js');
 
 const ENV = 'production';
-const sass = require('sass');
+const extractCSS = new ExtractTextPlugin(`content/[name].[hash].css`);
 
 module.exports = webpackMerge(commonConfig({ env: ENV }), {
     // Enable source maps. Please note that this will slow down the build.
@@ -21,7 +20,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     // devtool: 'source-map',
     entry: {
         polyfills: './src/main/webapp/app/polyfills',
-        global: './src/main/webapp/content/scss/global.scss',
+        global: './src/main/webapp/content/css/global.css',
         main: './src/main/webapp/app/app.main'
     },
     output: {
@@ -32,40 +31,20 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     module: {
         rules: [{
             test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-            loader: '@ngtools/webpack'
-        },
-        {
-            test: /\.scss$/,
-            use: ['to-string-loader', 'css-loader', {
-                loader: 'sass-loader',
-                options: { implementation: sass }
-            }],
-            exclude: /(vendor\.scss|global\.scss)/
-        },
-        {
-            test: /(vendor\.scss|global\.scss)/,
-            use: [
-                MiniCssExtractPlugin.loader,
-                'css-loader',
-                'postcss-loader',
-                {
-                    loader: 'sass-loader',
-                    options: { implementation: sass }
-                }
-            ]
+            use: [ '@ngtools/webpack' ]
         },
         {
             test: /\.css$/,
-            use: ['to-string-loader', 'css-loader'],
+            loaders: ['to-string-loader', 'css-loader'],
             exclude: /(vendor\.css|global\.css)/
         },
         {
             test: /(vendor\.css|global\.css)/,
-            use: [
-                MiniCssExtractPlugin.loader,
-                'css-loader',
-                'postcss-loader'
-            ]
+            use: extractCSS.extract({
+                fallback: 'style-loader',
+                use: ['css-loader'],
+                publicPath: '../'
+            })
         }]
     },
     optimization: {
@@ -106,17 +85,11 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
                         indent_level: 2
                     }
                 }
-            }),
-            new OptimizeCSSAssetsPlugin({})
+            })
         ]
     },
     plugins: [
-        new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: '[name].[contenthash].css',
-            chunkFilename: '[id].css'
-        }),
+        extractCSS,
         new MomentLocalesPlugin({
             localesToKeep: [
                 // jhipster-needle-i18n-language-moment-webpack - JHipster will add/remove languages in this array

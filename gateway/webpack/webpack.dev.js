@@ -7,7 +7,6 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const path = require('path');
-const sass = require('sass');
 
 const utils = require('./utils.js');
 const commonConfig = require('./webpack.common.js');
@@ -20,6 +19,7 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
         contentBase: './target/www',
         proxy: [{
             context: [
+                '/microadmin',
                 /* jhipster-needle-add-entity-to-webpack - JHipster will add entity api paths here */
                 '/api',
                 '/management',
@@ -28,9 +28,8 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
                 '/h2-console',
                 '/auth'
             ],
-            target: `http${options.tls ? 's' : ''}://127.0.0.1:8080`,
+            target: 'http://127.0.0.1:8080',
             secure: false,
-            changeOrigin: options.tls,
             headers: { host: 'localhost:9000' }
         }],
         stats: options.stats,
@@ -40,7 +39,7 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
     },
     entry: {
         polyfills: './src/main/webapp/app/polyfills',
-        global: './src/main/webapp/content/scss/global.scss',
+        global: './src/main/webapp/content/css/global.css',
         main: './src/main/webapp/app/app.main'
     },
     output: {
@@ -52,13 +51,13 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
         rules: [{
             test: /\.ts$/,
             enforce: 'pre',
-            loader: 'tslint-loader',
-            exclude: [/(node_modules)/, new RegExp('reflect-metadata\\' + path.sep + 'Reflect\\.ts')]
+            loaders: 'tslint-loader',
+            exclude: ['node_modules', new RegExp('reflect-metadata\\' + path.sep + 'Reflect\\.ts')]
         },
         {
             test: /\.ts$/,
             use: [
-                'angular2-template-loader',
+                { loader: 'angular2-template-loader' },
                 {
                     loader: 'cache-loader',
                     options: {
@@ -79,42 +78,25 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
                         happyPackMode: true
                     }
                 },
-                'angular-router-loader'
+                { loader: 'angular-router-loader' }
             ],
-            exclude: /(node_modules)/
-        },
-        {
-            test: /\.scss$/,
-            use: ['to-string-loader', 'css-loader', {
-                loader: 'sass-loader',
-                options: { implementation: sass }
-            }],
-            exclude: /(vendor\.scss|global\.scss)/
-        },
-        {
-            test: /(vendor\.scss|global\.scss)/,
-            use: ['style-loader', 'css-loader', 'postcss-loader', {
-                loader: 'sass-loader',
-                options: { implementation: sass }
-            }]
+            exclude: ['node_modules']
         },
         {
             test: /\.css$/,
-            use: ['to-string-loader', 'css-loader'],
+            loaders: ['to-string-loader', 'css-loader'],
             exclude: /(vendor\.css|global\.css)/
         },
         {
             test: /(vendor\.css|global\.css)/,
-            use: ['style-loader', 'css-loader']
+            loaders: ['style-loader', 'css-loader']
         }]
     },
-    stats: process.env.JHI_DISABLE_WEBPACK_LOGS ? 'none' : options.stats,
+    stats: options.stats,
     plugins: [
-        process.env.JHI_DISABLE_WEBPACK_LOGS
-            ? null
-            : new SimpleProgressWebpackPlugin({
-                format: options.stats === 'minimal' ? 'compact' : 'expanded'
-              }),
+        new SimpleProgressWebpackPlugin({
+            format: options.stats === 'minimal' ? 'compact' : 'expanded'
+        }),
         new FriendlyErrorsWebpackPlugin(),
         new ForkTsCheckerWebpackPlugin(),
         new BrowserSyncPlugin({
@@ -122,11 +104,6 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
             port: 9000,
             proxy: {
                 target: 'http://localhost:9060'
-            },
-            socket: {
-                clients: {
-                    heartbeatTimeout: 60000
-                }
             }
         }, {
             reload: false
@@ -143,6 +120,6 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
             title: 'JHipster',
             contentImage: path.join(__dirname, 'logo-jhipster.png')
         })
-    ].filter(Boolean),
+    ],
     mode: 'development'
 });

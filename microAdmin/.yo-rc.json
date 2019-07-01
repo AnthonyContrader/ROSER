@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "com.contrader.roser"
     },
-    "jhipsterVersion": "5.8.2",
+    "jhipsterVersion": "5.2.1",
     "applicationType": "microservice",
     "baseName": "microAdmin",
     "packageName": "com.contrader.roser",
@@ -21,13 +21,10 @@
     "serviceDiscoveryType": "consul",
     "buildTool": "maven",
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "OTFlZTcwZDkxMmVlOWNmZjE0Mjc0NGVhZmU3YTEzZjczODZhNmJiOGU3OTY3YjBlMGRmYzI2NDBkYjlmMDY4NTBmNzYwM2IxMjk0YmRhYjg4MDQ0NzdkNmE5MTg2ZTcyNmMwNDhhMzExNjNiYTVhYzYzMGI2ZDQ2NjliZWU0YTg=",
+    "jwtSecretKey": "104fe18c4eb8f212cf3be6d30771f8c658f40429",
+    "enableTranslation": false,
     "testFrameworks": [],
     "jhiPrefix": "jhi",
-    "entitySuffix": "",
-    "dtoSuffix": "DTO",
-    "otherModules": [],
-    "enableTranslation": false,
     "clientPackageManager": "npm",
     "skipClient": true,
     "skipUserManagement": true

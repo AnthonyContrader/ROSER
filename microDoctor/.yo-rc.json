@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "com.contrader.roser"
     },
-    "jhipsterVersion": "5.8.2",
+    "jhipsterVersion": "5.2.1",
     "applicationType": "microservice",
     "baseName": "microDoctor",
     "packageName": "com.contrader.roser",
@@ -21,13 +21,10 @@
     "serviceDiscoveryType": "consul",
     "buildTool": "maven",
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "MzA2ZWUwNjU2YWFhMmQzNDIyODQzMGM0NWVjYThjYmEyOGI5ZDlkYWNhYTY3ZGRlMjhjZjNhYmZhYjlkNWVjMWIxMTNmZjE4YTZmOTdmOTBiYTM2NmNkNTZkNWI3MmJjNWIyY2FhZDMyOTBiYTUyNDFmYjkwYmQ1OWNkYmJjMjY=",
+    "jwtSecretKey": "4e5acf0803158535b49005bea59d12f87650cda6",
+    "enableTranslation": false,
     "testFrameworks": [],
     "jhiPrefix": "jhi",
-    "entitySuffix": "",
-    "dtoSuffix": "DTO",
-    "otherModules": [],
-    "enableTranslation": false,
     "clientPackageManager": "npm",
     "skipClient": true,
     "skipUserManagement": true

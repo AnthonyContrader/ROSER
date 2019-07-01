@@ -1,11 +1,13 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
+
+import { GatewayUtenteModule as MicroAdminUtenteModule } from './microAdmin/utente/utente.module';
+/* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
+    // prettier-ignore
     imports: [
-        RouterModule.forChild([
-            /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
-        ])
+        MicroAdminUtenteModule,
+        /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],
     entryComponents: [],

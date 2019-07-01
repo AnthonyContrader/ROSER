@@ -11,6 +11,7 @@ import {
     UserMgmtUpdateComponent,
     UserMgmtDeleteDialogComponent,
     LogsComponent,
+    JhiMetricsMonitoringModalComponent,
     JhiMetricsMonitoringComponent,
     JhiHealthModalComponent,
     JhiHealthCheckComponent,
@@ -37,9 +38,10 @@ import {
         JhiHealthModalComponent,
         JhiDocsComponent,
         JhiGatewayComponent,
-        JhiMetricsMonitoringComponent
+        JhiMetricsMonitoringComponent,
+        JhiMetricsMonitoringModalComponent
     ],
-    entryComponents: [UserMgmtDeleteDialogComponent, JhiHealthModalComponent],
+    entryComponents: [UserMgmtDeleteDialogComponent, JhiHealthModalComponent, JhiMetricsMonitoringModalComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class GatewayAdminModule {}

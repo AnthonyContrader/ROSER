@@ -8,13 +8,16 @@ import { CookieModule } from 'ngx-cookie';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-    imports: [NgbModule.forRoot(), InfiniteScrollModule, CookieModule.forRoot(), FontAwesomeModule],
+    imports: [
+        NgbModule.forRoot(),
+        NgJhipsterModule.forRoot({
+            // set below to true to make alerts look like toast
+            alertAsToast: false
+        }),
+        InfiniteScrollModule,
+        CookieModule.forRoot(),
+        FontAwesomeModule
+    ],
     exports: [FormsModule, CommonModule, NgbModule, NgJhipsterModule, InfiniteScrollModule, FontAwesomeModule]
 })
-export class GatewaySharedLibsModule {
-    static forRoot() {
-        return {
-            ngModule: GatewaySharedLibsModule
-        };
-    }
-}
+export class GatewaySharedLibsModule {}

@@ -12,6 +12,6 @@ export const auditsRoute: Route = {
     },
     data: {
         pageTitle: 'Audits',
-        defaultSort: 'auditEventDate,desc'
+        defaulSort: 'auditEventDate,desc'
     }
 };

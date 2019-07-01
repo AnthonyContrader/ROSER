@@ -33,12 +33,10 @@ spring:
             port: 8500
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/gateway?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+        url: jdbc:mysql://localhost:3306/Gateway?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
         password:
         hikari:
-            poolName: Hikari
-            auto-commit: false
             data-source-properties:
                 cachePrepStmts: true
                 prepStmtCacheSize: 250
@@ -50,10 +48,9 @@ spring:
         show-sql: false
         properties:
             hibernate.id.new_generator_mappings: true
-            hibernate.connection.provider_disables_autocommit: true
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
-            hibernate.generate_statistics: true
+            hibernate.generate_statistics: false
     liquibase:
         contexts: prod
     mail:
@@ -63,9 +60,6 @@ spring:
         password:
     thymeleaf:
         cache: true
-    sleuth:
-        sampler:
-            probability: 1 # report 100% of traces
     zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
         base-url: http://localhost:9411
         enabled: false
@@ -74,7 +68,7 @@ spring:
                 enabled: true
 
 # ===================================================================
-# To enable TLS in production, generate a certificate using:
+# To enable SSL, generate a certificate using:
 # keytool -genkey -alias gateway -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
 #
 # You can also use Let's Encrypt:
@@ -85,8 +79,8 @@ spring:
 # server:
 #    port: 443
 #    ssl:
-#        key-store: classpath:config/tls/keystore.p12
-#        key-store-password: password
+#        key-store: keystore.p12
+#        key-store-password: <your-password>
 #        key-store-type: PKCS12
 #        key-alias: gateway
 #        # The ciphers suite enforce the security by deactivating some old and deprecated SSL cipher, this list was tested against SSL Labs (https://www.ssllabs.com/ssltest/)
@@ -126,20 +120,17 @@ jhipster:
     security:
         authentication:
             jwt:
-                # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-                # As this is the PRODUCTION configuration, you MUST change the default key, and store it securely:
-                # - In the JHipster Registry (which includes a Spring Cloud Config server)
-                # - In a separate `application-prod.yml` file, in the same folder as your executable WAR file
-                # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
-                base64-secret: MDEyNTljMGRhYTQzNTM3YjQ3YTRjMTcyMTE5MDIwZjA3YmQzZjg5N2QxMzFlMWQ1NjRlODBhOGEyNTg1YmE0MmYyODUxYjU1MWY2YWYxNmU1NTI1Mjg2MWM3NjViNzhmMTBmOWI1Yjg5NDE3MjE3YmE4OTY5MDZlZjNjNWU5Yjk=
+                secret: 36a418f9b03ae7124f651280248abac0519aa7dd
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: gateway@localhost
+        from: Gateway@localhost
         base-url: http://my-server-url-to-change # Modify according to your server's URL
-    metrics:
-        logs: # Reports metrics in the logs
+    metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
+        jmx:
+            enabled: true
+        logs: # Reports Dropwizard metrics in the logs
             enabled: false
             report-frequency: 60 # in seconds
     logging:
